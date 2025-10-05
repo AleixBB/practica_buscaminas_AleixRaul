@@ -1,7 +1,11 @@
 package tqs.prac;
 
-public class Main {
+import tqs.prac.view.view;
+
+public class main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        view vista = new view();
+        vista.printBoard();
+
     }
 }
