@@ -32,6 +32,7 @@ public class modelTest {
         }
 
     }
+    //test que comprova què passa si s'introdueixen valors fora de rang en nMines i size. Haurien de saltar excepcions.
     @Test
     void testInitnegatius()
     {
@@ -63,9 +64,28 @@ public class modelTest {
             assertTrue(false);
             
         }catch (Exception e){}
+    }
 
+    //test que comprova que el nombre de mines que s'ha introduit al tauler de forma random es correcte
+    @Test
+    void testRandommines()
+    {
+    int size = 6;
+    int nMines = 10;
+    int contador = 0;
+    board tauler = new board(nMines, size);
+    for (int i=0; i<size; i++)
+    {
+        for (int j=0; j<size; j++)
+        {
+            if (tauler.getCellMines(i, j) == -1)
+            {
+                contador += 1;
+            }
+        }
+    }
+    assertEquals(contador, nMines);
 
-        
     }
 
 
