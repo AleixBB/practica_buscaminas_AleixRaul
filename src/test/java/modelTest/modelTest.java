@@ -74,6 +74,7 @@ public class modelTest {
     int nMines = 10;
     int contador = 0;
     board tauler = new board(nMines, size);
+    tauler.putMinesintoBoard();
     for (int i=0; i<size; i++)
     {
         for (int j=0; j<size; j++)

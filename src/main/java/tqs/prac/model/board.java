@@ -41,6 +41,19 @@ public class board {
     public int getCellMines(int fila, int col){
         return mines[fila][col];
     }
+    public void putMinesintoBoard()
+    {
+        Random rand = new Random();
+        int count = 0;
+        while (count < nMines) {
+            int r = rand.nextInt(size);
+            int c = rand.nextInt(size);
+            if (mines[r][c] == 0) {
+                mines[r][c] = -1;
+                count++;
+            }
+        }   
+    }   
 
 
 }
