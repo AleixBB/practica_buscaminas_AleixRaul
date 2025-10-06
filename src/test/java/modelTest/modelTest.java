@@ -32,6 +32,38 @@ public class modelTest {
         }
 
     }
+    @Test
+    void testInitnegatius()
+    {
+        try{
+            board tauler=new board(-2, -4);
+            assertTrue(false);
+
+            
+        }catch (Exception e){}
+        try{
+            board tauler=new board(-1, 0);
+            assertTrue(false);
+
+            
+        }catch (Exception e){}
+        try{
+            board tauler=new board(2, -1);
+            assertTrue(false);
+
+            
+        }catch (Exception e){}
+        try{
+            board tauler=new board(0, 0);
+            assertTrue(false);
+            
+        }catch (Exception e){}
+
+
+        
+    }
+
+
 
 
 
