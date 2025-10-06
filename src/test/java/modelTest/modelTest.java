@@ -58,6 +58,11 @@ public class modelTest {
             assertTrue(false);
             
         }catch (Exception e){}
+        try{
+            board tauler=new board(0, 4);
+            assertTrue(false);
+            
+        }catch (Exception e){}
 
 
         

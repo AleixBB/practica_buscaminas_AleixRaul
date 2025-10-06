@@ -10,10 +10,37 @@ public class board {
 
     public board(int nMines, int size)
     {
+        if (nMines <= 0 || size <= 0)
+        {
+            throw new IllegalArgumentException("nombre de mines o mida fora de rang");
+        }
         
+        this.nMines = nMines;
+        this.size = size;
+        matriuVisible = new char[size][size];
+        mines = new int[size][size];
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                matriuVisible[i][j] = '-';
+            }
+        }
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                mines[i][j] = 0;
+            }
+        }
+
     }
-    public char getCellMatriuV(int fila, int col){}
-    public int getCellMines(int fila, int col){}
+    public char getCellMatriuV(int fila, int col){
+        return matriuVisible[fila][col];
+    }
+    public int getCellMines(int fila, int col){
+        return mines[fila][col];
+    }
 
 
 }
