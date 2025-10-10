@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*; 
 import tqs.prac.model.board;
 import tqs.prac.model.Cell;
+import tqs.prac.main;
 
 
 public class boardTest {
@@ -74,6 +75,20 @@ public class boardTest {
         }
     }
     assertEquals(contador, nMines);
+
+    }
+
+    @Test
+    //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen en relacio a les mines les diferents celes son correctes
+    void testValorsCelles()
+    {   
+        
+
+        MockBoard mockB = new MockBoard(4,6);
+        mockB.setUpMockBoard(1);
+        mockB.
+
+
 
     }
 
