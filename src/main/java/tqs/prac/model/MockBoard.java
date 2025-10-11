@@ -1,13 +1,11 @@
-package modelTest;
+package tqs.prac.model;
 
-import tqs.prac.model.Cell;
 import tqs.prac.main;
-import tqs.prac.model.board;
 
 public class MockBoard extends board {
 
     private Cell[][] tauler;
-    
+
     public MockBoard(int nMines, int size) {
         super(nMines, size);
     }

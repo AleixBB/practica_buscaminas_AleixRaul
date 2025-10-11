@@ -41,7 +41,11 @@ public class board {
                 count++;
             }
         }   
-    }   
+    }  
+    public void insertValueintoCells()
+    {
+        
+    } 
 
 
 }
