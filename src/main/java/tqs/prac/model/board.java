@@ -44,8 +44,83 @@ public class board {
     }  
     public void insertValueintoCells()
     {
-        
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {   if (matrix[i][j].getValue()!= -1)
+                {
+                if (j>0){
+                    if (matrix[i][j-1].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                
+                }
+                if (i>0)
+                {
+                     if (matrix[i-1][j].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                }
+                if(j<(size-1)){
+                    if (matrix[i][j+1].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                }
+                if(i<(size-1)){
+                    if (matrix[i+1][j].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                }
+                if(i<(size-1) && j<(size-1) ){
+                    if (matrix[i+1][j+1].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                
+                }
+                if(i>0 && j>0 ){
+                    if (matrix[i-1][j-1].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                
+                }
+                if(i<(size-1) && j>0 ){
+                    if (matrix[i+1][j].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                
+                }
+                if(i>0 && j>(size-1) ){
+                    if (matrix[i+1][j].getValue()== -1)
+                    {
+                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+                    }
+                
+                }
+                }
+            }
+         
+        }
+
+
     } 
+    public void printBoard()
+    {
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                System.out.println((matrix[i][j]).getValue());
+            }
+            System.out.println("\n");
+        }
+    }
 
 
 }

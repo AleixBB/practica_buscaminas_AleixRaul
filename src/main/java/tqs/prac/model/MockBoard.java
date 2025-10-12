@@ -13,7 +13,7 @@ public class MockBoard extends board {
     {
         switch (type) {
         case 1:
-            tauler = new Cell[][] {
+            this.tauler= new Cell[][] {
                 { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(-1), new Cell(0) },
                 { new Cell(0),  new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0) },
                 { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },

@@ -1,11 +1,25 @@
 package tqs.prac;
 
+import tqs.prac.model.MockBoard;
 import tqs.prac.view.view;
 
 public class main {
     public static void main(String[] args) {
         view vista = new view();
-        vista.printBoard();
+        int size = 5;
+        int nMines = 4;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(1);
+        mockB.printBoard();
+
+        /*mockB.insertValueintoCells();
+        int[][] boardResultant = {
+        { 1,  1,  1, -1,  1 },
+        { 1, -1,  2,  1,  1 },
+        { 1,  2,  2,  1,  0 },
+         { 1,  2, -1,  1,  0 },
+        { -1, 2,  1,  1,  0 }};
+        mockB.printBoard();*/
 
     }
 }
