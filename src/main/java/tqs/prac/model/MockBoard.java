@@ -4,7 +4,6 @@ import tqs.prac.main;
 
 public class MockBoard extends board {
 
-    private Cell[][] tauler;
 
     public MockBoard(int nMines, int size) {
         super(nMines, size);
@@ -13,7 +12,7 @@ public class MockBoard extends board {
     {
         switch (type) {
         case 1:
-            this.tauler= new Cell[][] {
+            this.matrix= new Cell[][] {
                 { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(-1), new Cell(0) },
                 { new Cell(0),  new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0) },
                 { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
@@ -21,7 +20,7 @@ public class MockBoard extends board {
                 { new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) }
             };
         break;
-}
+    }
 
     }
     

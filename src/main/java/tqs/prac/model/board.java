@@ -2,9 +2,9 @@ package tqs.prac.model;
 import java.util.Random;
 
 public class board {
-    private int nMines;
-    private int size;
-    private Cell[][] matrix;
+    protected int nMines;
+    protected int size;
+    protected Cell[][] matrix;
 
 
     public board(int nMines, int size)
@@ -44,83 +44,55 @@ public class board {
     }  
     public void insertValueintoCells()
     {
-        for(int i=0; i<size; i++)
-        {
-            for (int j=0; j<size; j++)
-            {   if (matrix[i][j].getValue()!= -1)
-                {
-                if (j>0){
-                    if (matrix[i][j-1].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
+        for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+
+            // Si la celda es una mina, no modificamos su valor
+            if (matrix[i][j].getValue() == -1)
+                continue;
+
+            int count = 0;
+
+            // Recorremos las celdas vecinas (fila y columna)
+            for (int di = -1; di <= 1; di++) {
+                for (int dj = -1; dj <= 1; dj++) {
+                    // Saltamos la propia celda
+                    if (di == 0 && dj == 0)
+                        continue;
+
+                    int ni = i + di;
+                    int nj = j + dj;
+
+                    // Verificamos que los índices estén dentro del tablero
+                    if (ni >= 0 && ni < size && nj >= 0 && nj < size) {
+                        if (matrix[ni][nj].getValue() == -1)
+                            count++;
                     }
-                
-                }
-                if (i>0)
-                {
-                     if (matrix[i-1][j].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                }
-                if(j<(size-1)){
-                    if (matrix[i][j+1].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                }
-                if(i<(size-1)){
-                    if (matrix[i+1][j].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                }
-                if(i<(size-1) && j<(size-1) ){
-                    if (matrix[i+1][j+1].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                
-                }
-                if(i>0 && j>0 ){
-                    if (matrix[i-1][j-1].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                
-                }
-                if(i<(size-1) && j>0 ){
-                    if (matrix[i+1][j].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                
-                }
-                if(i>0 && j>(size-1) ){
-                    if (matrix[i+1][j].getValue()== -1)
-                    {
-                        matrix[i][j].setValue(matrix[i][j].getValue()+1);
-                    }
-                
-                }
                 }
             }
-         
-        }
 
-
-    } 
-    public void printBoard()
-    {
-        for (int i=0; i<size; i++)
-        {
-            for (int j=0; j<size; j++)
-            {
-                System.out.println((matrix[i][j]).getValue());
-            }
-            System.out.println("\n");
+            // Guardamos el número de minas vecinas
+            matrix[i][j].setValue(count);
         }
     }
+}
+        
+             
+           
+         
+        
+
+
+    
+   public void printBoard() {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            System.out.print(matrix[i][j].getValue() + " ");
+        }
+        System.out.println(); // Salto de línea al final de cada fila
+    }
+}
+
 
 
 }

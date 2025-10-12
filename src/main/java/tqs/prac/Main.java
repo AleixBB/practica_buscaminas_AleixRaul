@@ -8,9 +8,10 @@ public class main {
         view vista = new view();
         int size = 5;
         int nMines = 4;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(1);
-        mockB.printBoard();
+        
+      
+
+
 
         /*mockB.insertValueintoCells();
         int[][] boardResultant = {
