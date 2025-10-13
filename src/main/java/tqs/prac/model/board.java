@@ -77,13 +77,6 @@ public class Board {
     }
 }
         
-             
-           
-         
-        
-
-
-    
    public void printBoard() {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -91,7 +84,19 @@ public class Board {
         }
         System.out.println(); // Salto de línea al final de cada fila
     }
-}
+    }
+
+    public void firstClick(int fila, int columna){
+
+
+
+    }
+    
+    public void openCell(int fila, int columna){
+
+
+
+    }
 
 
 
