@@ -2,7 +2,7 @@ package tqs.prac.model;
 
 import tqs.prac.main;
 
-public class MockBoard extends board {
+public class MockBoard extends Board {
 
 
     public MockBoard(int nMines, int size) {

@@ -1,13 +1,13 @@
 package tqs.prac.model;
 import java.util.Random;
 
-public class board {
+public class Board {
     protected int nMines;
     protected int size;
     protected Cell[][] matrix;
 
 
-    public board(int nMines, int size)
+    public Board(int nMines, int size)
     {
         if (nMines <= 0 || size <= 0)
         {
