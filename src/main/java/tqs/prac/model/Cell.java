@@ -3,6 +3,8 @@ package tqs.prac.model;
 public class Cell {
     private int value;
     private boolean reveal;
+    private boolean flagged;
+
     public Cell()
     {
         value = 0;
@@ -24,6 +26,11 @@ public class Cell {
     {
         return reveal;
     }
-
+    public boolean isFlagged() {
+        return flagged;
+    }
+    public void toggleFlag() {
+        this.flagged = !this.flagged;
+    }
     
 }
