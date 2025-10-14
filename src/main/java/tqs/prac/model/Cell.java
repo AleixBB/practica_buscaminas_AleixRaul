@@ -5,14 +5,15 @@ public class Cell {
     private boolean reveal;
     private boolean flagged;
 
-    public Cell()
-    {
-        value = 0;
-        reveal = false;
+   public Cell() {
+        this.value = 0;
+        this.reveal = false;
+        this.flagged = false;
     }
-    public Cell(int value)
-    {
+    public Cell(int value) {
         this.value = value;
+        this.reveal = false;
+        this.flagged = false;
     }
     public int getValue()
     {
@@ -20,11 +21,14 @@ public class Cell {
     }
     public void setValue(int val)
     {
-        value = val;
+        this.value = val;
     }
     public boolean isRevelaed()
     {
         return reveal;
+    }
+    public void reveal() {
+        this.reveal = true;
     }
     public boolean isFlagged() {
         return flagged;
