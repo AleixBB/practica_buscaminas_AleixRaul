@@ -6,8 +6,8 @@ import tqs.prac.view.view;
 public class main {
     public static void main(String[] args) {
         view vista = new view();
-        int size = 5;
-        int nMines = 4;
+        int size = 5; //size of board, in this case 5x5
+        int nMines = 4; //number of mines in the board
         
       
 
