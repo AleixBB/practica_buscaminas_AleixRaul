@@ -1,13 +1,12 @@
 package tqs.prac;
 
-import tqs.prac.model.MockBoard;
 import tqs.prac.view.view;
 
-public class main {
-    public static void main(String[] args) {
+public class Main {
+    public static void Main(String[] args) {
         view vista = new view();
-        int size = 5; //size of board, in this case 5x5
-        int nMines = 4; //number of mines in the board
+        int size = 5;
+        int nMines = 4;
         
       
 

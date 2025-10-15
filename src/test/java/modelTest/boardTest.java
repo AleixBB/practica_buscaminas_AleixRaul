@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*; 
 import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
-import tqs.prac.main;
+import tqs.prac.Main;
 
 
 public class BoardTest {
@@ -114,6 +114,7 @@ public class BoardTest {
         MockBoard mockB = new MockBoard(nMines,size);
         mockB.setUpMockBoard(1);
         mockB.insertValueintoCells();
+        System.out.println("______________");
         Boolean[][] boardResultant = {
         { false,  false,  false, false,  false },
         { false, false,  false,  false,  false },
@@ -128,10 +129,43 @@ public class BoardTest {
             assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
             }
         }
-
+        System.out.println("________________");
 
 
     }
+   @Test 
+    void firstClickTest8x8()
+    {
+        int size = 8;
+        int nMines = 16;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(2);
+        mockB.insertValueintoCells();
+        System.out.println("______________");
+        mockB.printBoard();
+        Boolean[][] boardResultant = {
+        {false,false, false, false, false, false, false, false },
+        { true, true,  true,  false,  false,  false,  false, false },
+        { false,  true,  true,  false,  false, false,  false, false},
+        {  true,  true,  false, false, false,  false,  false,  false},
+        { false,  false,  false,  false,  false,  false,  false, false },
+        {  false, false, false, false,  false,  false,  false, false },
+        {  false,  false,  false,  false,  false,  false,  false,  false },
+        { false,  false, false,  false, false,  false,  false,  false }};
+
+        mockB.firstClick(2, 1);
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
+        mockB.printBoardBools();
+
+
+    }
+
 
 
 }
