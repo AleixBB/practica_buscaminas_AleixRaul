@@ -1,19 +1,19 @@
 package modelTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*; 
-import tqs.prac.model.board;
+import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 import tqs.prac.main;
 
 
-public class boardTest {
+public class BoardTest {
     //test que comprova el constructor per defecte per la matrix
     @Test
     void testInitpt1()
     {
     int mines = 4;
     int size = 6;
-    board tauler = new board(mines, size);
+    Board tauler = new Board(mines, size);
     for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 assertEquals(0 ,tauler.getCell(i, j).getValue());
@@ -25,31 +25,33 @@ public class boardTest {
     @Test
     void testInitnegatius()
     {
+        //valorsfora rang
         try{
-            board tauler=new board(-2, -4);
+            Board tauler=new Board(-2, -4);
             assertTrue(false);
 
-            
+        //valor frontera i valor fora rang  
         }catch (Exception e){}
         try{
-            board tauler=new board(-1, 0);
+            Board tauler=new Board(-1, 0);
             assertTrue(false);
 
-            
+        //valor correcte i valor fora rang
         }catch (Exception e){}
         try{
-            board tauler=new board(2, -1);
+            Board tauler=new Board(2, -1);
             assertTrue(false);
 
-            
+        //valor correcte i valor fora rang   
         }catch (Exception e){}
         try{
-            board tauler=new board(0, 0);
+            Board tauler=new Board(0, 0);
             assertTrue(false);
-            
+        
+        //valor fora rang i valor correcte
         }catch (Exception e){}
         try{
-            board tauler=new board(0, 4);
+            Board tauler=new Board(0, 4);
             assertTrue(false);
             
         }catch (Exception e){}
@@ -62,7 +64,7 @@ public class boardTest {
     int size = 6;
     int nMines = 10;
     int contador = 0;
-    board tauler = new board(nMines, size);
+    Board tauler = new Board(nMines, size);
     tauler.putMinesintoBoard();
     for (int i=0; i<size; i++)
     {
@@ -82,11 +84,50 @@ public class boardTest {
     //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen en relacio a les mines les diferents celes son correctes
     void testValorsCelles()
     {   
-        
-
-        MockBoard mockB = new MockBoard(4,6);
+        int size = 5;
+        int nMines = 4;
+        MockBoard mockB = new MockBoard(nMines,size);
         mockB.setUpMockBoard(1);
-        mockB.
+        mockB.insertValueintoCells();
+        int[][] boardResultant = {
+        { 1,  1,  2, -1,  1 },
+        { 1, -1,  2,  1,  1 },
+        { 1,  2,  2,  1,  0 },
+         { 1,  2, -1,  1,  0 },
+        { -1, 2,  1,  1,  0 }};
+        mockB.printBoard();
+        for (int i =0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                assertEquals(boardResultant[i][j], mockB.getCell(i, j).getValue());
+            }
+        }
+
+    }
+
+    @Test
+    void firstClickTest()
+    {
+        int size = 5;
+        int nMines = 4;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(1);
+        mockB.insertValueintoCells();
+        Boolean[][] boardResultant = {
+        { false,  false,  false, false,  false },
+        { false, false,  false,  false,  false },
+        { false,  false,  true,  true,  true },
+         { false,  false, false,  true, true },
+        { false,false,  true,  true,  true }};
+        mockB.firstClick(3, 3);
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
 
 
 

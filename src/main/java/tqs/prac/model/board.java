@@ -46,24 +46,17 @@ public class Board {
     {
         for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-
-            // Si la celda es una mina, no modificamos su valor
-            if (matrix[i][j].getValue() == -1)
+            if (matrix[i][j].getValue() == -1) //si es mina
                 continue;
 
             int count = 0;
-
-            // Recorremos las celdas vecinas (fila y columna)
             for (int di = -1; di <= 1; di++) {
                 for (int dj = -1; dj <= 1; dj++) {
-                    // Saltamos la propia celda
-                    if (di == 0 && dj == 0)
++                    if (di == 0 && dj == 0)
                         continue;
 
                     int ni = i + di;
                     int nj = j + dj;
-
-                    // Verificamos que los índices estén dentro del tablero
                     if (ni >= 0 && ni < size && nj >= 0 && nj < size) {
                         if (matrix[ni][nj].getValue() == -1)
                             count++;
@@ -71,7 +64,6 @@ public class Board {
                 }
             }
 
-            // Guardamos el número de minas vecinas
             matrix[i][j].setValue(count);
         }
     }
@@ -82,11 +74,13 @@ public class Board {
         for (int j = 0; j < size; j++) {
             System.out.print(matrix[i][j].getValue() + " ");
         }
-        System.out.println(); // Salto de línea al final de cada fila
+        System.out.println(); 
     }
     }
 
     public void firstClick(int fila, int columna){
+        
+    
 
 
 
