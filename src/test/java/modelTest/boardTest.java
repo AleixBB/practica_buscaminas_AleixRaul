@@ -162,9 +162,38 @@ public class BoardTest {
             }
         }
         mockB.printBoardBools();
-
-
     }
+    @Test
+    void firstClick2ndTest8x8()
+    {
+        int size = 8;
+        int nMines = 10;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(3);
+        mockB.insertValueintoCells();
+        System.out.println("______________");
+        mockB.printBoard();
+        Boolean[][] boardResultant2 = {
+        {false,false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false,false},
+        {false,false,false,true,false,true,false,false},
+        {false,false,false,true,true,true,false,false},
+        {false,false,false,true,true,true,false,false},
+        {false,false,false,false,false,false,false,false},
+        {false,false,false,false,false,false,false,false}};
+
+        mockB.firstClick(4, 4);
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
+        mockB.printBoardBools();
+    }
+
 
 
 

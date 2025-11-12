@@ -32,6 +32,16 @@ public class MockBoard extends Board {
                 {new Cell(0), new Cell(-1),  new Cell(0),  new Cell(-1),  new Cell(0), new Cell(0), new Cell(0), new Cell(-1)},
                 {new Cell(0), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(0)},
                 {new Cell(-1), new Cell(0),  new Cell(-1),  new Cell(0),  new Cell(-1), new Cell(0), new Cell(0), new Cell(0) }};   
+         case 3:
+             this.matrix= new Cell[][] { //8x8 amb 10 mines
+                { new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(0) },
+                { new Cell(0),  new Cell(0), new Cell(0),  new Cell(0),  new Cell(0), new Cell(-1), new Cell(0), new Cell(0)  },
+                { new Cell(0),  new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0),new Cell(0), new Cell(0), new Cell(0)  },
+                { new Cell(0),  new Cell(0),  new Cell(0), new Cell(0),  new Cell(-1), new Cell(0), new Cell(0), new Cell(0)  },
+                { new Cell(0), new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(0)  },
+                {new Cell(0), new Cell(0),  new Cell(-1),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(-1)},
+                {new Cell(-1), new Cell(0),  new Cell(0),  new Cell(-1),  new Cell(0), new Cell(-1), new Cell(0), new Cell(0)},
+                {new Cell(0), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(0) }};
         break;
  
             };
