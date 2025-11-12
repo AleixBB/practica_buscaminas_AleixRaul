@@ -193,6 +193,33 @@ public class BoardTest {
         }
         mockB.printBoardBools();
     }
+    @Test
+    void firstClick3x3amb1mina()
+    {
+        int size = 3;
+        int nMines = 1;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(4);
+        mockB.insertValueintoCells();
+        System.out.println("______________");
+        mockB.printBoard();
+        Boolean[][] boardResultant2 = {
+        {true,true,true},
+        {true,true,true},
+        {false,false,true}};
+
+        mockB.firstClick(0, 0);
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            System.out.println(mockB.getCell(i, j).isRevelaed() + " ");
+            assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+            System.out.println();
+        }
+        mockB.printBoardBools();
+    }
 
 
 
