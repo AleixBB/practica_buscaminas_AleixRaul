@@ -9,6 +9,7 @@ public class Board {
 
     public Board(int nMines, int size)
     {
+        //precondicions
         if (nMines <= 0 || size <= 0)
         {
             throw new IllegalArgumentException("nombre de mines o mida fora de rang");
@@ -110,13 +111,11 @@ public class Board {
 
 
 public void expandZeros(int fila, int columna){
-    if (fila < 0 ||fila >= size || columna < 0 ||columna >= size)
+    if (fila < 0||fila > (size-1) || columna < 0 ||columna > (size-1))
     {
         return;
     }
-    
     Cell cell = matrix[fila][columna];
-    
     if (cell.isRevelaed() || cell.getValue() == -1)
     {
         return;
@@ -137,31 +136,10 @@ public void expandZeros(int fila, int columna){
             expandZeros(fila+i, columna+j);
         }
     }
-}
-
-
-
-public void expandNeighbors(int fila, int columna){
-    for (int i=-1; i<=1; i++)
-    {
-        for (int j=-1; j<=1; j++)
-        {
-            if (i==0 && j==0)
-            {
-                continue;
-            }
-            int ni = fila + i;
-            int nj = columna + j;
-            if (ni >=0 && ni < size && nj>=0 && nj < size){
-                
-                Cell vecino = matrix[ni][nj];
-                if (vecino.getValue()!= -1)
-                {
-                    vecino.reveal();
-                }
-            }
-        }
-    }
     }
 }
+
+
+
+
     
