@@ -145,9 +145,9 @@ public class BoardTest {
         mockB.printBoard();
         Boolean[][] boardResultant = {
         {false,false, false, false, false, false, false, false },
-        { false, true,  true,  false,  false,  false,  false, false },
-        { true,  true,  true,  false,  false, false,  false, false},
-        {  true,  true,  true, false, false,  false,  false,  false},
+        { false, false,  false,  false,  false,  false,  false, false },
+        { false,  true,  false,  false,  false, false,  false, false},
+        {  false,  false,  false, false, false,  false,  false,  false},
         { false,  false,  false,  false,  false,  false,  false, false },
         {  false, false, false, false,  false,  false,  false, false },
         {  false,  false,  false,  false,  false,  false,  false,  false },
@@ -190,6 +190,42 @@ public class BoardTest {
             {
             assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
             }
+        }
+        mockB.printBoardBools();
+    }
+    @Test
+    void firstClick3x3amb1mina()
+    {
+        int size = 3;
+        int nMines = 1;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(4);
+        mockB.insertValueintoCells();
+        //mockB.printBoard();
+        Boolean[][] boardResultant2 = {
+        {true,true,true},
+        {true,true, true},
+        {false,true, true}};
+        /*
+        {
+            { 0,  0,  0},
+            { 1,  1,  0},
+            { -1, 1, 0}};
+         */
+        System.out.println("Before first click:");
+        mockB.printBoardBools();
+        mockB.firstClick(0, 0);
+        System.out.println("After first click:");
+        mockB.printBoardBools();
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            System.out.println(mockB.getCell(i, j).isRevelaed() + " ");
+            assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
+
+            }
+
         }
         mockB.printBoardBools();
     }
