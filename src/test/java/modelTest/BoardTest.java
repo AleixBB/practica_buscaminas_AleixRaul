@@ -254,16 +254,70 @@ public class BoardTest {
     @Test
     void testExpandZeros()
     {
-        //TESTOS COMPROVANT VALORS FORA LÍMITS
+        //TESTOS COMPROVANT VALORS FORA LÍMITS utilitzant particions equivalents
         //fila negativa
         try{
             MockBoard b = new MockBoard(5,5);
             b.expandZeros(-1, 2);
             assertTrue(false);
-        }catch (Exception e){
-
-        
+        }catch (Exception e){};
+        //fila es zero (valor frontera)
+    
+        MockBoard b = new MockBoard(5,5);
+        b.expandZeros(0, 2);
+        b.setUpMockBoard(5);
+        b.insertValueintoCells();
+        b.printBoard();
+        Boolean[][] boardResultant2 = {
+        {true,true,true, true,true},
+        {true,true, true, true,true},
+        {true,true, true, true,true},
+        {true,false, true, true,true},
+        {true,true, true, true,true}};
+        for(int i=0; i<5; i++)
+        {
+            for (int j=0; j<5; j++)
+            {
+            System.out.println(b.getCell(i, j).isRevelaed() + " ");
+            assertEquals(boardResultant2[i][j],b.getCell(i, j).isRevelaed());
+            }
         }
-    }
-}
+            
+        //columna negativa
+        try{
+            MockBoard boaard = new MockBoard(5,5);
+            boaard.expandZeros(2, -1);
+            assertTrue(false);
+        }catch (Exception e){ }; 
+        //columna es zero (valor frontera)
+        MockBoard b2 = new MockBoard(5,5);
+        b2.setUpMockBoard(5);
+        b2.insertValueintoCells();
+        b2.expandZeros(0, 0);
+        b2.printBoard();
+        Boolean[][] boaardResultant2 = {
+        {true,true,true, true,true},
+        {true,true, true, true,true},
+        {true,true, true, true,true},
+        {true,false, true, true,true},
+        {true,true, true, true,true}}; 
+        for(int i=0; i<5; i++)
+        {
+            for (int j=0; j<5; j++)
+            {
+            System.out.println(b2.getCell(i, j).isRevelaed() + " ");
+            assertEquals(boaardResultant2[i][j],b2.getCell(i, j).isRevelaed());
+            }
+        }
+         
+        //fila fora límits
+        try{
+            MockBoard b3 = new MockBoard(5,5);
+            b.expandZeros(5, 2);
+            assertTrue(false);
+        }catch (Exception e){};
+        //columna fora límits
+    }  
+    
+}   
 
