@@ -93,7 +93,7 @@ public class Board {
     
     if (matrix[fila][columna].getValue() == -1)
     {
-        System.out.println("LOST - GAME OVER, has clicat a mina");
+        clickAMina();
     }
     else
     {
@@ -138,6 +138,7 @@ public void expandZeros(int fila, int columna){
     }
     }
 }
+void clickAMina();
 
 
 
