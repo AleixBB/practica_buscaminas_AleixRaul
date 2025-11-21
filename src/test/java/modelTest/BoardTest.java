@@ -249,6 +249,21 @@ public class BoardTest {
             }
 
         }
+    
     }
+    @Test
+    void testExpandZeros()
+    {
+        //TESTOS COMPROVANT VALORS FORA LÍMITS
+        //fila negativa
+        try{
+            MockBoard b = new MockBoard(5,5);
+            b.expandZeros(-1, 2);
+            assertTrue(false);
+        }catch (Exception e){
 
+        
+        }
+    }
 }
+
