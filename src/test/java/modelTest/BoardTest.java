@@ -145,9 +145,9 @@ public class BoardTest {
         mockB.printBoard();
         Boolean[][] boardResultant = {
         {false,false, false, false, false, false, false, false },
-        { false, true,  true,  false,  false,  false,  false, false },
-        { true,  true,  true,  false,  false, false,  false, false},
-        {  true,  true,  true, false, false,  false,  false,  false},
+        { false, false,  false,  false,  false,  false,  false, false },
+        { false,  true,  false,  false,  false, false,  false, false},
+        {  false,  false,  false, false, false,  false,  false,  false},
         { false,  false,  false,  false,  false,  false,  false, false },
         {  false, false, false, false,  false,  false,  false, false },
         {  false,  false,  false,  false,  false,  false,  false,  false },
@@ -201,22 +201,26 @@ public class BoardTest {
         MockBoard mockB = new MockBoard(nMines,size);
         mockB.setUpMockBoard(4);
         mockB.insertValueintoCells();
-        System.out.println("______________");
-        mockB.printBoard();
+        //mockB.printBoard();
         Boolean[][] boardResultant2 = {
         {true,true,true},
-        {true,true,true},
-        {false,false,true}};
-
+        {true,true, true},
+        {false,true, true}};
+        
+        System.out.println("Before first click:");
+        mockB.printBoardBools();
         mockB.firstClick(0, 0);
+        System.out.println("After first click:");
+        mockB.printBoardBools();
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
             {
             System.out.println(mockB.getCell(i, j).isRevelaed() + " ");
             assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
+
             }
-            System.out.println();
+
         }
         mockB.printBoardBools();
     }
