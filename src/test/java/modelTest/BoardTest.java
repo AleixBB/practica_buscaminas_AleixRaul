@@ -207,6 +207,12 @@ public class BoardTest {
         {true,true, true},
         {false,true, true}};
         
+        /*
+        {
+            { 0,  0,  0},
+            { 1,  1,  0},
+            { -1, 1, 0}};
+         */
         System.out.println("Before first click:");
         mockB.printBoardBools();
         mockB.firstClick(0, 0);
