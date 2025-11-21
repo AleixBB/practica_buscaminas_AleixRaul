@@ -1,5 +1,4 @@
 package modelTest;
-
 import tqs.prac.Main;
 import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
@@ -52,6 +51,15 @@ public class MockBoard extends Board {
             
  
             };
+        break;
+        case 5:
+            this.matrix= new Cell[][] { //5x5 amb 1 mina
+            { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0) },
+            { new Cell(0),  new Cell(0), new Cell(0),  new Cell(0),  new Cell(0) },
+            { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
+            { new Cell(0),  new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0) },
+            { new Cell(0), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) }};
+            break;
         }
     }
 
