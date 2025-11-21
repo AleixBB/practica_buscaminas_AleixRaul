@@ -136,9 +136,19 @@ public void expandZeros(int fila, int columna){
             expandZeros(fila+i, columna+j);
         }
     }
+ }
+
+void clickAMina()
+{
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (matrix[i][j].getValue() == -1) {
+                matrix[i][j].reveal();
+            }
+        }
+    }
     }
 }
-void clickAMina();
 
 
 
