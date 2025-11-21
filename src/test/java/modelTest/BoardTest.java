@@ -115,12 +115,13 @@ public class BoardTest {
         mockB.setUpMockBoard(1);
         mockB.insertValueintoCells();
         System.out.println("______________");
+        mockB.printBoard();
         Boolean[][] boardResultant = {
         { false,  false,  false, false,  false },
         { false, false,  false,  false,  false },
-        { false,  false,  true,  true,  true },
-         { false,  false, false,  true, true },
-        { false,false,  true,  true,  true }};
+        { false,  false,  false,  false,  false },
+         { false,  false, false,  true, false},
+        { false,false,  false,  false,  false }};
         mockB.firstClick(3, 3);
         for(int i=0; i<size; i++)
         {
@@ -177,9 +178,9 @@ public class BoardTest {
         {false,false,false,false,false,false,false,false},
         {false,false,false,false,false,false,false,false},
         {false,false,false,false,false,false,false,false},
-        {false,false,false,true,false,true,false,false},
-        {false,false,false,true,true,true,false,false},
-        {false,false,false,true,true,true,false,false},
+        {false,false,false,false,false,false,false,false},
+        {false,false,false,false,true,false,false,false},
+        {false,false,false,false,false,false,false,false},
         {false,false,false,false,false,false,false,false},
         {false,false,false,false,false,false,false,false}};
 
@@ -206,14 +207,7 @@ public class BoardTest {
         {true,true,true},
         {true,true, true},
         {false,true, true}};
-        /*
-        {
-            { 0,  0,  0},
-            { 1,  1,  0},
-            { -1, 1, 0}};
-         */
-        System.out.println("Before first click:");
-        mockB.printBoardBools();
+        
         mockB.firstClick(0, 0);
         System.out.println("After first click:");
         mockB.printBoardBools();
@@ -227,10 +221,34 @@ public class BoardTest {
             }
 
         }
-        mockB.printBoardBools();
     }
+    @Test
+    void firstClick3x3Clickingotherplace()
+    {
+        int size = 3;
+        int nMines = 1;
+        MockBoard mockB2 = new MockBoard(nMines,size);
+        mockB2.setUpMockBoard(4);
+        mockB2.insertValueintoCells();
+        mockB2.printBoard();
+        Boolean[][] boardResultant2 = {
+        {false,false,false},
+        {true,false, false},
+        {false,false, false}};
+        
+        mockB2.firstClick(1, 0);
+        System.out.println("After first click:");
+        mockB2.printBoardBools();
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            System.out.println(mockB2.getCell(i, j).isRevelaed() + " ");
+            assertEquals(boardResultant2[i][j],mockB2.getCell(i, j).isRevelaed());
 
+            }
 
-
+        }
+    }
 
 }
