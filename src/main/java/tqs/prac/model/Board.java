@@ -81,59 +81,67 @@ public class Board {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             System.out.print(matrix[i][j].isRevelaed() + " ");
+            System.out.print(i + "," + j + " ");
         }
-        System.out.println(); 
+        System.out.println();
     }
+}
+
+   public void firstClick(int fila, int columna){
+    Cell clicked = matrix[fila][columna];
+    
+    if (matrix[fila][columna].getValue() == -1)
+    {
+        System.out.println("LOST - GAME OVER, has clicat a mina");
     }
-
-    public void firstClick(int fila, int columna){
-        Cell clicked = matrix[fila][columna];
-        clicked.reveal();
-
-        if (matrix[fila][columna].getValue() == -1)
+    else
+    {
+        if(clicked.getValue() == 0)
         {
-            System.out.println("LOST - GAME OVER, has clicat a mina");
+            expandZeros(fila, columna);
         }
         else
         {
-            if(clicked.getValue() == 0)
-            {
-                expandZeros(fila, columna);
-            }
-            else
-            {
-                expandNeighbors(fila, columna);
-            }
+            clicked.reveal();
         }
-        
+    }        
+}
+
+
+
+public void expandZeros(int fila, int columna){
+    if (fila < 0 ||fila >= size || columna < 0 ||columna >= size)
+    {
+        return;
     }
     
-    public void expandZeros(int fila, int columna){
-        if (fila < 0 ||fila >= size || columna < 0 ||columna >= size)
-        {
-            return;
-        }
-        Cell cell = matrix[fila][columna];
-        if (cell.isRevelaed() || cell.getValue() == -1)
-        {
-            return;
-        }
-        cell.reveal();
-        if (cell.getValue() > 0)
-        {
-            return;
-        }
-        for (int i = -1; i<= 1; i++)
-        {
-            for (int j=-1; j<=1; j++)
-            {
-                if (i==0 && j==0) continue;
-                expandZeros(fila+i, columna+j);
-            }
-        }
-
+    Cell cell = matrix[fila][columna];
+    
+    if (cell.isRevelaed() || cell.getValue() == -1)
+    {
+        return;
     }
-    public void expandNeighbors(int fila, int columna){
+    
+    cell.reveal();
+    
+    if (cell.getValue() > 0)
+    {
+        return;
+    }
+    
+    for (int i = -1; i<= 1; i++)
+    {
+        for (int j=-1; j<=1; j++)
+        {
+            if (i==0 && j==0) continue;
+            expandZeros(fila+i, columna+j);
+        }
+    }
+}
+
+
+
+public void expandNeighbors(int fila, int columna){
     for (int i=-1; i<=1; i++)
     {
         for (int j=-1; j<=1; j++)
@@ -145,18 +153,15 @@ public class Board {
             int ni = fila + i;
             int nj = columna + j;
             if (ni >=0 && ni < size && nj>=0 && nj < size){
-                //comprovem limits del tauler
+                
                 Cell vecino = matrix[ni][nj];
                 if (vecino.getValue()!= -1)
                 {
                     vecino.reveal();
                 }
-        
             }
         }
-
     }
-}   
-
+    }
 }
     
