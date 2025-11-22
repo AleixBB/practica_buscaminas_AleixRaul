@@ -131,10 +131,7 @@ public class BoardTest {
             assertTrue(false);
         }catch (Exception e){}  
 
-
     }
-
-
     @Test
     //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen en relacio a les mines les diferents celes son correctes
     void testValorsCelles()
