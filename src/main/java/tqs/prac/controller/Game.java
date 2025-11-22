@@ -6,5 +6,23 @@ public class Game {
     private int flagsPlaced;
     public Game(){
     }
+    public Boolean getGameOver(){
+        
+    }
+    public Boolean getWin(){
+               
+    }
+    public int getFlagsPlaced(){
+        
+    }
+    public void gameOver()
+    {
+
+    }
+    public void win()
+    {
+
+    }
     
+
 }

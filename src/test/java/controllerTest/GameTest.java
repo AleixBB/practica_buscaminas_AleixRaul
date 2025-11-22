@@ -15,5 +15,23 @@ public class GameTest {
         assertFalse(game.getWin());
         assertEquals(0, game.getFlagsPlaced());
     }
+    //amb aquests testos avaluem a la vegada els getters i setters
+     @Test
+    void testGameOver() {
+        Game game = new Game();
+        game.gameOver();
+
+        assertTrue(game.getGameOver());
+    }
+
+    @Test
+    void testWin() {
+        Game game = new Game();
+        game.win();
+
+        assertTrue(game.getWin());
+    }
+
+   
     
 }
