@@ -1,5 +1,5 @@
 package tqs.prac.controller;
 
-public class Controller {
+public class Game {
     
 }
