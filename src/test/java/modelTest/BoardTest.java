@@ -380,5 +380,44 @@ public class BoardTest {
             }
         }
     }
+
+
+    @Test
+    void testIsWin()
+    {
+        int size = 5;
+        int nMines = 1;
+        MockBoardValues mockB = new MockBoardValues(nMines, size);
+        mockB.setUpMockBoard(1);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (mockB.getCell(i, j).getValue() != -1) {
+                    mockB.getCell(i, j).reveal();
+                }
+            }       
+    }
+    // Ahora isWin() debería devolver true
+        assertTrue(mockB.isWin());
+    }
+    @Test
+    void SegontestIsWin()
+    {
+        int size = 3;
+        int nMines = 1;
+        MockBoardValues mockB = new MockBoardValues(nMines, size);
+        mockB.setUpMockBoard(2);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (mockB.getCell(i, j).getValue() != -1) {
+                    if (i!=0 || j!=2) 
+                    {// Dejo una celda sin revelar
+                    mockB.getCell(i, j).reveal();
+                    }
+                }
+            }       
+    }
+    // Ahora isWin() debería devolver true
+        assertFalse(mockB.isWin());
+    }
 }   
 
