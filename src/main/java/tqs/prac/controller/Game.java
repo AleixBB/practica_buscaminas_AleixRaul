@@ -3,8 +3,9 @@ package tqs.prac.controller;
 public class Game {
     private Boolean gameOver;
     private Boolean win;
-    private int flagsPlaced;
     public Game(){
+        this.gameOver= false;
+        this.win= false;
     }
     public Boolean getGameOver(){
         return this.gameOver;
@@ -13,7 +14,6 @@ public class Game {
         return this.win;
                
     }
-    public int getFlagsPlaced();
     public void gameOver()
     {
         gameOver = true;

@@ -9,18 +9,16 @@ import org.junit.jupiter.api.Test;
 
 public class GameTest {
     @Test
-    void testConstructor{
+    void testConstructor(){
         Game game = new Game();
         assertFalse(game.getGameOver());
         assertFalse(game.getWin());
-        assertEquals(0, game.getFlagsPlaced());
     }
     //amb aquests testos avaluem a la vegada els getters i setters
      @Test
     void testGameOver() {
         Game game = new Game();
         game.gameOver();
-
         assertTrue(game.getGameOver());
     }
 
@@ -30,6 +28,11 @@ public class GameTest {
         game.win();
 
         assertTrue(game.getWin());
+    }
+    @Test
+    void testgetFlagsPlaced()
+    {
+
     }
 
    
