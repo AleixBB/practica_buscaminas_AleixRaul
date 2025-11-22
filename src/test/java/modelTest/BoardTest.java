@@ -388,7 +388,7 @@ public class BoardTest {
         int size = 5;
         int nMines = 1;
         MockBoardValues mockB = new MockBoardValues(nMines, size);
-        mockB.setUpMockBoard(4);
+        mockB.setUpMockBoard(1);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (mockB.getCell(i, j).getValue() != -1) {
