@@ -77,8 +77,67 @@ public class BoardTest {
         }
     }
     assertEquals(contador, nMines);
+    }
+    @Test
+    void testRandommines2()
+    {
+        //test que comprova com es comporta el putMinesintoBoard segons el nombre de mines i la mida del tauler
+        //1. 9 mines en tauler 3x3 (valor frontera)
+        int size = 3;
+        int nMines = 9;
+        int contador = 0;
+        Board tauler = new Board(nMines, size);
+        tauler.putMinesintoBoard();
+        for (int i=0; i<size; i++)
+        {       
+            for (int j=0; j<size; j++)
+            {
+                if (tauler.getCell(i, j).getValue() == -1)
+                {
+                    contador += 1;
+                }
+            }
+        }
+        assertEquals(contador, nMines);
+        //2. 0 mines en tauler 3x3 (valor frontera)
+        size = 3;
+        nMines = 0;
+        contador = 0;
+        tauler = new Board(nMines, size);
+        tauler.putMinesintoBoard();
+        for (int i=0; i<size; i++)
+        {    
+            for (int j=0; j<size; j++)
+            {
+                if (tauler.getCell(i, j).getValue() == -1)
+                {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+        //3. -1 mina en tauler 3x3 (valor fora rang)
+        size = 3;
+        nMines = -1;
+        contador = 0;
+        try{
+            tauler = new Board(nMines, size);
+            tauler.putMinesintoBoard();
+            assertTrue(false);
+        }catch (Exception e){}  
+        //4. 10 mines en tauler 3x3(valor fora rang)
+        size = 3;
+        nMines = 10;
+        contador = 0;
+        try{
+            tauler = new Board(nMines, size);
+            tauler.putMinesintoBoard();
+            assertTrue(false);
+        }catch (Exception e){}  
+
 
     }
+
 
     @Test
     //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen en relacio a les mines les diferents celes son correctes
@@ -277,6 +336,56 @@ public class BoardTest {
             }
         }
         
+    }
+    @Test
+    void testClickAMina()
+    {
+        int size = 8;
+        int nMines = 16;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(2);
+        mockB.insertValueintoCells();
+        mockB.printBoard();
+        mockB.firstClick(1, 0); //click a mina
+        Boolean[][] boardResultant = {
+        { false, false, false, true, false, true, false, true },
+        { true, false, false, false, false, false, false, true },
+        { false, false, false, false, false, true, false, false },
+        { false, false, false, true, true, false, false, false },
+        { true, false, false, false, false, false, false, true },
+        { false, true, false, true, false, false, false, true },
+        { false, false, false, false, false, false, false, false },
+        { true, false, true, false, true, false, false, false }
+};
+
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
+    }
+    @Test
+    void testClickAMina3x3()
+    {
+        int size = 3;
+        int nMines = 1;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(4);
+        mockB.insertValueintoCells();
+        mockB.firstClick(2, 0); //click a mina
+        Boolean[][] boardResultant = {
+        { false, false, false},
+        { false, false, false },
+        { true, false, false }};
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
     }
 }   
 
