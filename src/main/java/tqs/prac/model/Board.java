@@ -38,8 +38,8 @@ public class Board {
         Random rand = new Random();
         int count = 0;
         while (count < nMines) {
-            int r = rand.nextInt(size);
-            int c = rand.nextInt(size);
+            int r = rand.nextInt(size-1);
+            int c = rand.nextInt(size-1);
             if (matrix[r][c].getValue() == 0) {
                 matrix[r][c].setValue(-1);
                 count++;
