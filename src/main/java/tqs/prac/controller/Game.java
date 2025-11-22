@@ -7,20 +7,21 @@ public class Game {
     public Game(){
     }
     public Boolean getGameOver(){
-        
+        return this.gameOver;
     }
     public Boolean getWin(){
+        return this.win;
                
     }
-    public int getFlagsPlaced(){
-        
-    }
+    public int getFlagsPlaced();
     public void gameOver()
     {
+        gameOver = true;
 
     }
     public void win()
     {
+        win = true;
 
     }
     
