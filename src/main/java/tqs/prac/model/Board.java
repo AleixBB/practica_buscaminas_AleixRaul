@@ -10,7 +10,7 @@ public class Board {
     public Board(int nMines, int size)
     {
         //precondicions
-        if (nMines <= 0 || size <= 0)
+        if (nMines < 0 || size <= 0)
         {
             throw new IllegalArgumentException("nombre de mines o mida fora de rang");
         }
@@ -32,6 +32,9 @@ public class Board {
     }
     public void putMinesintoBoard()
     {
+        if (nMines > size * size) {
+            throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
+        }
         Random rand = new Random();
         int count = 0;
         while (count < nMines) {
