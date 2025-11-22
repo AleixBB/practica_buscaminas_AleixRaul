@@ -278,5 +278,56 @@ public class BoardTest {
         }
         
     }
+    @Test
+    void testClickAMina()
+    {
+        int size = 8;
+        int nMines = 16;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(2);
+        mockB.insertValueintoCells();
+        mockB.printBoard();
+        mockB.firstClick(1, 0); //click a mina
+        Boolean[][] boardResultant = {
+        { false, false, false, true, false, true, false, true },
+        { true, false, false, false, false, false, false, true },
+        { false, false, false, false, false, true, false, false },
+        { false, false, false, true, true, false, false, false },
+        { true, false, false, false, false, false, false, true },
+        { false, true, false, true, false, false, false, true },
+        { false, false, false, false, false, false, false, false },
+        { true, false, true, false, true, false, false, false }
+};
+
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
+    }
+    @Test
+    void testClickAMina3x3()
+    {
+        int size = 3;
+        int nMines = 1;
+        MockBoard mockB = new MockBoard(nMines,size);
+        mockB.setUpMockBoard(4);
+        mockB.insertValueintoCells();
+        mockB.printBoard();
+        mockB.firstClick(2, 0); //click a mina
+        Boolean[][] boardResultant = {
+        { false, false, false},
+        { false, false, false },
+        { true, false, false }};
+        for(int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            }
+        }
+    }
 }   
 
