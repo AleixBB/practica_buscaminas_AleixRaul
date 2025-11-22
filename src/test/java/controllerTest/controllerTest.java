@@ -1,5 +1,5 @@
 package controllerTest;
 
-public class controllerTest {
+public class ControllerTest {
     
 }
