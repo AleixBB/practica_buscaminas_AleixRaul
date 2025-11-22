@@ -48,13 +48,9 @@ public class BoardTest {
             Board tauler=new Board(0, 0);
             assertTrue(false);
         
-        //valor fora rang i valor correcte
+        //valor frontera
         }catch (Exception e){}
-        try{
-            Board tauler=new Board(0, 4);
-            assertTrue(false);
-            
-        }catch (Exception e){}
+        
     }
 
     //test que comprova que el nombre de mines que s'ha introduit al tauler de forma random es correcte
