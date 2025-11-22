@@ -141,7 +141,7 @@ public void expandZeros(int fila, int columna){
     }
  }
 
-void clickAMina()
+public void clickAMina()
 {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
@@ -150,10 +150,22 @@ void clickAMina()
             }
         }
     }
-    }
 }
 
-boolean isWin();
+
+public Boolean isWin()
+{
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            Cell cell = matrix[i][j];
+            if (cell.getValue() != -1 && !cell.isRevelaed()) {
+                return false;
+            }
+        }
+    }
+    return true;
+    }
+}
 
 
 
