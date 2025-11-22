@@ -380,5 +380,25 @@ public class BoardTest {
             }
         }
     }
+
+
+    @Test
+    void testIsWin()
+    {
+        int size = 5;
+        int nMines = 1;
+        MockBoardValues mockB = new MockBoardValues(nMines, size);
+        mockB.setUpMockBoard(4);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (mockB.getCell(i, j).getValue() != -1) {
+                    mockB.getCell(i, j).reveal();
+                }
+            }       
+    }
+
+    // Ahora isWin() debería devolver true
+        assertTrue(mockB.isWin());
+    }
 }   
 
