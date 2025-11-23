@@ -13,6 +13,7 @@ public class GameTest {
         Game game = new Game();
         assertFalse(game.getGameOver());
         assertFalse(game.getWin());
+        assertNull(game.getBoard());
     }
     //amb aquests testos avaluem a la vegada els getters i setters
      @Test
@@ -29,6 +30,18 @@ public class GameTest {
 
         assertTrue(game.getWin());
     }
+    @Test
+    void testGetSetBoard(){
+        Game game = new Game();
+        Board b = new Board(3,3);
+        game.setBoard(b);
+
+        assertEquals(b, game.getBoard());
+
+
+
+    }
+
     @Test
     void testgetFlagsPlaced()
     {
