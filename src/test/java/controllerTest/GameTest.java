@@ -1,6 +1,9 @@
 package controllerTest;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*; 
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+
 import tqs.prac.controller.Game;
 import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
@@ -42,9 +45,36 @@ public class GameTest {
 
     }
 
+    /*TESTOS METODE ACT */
+    private Game game;
+    private Board mockBoard;
+    private Cell mockCell;
+    @BeforeEach
+    public void setup() {
+        game = new Game();
+      // Cada vez que se llame getCell(1,1) devolvemos mockCell
+    }
+    //test1: flagejar una cel.la no win
     @Test
-    void testgetFlagsPlaced()
-    {
+    public void testActFlagCellnWin{
+        game.act("FLAG", 1,1);
+        
+    }
+    //test2: flagejar una cel.la i win
+    @Test
+    public void testActFlagCellWin{
+        game.act("FLAG", 2,1 );
+    }
+    //test3: revelar cel.la amb mina
+    @Test
+    public void testActRevealCellwMine{
+        game.act("REVEAL", 1, 1);
+
+    }
+    //test4: revelar cel·la sense mina
+    @Test 
+    public void testActRevealCellnMine{
+        game.act("REVEAL", 2, 1);
 
     }
 
