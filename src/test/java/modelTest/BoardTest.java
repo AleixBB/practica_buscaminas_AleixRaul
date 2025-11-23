@@ -416,7 +416,6 @@ public class BoardTest {
                 }
             }       
     }
-    // Ahora isWin() debería devolver true
         assertFalse(mockB.isWin());
     }
 }   

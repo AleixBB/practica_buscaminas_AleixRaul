@@ -1,8 +1,12 @@
 package tqs.prac.controller;
+import tqs.prac.model.Cell;
+import tqs.prac.model.Board;
+import tqs.prac.Main;
 
 public class Game {
     private Boolean gameOver;
     private Boolean win;
+    private Board tauler;
     public Game(){
         this.gameOver= false;
         this.win= false;
