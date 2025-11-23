@@ -27,8 +27,14 @@ public class Game {
     {
         win = true;
     }
-    public Board getBoard();
-    public void setBoard();
+    public Board getBoard()
+    {
+        return this.tauler;
+    }
+    public void setBoard(Board tauler)
+    {
+        this.tauler = tauler;
+    }
     
 
 }

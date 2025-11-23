@@ -36,7 +36,7 @@ public class GameTest {
         Board b = new Board(3,3);
         game.setBoard(b);
 
-        assertEquals(b, g.getBoard())
+        assertEquals(b, game.getBoard());
 
 
 
