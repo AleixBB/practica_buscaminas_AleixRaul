@@ -10,6 +10,7 @@ public class Game {
     public Game(){
         this.gameOver= false;
         this.win= false;
+        this.tauler = null;
     }
     public Boolean getGameOver(){
         return this.gameOver;
