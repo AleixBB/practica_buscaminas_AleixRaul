@@ -26,8 +26,9 @@ public class Game {
     public void win()
     {
         win = true;
-
     }
+    public Board getBoard();
+    public void setBoard();
     
 
 }
