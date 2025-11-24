@@ -12,51 +12,35 @@ public class MockGame extends Game {
     }
 
     public void setUpMockGame(int type)
-    {
-        MockBoard mockB = new MockBoard(0,3);
-
+    {   MockBoard b = new MockBoard(1,3);
         switch(type){
             case 1:
-                mockB.setUpMockBoard(4); //matriu 3x3 amb 1 mina
-                for (int i=0; i<3; i++)
-                {
-                    for (int j=0; j<3; j++)
-                    {
-                        mockB.getCell(i,j).toggleFlag();
-                        if (i==2 && j==0)
-                        {
-                            mockB.getCell(i,j).toggleFlag();
-                        }
-                        if (i==1 && j==0)
-                        {
-                            mockB.getCell(i,j).toggleFlag();
-                        }
-                    }
-                }
+                b.setUpMockBoard(4); //matriu 3x3 amb 1 mina
+                
                 break;
             case 2:
-                 mockB.setUpMockBoard(4);  //matriu 3x3 amb 1 mina
+                 b.setUpMockBoard(4);  //matriu 3x3 amb 1 mina
                  for (int i=0; i<3; i++)
                 {
                     for (int j=0; j<3; j++)
                     {
-                        mockB.getCell(i,j).toggleFlag();
+                        b.getCell(i,j).toggleFlag();
                         if (i==2 && j==0)
                         {
-                            mockB.getCell(i,j).toggleFlag();
+                            b.getCell(i,j).toggleFlag();
                         }
                         if (i==1 && j==0)
                         {
-                            mockB.getCell(i,j).toggleFlag();
+                            b.getCell(i,j).toggleFlag();
                         }
                     }
                 }
-                 break;
-
-
-                
+                 break;      
 
         }
+        this.tauler = b;
+
+        
 
 
 

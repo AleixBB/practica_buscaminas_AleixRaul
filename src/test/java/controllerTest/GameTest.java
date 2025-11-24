@@ -2,8 +2,6 @@ package controllerTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-
 import tqs.prac.controller.Game;
 import tqs.prac.model.Cell;
 import tqs.prac.model.Board;

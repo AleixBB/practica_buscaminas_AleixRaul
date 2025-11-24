@@ -61,21 +61,13 @@ public class MockBoard extends Board {
             { new Cell(0), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) }};
             break;
         
-        case 5:
-            this.matrix= new Cell[][] { //5x5 amb 1 mina
-            { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0) },
-            { new Cell(0),  new Cell(0), new Cell(0),  new Cell(0),  new Cell(0) },
-            { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
-            { new Cell(0),  new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0) },
-            { new Cell(0), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) }};
-            break;
         case 6:
             this.matrix= new Cell[][] { //3x3 amb 0 mines
                 { new Cell(0),  new Cell(0),  new Cell(0)},
                 { new Cell(0),  new Cell(0), new Cell(0)},
-                { new Cell(0), new Cell(0),  new Cell(0)}
+                { new Cell(0), new Cell(0),  new Cell(0)}};
 
-    
+            break;
         }
     }
 
