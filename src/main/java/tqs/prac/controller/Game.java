@@ -4,9 +4,9 @@ import tqs.prac.model.Board;
 import tqs.prac.Main;
 
 public class Game {
-    private Boolean gameOver;
-    private Boolean win;
-    private Board tauler;
+    protected Boolean gameOver;
+    protected Boolean win;
+    protected Board tauler;
     public Game(){
         this.gameOver= false;
         this.win= false;
@@ -35,6 +35,26 @@ public class Game {
     public void setBoard(Board tauler)
     {
         this.tauler = tauler;
+    }
+    public void act(String action, int x, int y)
+    {
+        switch(action){
+            case "FLAG":
+                tauler.getCell(x, y).toggleFlag();
+                Boolean win = tauler.isWin();
+                if (win){
+                    this.win = true;
+                }
+                break;
+            case "REVEAL":
+                Boolean hayJuego = tauler.firstClick(x, y);
+                if (!hayJuego)
+                {
+                    this.gameOver = true;
+                }
+                break;
+        }
+        
     }
     
 

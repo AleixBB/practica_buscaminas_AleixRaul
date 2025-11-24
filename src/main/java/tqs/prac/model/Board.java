@@ -91,12 +91,13 @@ public class Board {
     }
 }
 
-   public void firstClick(int fila, int columna){
+   public Boolean firstClick(int fila, int columna){
     Cell clicked = matrix[fila][columna];
     
     if (matrix[fila][columna].getValue() == -1)
     {
         clickAMina();
+        return false;
     }
     else
     {
@@ -108,7 +109,8 @@ public class Board {
         {
             clicked.reveal();
         }
-    }        
+    }  
+    return true;      
 }
 
 
