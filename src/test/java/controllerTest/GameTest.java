@@ -58,7 +58,7 @@ public class GameTest {
     @Test
     public void testActFlagCellWin(){
         MockGame game = new MockGame();
-        game.setUpMockGame(1);
+        game.setUpMockGame(2);
         game.act("FLAG", 2,0);
         assertTrue(game.getWin());
         assertFalse(game.getGameOver());

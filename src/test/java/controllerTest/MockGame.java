@@ -24,15 +24,11 @@ public class MockGame extends Game {
                 {
                     for (int j=0; j<3; j++)
                     {
-                        b.getCell(i,j).toggleFlag();
-                        if (i==2 && j==0)
+                        if (i!=2 || j!=0)
                         {
-                            b.getCell(i,j).toggleFlag();
+                        b.getCell(i,j).reveal();
                         }
-                        if (i==1 && j==0)
-                        {
-                            b.getCell(i,j).toggleFlag();
-                        }
+                    
                     }
                 }
                  break;      
