@@ -56,24 +56,24 @@ public class GameTest {
     }
     //test1: flagejar una cel.la no win
     @Test
-    public void testActFlagCellnWin{
+    public void testActFlagCellnWin(){
         game.act("FLAG", 1,1);
         
     }
     //test2: flagejar una cel.la i win
     @Test
-    public void testActFlagCellWin{
+    public void testActFlagCellWin(){
         game.act("FLAG", 2,1 );
     }
     //test3: revelar cel.la amb mina
     @Test
-    public void testActRevealCellwMine{
+    public void testActRevealCellwMine(){
         game.act("REVEAL", 1, 1);
 
     }
     //test4: revelar cel·la sense mina
     @Test 
-    public void testActRevealCellnMine{
+    public void testActRevealCellnMine(){
         game.act("REVEAL", 2, 1);
 
     }

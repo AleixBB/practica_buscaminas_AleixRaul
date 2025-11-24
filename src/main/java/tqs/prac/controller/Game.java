@@ -36,7 +36,10 @@ public class Game {
     {
         this.tauler = tauler;
     }
-    public void act(String action, int x, int y);
+    public void act(String action, int x, int y)
+    {
+        
+    }
     
 
 }
