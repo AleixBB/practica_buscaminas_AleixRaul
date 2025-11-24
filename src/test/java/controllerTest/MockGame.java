@@ -17,10 +17,40 @@ public class MockGame extends Game {
 
         switch(type){
             case 1:
-                mockB.setUpMockBoard(6); //matriu 3x3 amb 0 mines
+                mockB.setUpMockBoard(4); //matriu 3x3 amb 1 mina
+                for (int i=0; i<3; i++)
+                {
+                    for (int j=0; j<3; j++)
+                    {
+                        mockB.getCell(i,j).toggleFlag();
+                        if (i==2 && j==0)
+                        {
+                            mockB.getCell(i,j).toggleFlag();
+                        }
+                        if (i==1 && j==0)
+                        {
+                            mockB.getCell(i,j).toggleFlag();
+                        }
+                    }
+                }
                 break;
             case 2:
-                 mockB.setUpMockBoard(4); //matriu 3x3 amb 1 mines
+                 mockB.setUpMockBoard(4);  //matriu 3x3 amb 1 mina
+                 for (int i=0; i<3; i++)
+                {
+                    for (int j=0; j<3; j++)
+                    {
+                        mockB.getCell(i,j).toggleFlag();
+                        if (i==2 && j==0)
+                        {
+                            mockB.getCell(i,j).toggleFlag();
+                        }
+                        if (i==1 && j==0)
+                        {
+                            mockB.getCell(i,j).toggleFlag();
+                        }
+                    }
+                }
                  break;
 
 
