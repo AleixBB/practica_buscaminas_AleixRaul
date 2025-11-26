@@ -1,16 +1,19 @@
 package tqs.prac.controller;
 import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
+import tqs.prac.view.View;
 import tqs.prac.Main;
 
 public class Game {
     protected Boolean gameOver;
     protected Boolean win;
     protected Board tauler;
+    protected View vista;
     public Game(){
         this.gameOver= false;
         this.win= false;
         this.tauler = null;
+        this.vista = null;
     }
     public Boolean getGameOver(){
         return this.gameOver;
@@ -62,7 +65,10 @@ public class Game {
                 break;
         }
     }
-    public void startedGame();
+    public void startedGame()
+    {
+
+    }
 
 
     
