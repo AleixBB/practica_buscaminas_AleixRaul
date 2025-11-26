@@ -82,6 +82,30 @@ public class GameTest {
         assertFalse(game.getGameOver());
     }
 
-   
+    /*PAIRWISE TESTING al metode act
+    CASOS: 
+    - TIPUS DE CASELLA: BUIDA (0), NUMERADA O AMB MINA
+    - ESTAT DE LA CASELLA: OCULTA, REVELADA O FLAGUEJADA
+    - ACCIO DEL JUGADOR: FLAG, REVEAL
+    En total tindriem 18 casos possibles. 
+    Utilitzan pairwise només en tindrem 9:
+    BUIDA, OCULTA, REVEAL
+    BUIDA, REVELADA, FLAG
+    BUIDA, FLAGUEJADA, REVEAL
+    NUMERADA, REVELADA, REVEAL
+    NUMERADA, FLAGUEJADA, REVEAL
+    NUMERADA, OCULTA, FLAG
+    AMB MINA, FLAGUEJADA, FLAG
+    AMB MINA, OCULTA, REVEAL
+    AMB MINA, REVELADA, REVEAL*/
+    @Test
+    public void testActPairwise(){
+    //cas 1:
     
+
+
+    }
+    
+    
+
 }
