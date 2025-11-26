@@ -1,7 +1,7 @@
 package tqs.prac.controller;
 import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
-import tqs.prac.view.View;
+import tqs.prac.view.*;
 import tqs.prac.Main;
 
 public class Game {
@@ -67,9 +67,15 @@ public class Game {
     }
     public void startedGame()
     {
+        while ((!this.getGameOver()) && (!this.getWin()))
+        {
+            String accio = vista.getAction();
+            int x = vista.getX();
+            int y = vista.getY();
+            act(accio, x, y);
+        }
 
     }
-
 
     
 

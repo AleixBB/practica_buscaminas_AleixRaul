@@ -1,5 +1,4 @@
 package tqs.prac.view;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
