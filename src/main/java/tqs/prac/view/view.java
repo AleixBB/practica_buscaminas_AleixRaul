@@ -1,9 +1,9 @@
 package tqs.prac.view;
 
-public class view {
+public class View {
     private int size;
 
-    public view(){
+    public View(){
         this.size = 8;
     }
     public void printBoard() {

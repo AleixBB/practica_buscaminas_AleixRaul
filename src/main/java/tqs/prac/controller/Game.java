@@ -61,8 +61,10 @@ public class Game {
                 }
                 break;
         }
-        
     }
+    public void startedGame();
+
+
     
 
 }

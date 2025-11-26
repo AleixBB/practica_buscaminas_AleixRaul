@@ -138,6 +138,13 @@ public class GameTest {
     try{
         game.act("REVEAL", 0,0);
     }catch(Exception e){}
+    }
+
+    @Test
+    //testejerem el flux d'una partida i mirarem els resultats
+    public void startedGameTestFinishWin()
+    {
+       
 
 
     }

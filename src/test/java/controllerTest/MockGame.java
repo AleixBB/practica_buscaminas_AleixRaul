@@ -53,7 +53,11 @@ public class MockGame extends Game {
                 }   
                 this.tauler = t;
                 break; 
-
+            case 4:
+                MockBoardValues bb = new MockBoardValues(6,8);
+                bb.setUpMockBoard(3);
+                this.tauler = bb;
+                break;
         }
     }
 }
