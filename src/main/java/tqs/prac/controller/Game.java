@@ -39,6 +39,10 @@ public class Game {
     {
         this.tauler = tauler;
     }
+    public void setView(View vista)
+    {
+        this.vista = vista;
+    }
     public void act(String action, int x, int y)
     {
         switch(action){
@@ -47,10 +51,6 @@ public class Game {
                     throw new IllegalArgumentException();
                 }
                 tauler.getCell(x, y).toggleFlag();
-                Boolean win = tauler.isWin();
-                if (win){
-                    this.win = true;
-                }
                 break;
             case "REVEAL":
                 if ((tauler.getCell(x, y).isRevelaed()))
@@ -62,20 +62,27 @@ public class Game {
                 {
                     this.gameOver = true;
                 }
+                Boolean win = tauler.isWin();
+                if (win){
+                    this.win = true;
+                }
                 break;
         }
     }
     public void startedGame()
     {
-        while ((!this.getGameOver()) && (!this.getWin()))
+        while ((getGameOver() == false) && (getWin()==false))
         {
             String accio = vista.getAction();
             int x = vista.getX();
             int y = vista.getY();
+            System.out.println(accio + "" + x + "" + y + "/n");
             act(accio, x, y);
+        
+        }
         }
 
-    }
+    
 
     
 

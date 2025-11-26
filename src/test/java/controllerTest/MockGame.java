@@ -21,8 +21,8 @@ public class MockGame extends Game {
                 this.tauler = b;
                 break;
             case 2:
-                MockBoard board = new MockBoard(1,3);
-                board.setUpMockBoard(4);  //matriu 3x3 amb 1 mina
+                MockBoard board = new MockBoard(6,8);
+                board.setUpMockBoard(3);  //matriu 3x3 amb 1 mina
                  for (int i=0; i<3; i++)
                 {
                     for (int j=0; j<3; j++)

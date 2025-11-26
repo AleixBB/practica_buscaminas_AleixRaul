@@ -32,23 +32,21 @@ public class MockView extends View {
                 addAction("REVEAL", 0,7);
                 addAction("REVEAL", 2,0);
                 addAction("REVEAL", 7,7);
-                addAction("REVEAL", 1,0);
                 addAction("REVEAL", 0,1);
-                addAction("REVEAL", 1,2);
                 addAction("REVEAL", 0,2);
                 addAction("REVEAL", 0,3);
-                addAction("REVEAL", 0,4);
-                addAction("REVEAL", 2,2);
                 addAction("REVEAL", 2,3);
                 addAction("REVEAL", 2,4);
-                addAction("REVEAL", 1,4);
-                addAction("REVEAL", 1,1);
                 addAction("REVEAL", 5,0);
                 addAction("REVEAL", 5,1);
                 addAction("REVEAL", 5,2);
                 addAction("REVEAL", 6,0);
                 addAction("REVEAL", 6,2);
-                addAction("REVEAL", 7,3);
+                addAction("REVEAL", 4,0);
+                addAction("REVEAL", 3,3);
+                addAction("REVEAL", 2,7);
+
+
             break;
 
 
