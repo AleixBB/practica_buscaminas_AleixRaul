@@ -68,7 +68,19 @@ public class MockBoard extends Board {
                 { new Cell(0), new Cell(0),  new Cell(0)}};
 
             break;
-        }
+        
+        case 7:
+            this.matrix = new Cell[][]{  //8x8 amb 6 mines
+                { new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
+                { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
+                { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(-1), new Cell(0) },
+                { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
+                { new Cell(0),  new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
+                { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(-1), new Cell(0),  new Cell(0) },
+                { new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) },
+                { new Cell(0),  new Cell(0),  new Cell(-1), new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0) }};
+            break;
+            }
     }
 
 

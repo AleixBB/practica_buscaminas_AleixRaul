@@ -81,6 +81,15 @@ public class Board {
         System.out.println(); 
     }
     }
+    public void printBoardState() {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            System.out.print(matrix[i][j].isRevelaed() + " ");
+        }
+        System.out.println(); 
+    }
+    }
+    
     public void printBoardBools() {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
