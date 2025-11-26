@@ -83,8 +83,6 @@ public class Board {
     }
     
     
-
-
    public Boolean firstClick(int fila, int columna){
     Cell clicked = matrix[fila][columna];
     
