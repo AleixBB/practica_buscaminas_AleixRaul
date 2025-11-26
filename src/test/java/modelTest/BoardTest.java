@@ -147,7 +147,6 @@ public class BoardTest {
         { 1,  2,  2,  1,  0 },
          { 1,  2, -1,  1,  0 },
         { -1, 2,  1,  1,  0 }};
-        mockB.printBoard();
         for (int i =0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -214,7 +213,6 @@ public class BoardTest {
             assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
             }
         }
-        mockB.printBoardBools();
     }
     @Test
     void firstClick2ndTest8x8()
@@ -244,7 +242,6 @@ public class BoardTest {
             assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
             }
         }
-        mockB.printBoardBools();
     }
     @Test
     void firstClick3x3amb1mina()
@@ -262,7 +259,6 @@ public class BoardTest {
         
         mockB.firstClick(0, 0);
         System.out.println("After first click:");
-        mockB.printBoardBools();
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -290,7 +286,6 @@ public class BoardTest {
         
         mockB2.firstClick(1, 0);
         System.out.println("After first click:");
-        mockB2.printBoardBools();
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -312,7 +307,6 @@ public class BoardTest {
         b.insertValueintoCells();
         b.printBoard();
         b.expandZeros(0, 0);
-        b.printBoardBools();
         Boolean[][] boardResultant = {
         {true, true, true, true, true},
         {true, true, true, true, true},

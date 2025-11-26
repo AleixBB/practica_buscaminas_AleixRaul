@@ -81,15 +81,9 @@ public class Board {
         System.out.println(); 
     }
     }
-    public void printBoardBools() {
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            System.out.print(matrix[i][j].isRevelaed() + " ");
-            System.out.print(i + "," + j + " ");
-        }
-        System.out.println();
-    }
-}
+    
+    
+
 
    public Boolean firstClick(int fila, int columna){
     Cell clicked = matrix[fila][columna];
