@@ -119,9 +119,9 @@ public class GameTest {
         game.act("REVEAL", 0,1);
     }catch(Exception e) {}
     //cas 5: NUMERADA, FLAGUEJADA, REVEAL
-    try{
-        game.act("REVEAL", 0,4);
-    }catch(Exception e){}
+    game.act("REVEAL", 0,4);
+    assertFalse(game.getWin());
+    assertFalse(game.getGameOver());
     //cas 6: NUMERADA, OCULTA, FLAG
     game.act("FLAG", 1,0);
     assertFalse(game.getWin());

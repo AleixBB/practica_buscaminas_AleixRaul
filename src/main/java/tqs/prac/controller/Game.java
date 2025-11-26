@@ -40,6 +40,9 @@ public class Game {
     {
         switch(action){
             case "FLAG":
+                if (tauler.getCell(x, y).isRevelaed()){
+                    throw new IllegalArgumentException();
+                }
                 tauler.getCell(x, y).toggleFlag();
                 Boolean win = tauler.isWin();
                 if (win){
@@ -47,6 +50,10 @@ public class Game {
                 }
                 break;
             case "REVEAL":
+                if ((tauler.getCell(x, y).isRevelaed()))
+                {
+                    throw new IllegalArgumentException();
+                }
                 Boolean hayJuego = tauler.firstClick(x, y);
                 if (!hayJuego)
                 {
