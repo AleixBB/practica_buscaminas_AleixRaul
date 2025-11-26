@@ -123,7 +123,7 @@ public class GameTest {
     assertFalse(game.getWin());
     assertFalse(game.getGameOver());
     //cas 6: NUMERADA, OCULTA, FLAG
-    game.act("FLAG", 1,0);
+    game.act("FLAG", 6,6);
     assertFalse(game.getWin());
     assertFalse(game.getGameOver());
     //cas 7: AMB MINA, FLAGUEJADA, FLAG
