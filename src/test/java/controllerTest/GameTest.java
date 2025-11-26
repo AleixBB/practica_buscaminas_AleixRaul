@@ -7,6 +7,9 @@ import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
 import tqs.prac.Main;
 import controllerTest.MockGame;
+import viewTest.MockView;
+import viewTest.viewTest;
+
 import org.junit.jupiter.api.Test;
 
 public class GameTest {
@@ -144,9 +147,13 @@ public class GameTest {
     //testejerem el flux d'una partida i mirarem els resultats
     public void startedGameTestFinishWin()
     {
-       
-
-
+        MockGame game = new MockGame();
+        game.setUpMockGame(4);
+        MockView view = new MockView();
+        view.setUpActions(1);
+        game.startedGame();
+        assertFalse(game.getGameOver());
+        assertTrue(game.getWin());
     }
     
     
