@@ -48,6 +48,12 @@ public class MockView extends View {
 
 
             break;
+            case 2:
+                addAction("FLAG", 2, 4);
+                addAction("REVEAL", 3, 3);
+                addAction("REVEAL", 0,4);
+
+
 
 
         }

@@ -140,6 +140,17 @@ public class GameTest {
         assertFalse(game.getGameOver());
         assertTrue(game.getWin());
     }
+    public void startedGameTestFinishLose()
+    {
+        MockGame game = new MockGame();
+        game.setUpMockGame(4);
+        MockView view = new MockView();
+        game.setView(view);
+        view.setUpActions(2);
+        game.startedGame();
+        assertTrue(game.getGameOver());
+        assertFalse(game.getWin());
+    }
     
     
 
