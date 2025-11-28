@@ -1,16 +1,19 @@
 package tqs.prac.controller;
 import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
+import tqs.prac.view.*;
 import tqs.prac.Main;
 
 public class Game {
     protected Boolean gameOver;
     protected Boolean win;
     protected Board tauler;
+    protected View vista;
     public Game(){
         this.gameOver= false;
         this.win= false;
         this.tauler = null;
+        this.vista = null;
     }
     public Boolean getGameOver(){
         return this.gameOver;
@@ -36,6 +39,10 @@ public class Game {
     {
         this.tauler = tauler;
     }
+    public void setView(View vista)
+    {
+        this.vista = vista;
+    }
     public void act(String action, int x, int y)
     {
         switch(action){
@@ -44,10 +51,6 @@ public class Game {
                     throw new IllegalArgumentException();
                 }
                 tauler.getCell(x, y).toggleFlag();
-                Boolean win = tauler.isWin();
-                if (win){
-                    this.win = true;
-                }
                 break;
             case "REVEAL":
                 if ((tauler.getCell(x, y).isRevelaed()))
@@ -59,10 +62,28 @@ public class Game {
                 {
                     this.gameOver = true;
                 }
+                Boolean win = tauler.isWin();
+                if (win){
+                    this.win = true;
+                }
                 break;
         }
-        
     }
+    public void startedGame()
+    {
+        while ((getGameOver() == false) && (getWin()==false))
+        {
+            String accio = vista.getAction();
+            int x = vista.getX();
+            int y = vista.getY();
+            System.out.println(accio + "" + x + "" + y + "/n");
+            act(accio, x, y);
+        
+        }
+        }
+
+    
+
     
 
 }

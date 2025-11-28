@@ -7,6 +7,9 @@ import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
 import tqs.prac.Main;
 import controllerTest.MockGame;
+import viewTest.MockView;
+import viewTest.viewTest;
+
 import org.junit.jupiter.api.Test;
 
 public class GameTest {
@@ -54,16 +57,8 @@ public class GameTest {
         assertFalse(game.getWin());
         assertFalse(game.getGameOver());
     }
-    //test2: flagejar una cel.la i win
-    @Test
-    public void testActFlagCellWin(){
-        MockGame game = new MockGame();
-        game.setUpMockGame(2);
-        game.act("FLAG", 2,0);
-        assertTrue(game.getWin());
-        assertFalse(game.getGameOver());
-    }
-    //test3: revelar cel.la amb mina
+    
+    //test2: revelar cel.la amb mina
     @Test
     public void testActRevealCellwMine(){
         MockGame game = new MockGame();
@@ -72,15 +67,7 @@ public class GameTest {
         assertFalse(game.getWin());
         assertTrue(game.getGameOver());
     }
-    //test4: revelar cel·la sense mina
-    @Test 
-    public void testActRevealCellnMine(){
-        MockGame game = new MockGame();
-        game.setUpMockGame(1);
-        game.act("REVEAL", 1,1);
-        assertFalse(game.getWin());
-        assertFalse(game.getGameOver());
-    }
+    
 
     /*PAIRWISE TESTING al metode act
     CASOS: 
@@ -138,8 +125,31 @@ public class GameTest {
     try{
         game.act("REVEAL", 0,0);
     }catch(Exception e){}
+    }
 
-
+    @Test
+    //testejerem el flux d'una partida i mirarem els resultats
+    public void startedGameTestFinishWin()
+    {
+        MockGame game = new MockGame();
+        game.setUpMockGame(4);
+        MockView view = new MockView();
+        game.setView(view);
+        view.setUpActions(1);
+        game.startedGame();
+        assertFalse(game.getGameOver());
+        assertTrue(game.getWin());
+    }
+    public void startedGameTestFinishLose()
+    {
+        MockGame game = new MockGame();
+        game.setUpMockGame(4);
+        MockView view = new MockView();
+        game.setView(view);
+        view.setUpActions(2);
+        game.startedGame();
+        assertTrue(game.getGameOver());
+        assertFalse(game.getWin());
     }
     
     

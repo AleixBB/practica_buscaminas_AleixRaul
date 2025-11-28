@@ -1,10 +1,10 @@
 package tqs.prac;
 
-import tqs.prac.view.view;
+import tqs.prac.view.View;
 
 public class Main {
     public static void Main(String[] args) {
-        view vista = new view();
+        View vista = new View();
         int size = 5;
         int nMines = 4;
         
