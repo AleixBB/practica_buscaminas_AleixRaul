@@ -4,7 +4,7 @@ import javax.swing.*;
 import tqs.prac.model.Board;
 import tqs.prac.controller.Game;
 
-public class View extends JFrame {
+public class View extends JFrame implements IView {
 
     private BoardView boardPanel;
 

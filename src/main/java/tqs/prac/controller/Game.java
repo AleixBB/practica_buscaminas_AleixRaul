@@ -8,7 +8,7 @@ public class Game {
     protected Boolean gameOver;
     protected Boolean win;
     protected Board tauler;
-    protected View vista;
+    protected IView vista;
     public Game(){
         this.gameOver= false;
         this.win= false;
@@ -39,7 +39,7 @@ public class Game {
     {
         this.tauler = tauler;
     }
-    public void setView(View vista)
+    public void setView(IView vista)
     {
         this.vista = vista;
     }

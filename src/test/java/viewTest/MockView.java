@@ -2,8 +2,9 @@ package viewTest;
 import tqs.prac.view.View;
 import java.util.LinkedList;
 import java.util.Queue;
+import tqs.prac.view.IView;
 
-public class MockView extends View {
+public class MockView implements IView {
     private Queue<String> actions = new LinkedList<>();
     private Queue<Integer> xs = new LinkedList<>();
     private Queue<Integer> ys = new LinkedList<>();
@@ -60,9 +61,7 @@ public class MockView extends View {
 
         }
     }
-    @Override
     public void refresh() {
-        
     }
     
     

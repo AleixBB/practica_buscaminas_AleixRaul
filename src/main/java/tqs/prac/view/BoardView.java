@@ -39,7 +39,6 @@ public class BoardView extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
 
-                        // acción del jugador
                         if (SwingUtilities.isRightMouseButton(e)) {
                             view.setAction("FLAG");
                         } else {

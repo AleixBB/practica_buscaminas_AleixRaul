@@ -35,20 +35,20 @@ public class Main {
                 break;
 
             case 1:
-                size = 12;
-                mines = 25;
+                size = 16;
+                mines = 55;
                 break;
 
             case 2:
-                size = 16;
-                mines = 45;
+                size = 24;
+                mines = 80;
                 break;
 
             default:
                 System.exit(0);
         }
 
-        Board board = new Board(size, mines);
+        Board board = new Board(mines, size);
         board.putMinesintoBoard();
         board.insertValueintoCells();
 
