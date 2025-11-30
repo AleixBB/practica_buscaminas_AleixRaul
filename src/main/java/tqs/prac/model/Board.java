@@ -81,6 +81,9 @@ public class Board {
         System.out.println(); 
     }
     }
+    public int getSize(){
+        return this.size;
+    }
     
     
    public Boolean firstClick(int fila, int columna){
