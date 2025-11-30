@@ -32,5 +32,5 @@ jobs:
       - name: Install dependencies
         run: mvn install -DskipTests
 
-      - name: Run tests (headless)
-        run: mvn test -Djava.awt.headless=true
+      - name: Run tests
+        run: mvn test
