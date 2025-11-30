@@ -2,8 +2,9 @@ package viewTest;
 import tqs.prac.view.View;
 import java.util.LinkedList;
 import java.util.Queue;
+import tqs.prac.view.IView;
 
-public class MockView extends View {
+public class MockView implements IView {
     private Queue<String> actions = new LinkedList<>();
     private Queue<Integer> xs = new LinkedList<>();
     private Queue<Integer> ys = new LinkedList<>();
@@ -17,14 +18,16 @@ public class MockView extends View {
     {
         return actions.poll();
     }
-    public int getX()
+    public int getClickedX()
     {
         return xs.poll();
     }
-    public int getY()
+
+    public int getClickedY()
     {
         return ys.poll();
     }
+    
     public void setUpActions(int type)
     {
         switch (type){
@@ -57,6 +60,8 @@ public class MockView extends View {
 
 
         }
+    }
+    public void refresh() {
     }
     
     

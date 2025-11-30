@@ -8,7 +8,7 @@ public class Game {
     protected Boolean gameOver;
     protected Boolean win;
     protected Board tauler;
-    protected View vista;
+    protected IView vista;
     public Game(){
         this.gameOver= false;
         this.win= false;
@@ -39,7 +39,7 @@ public class Game {
     {
         this.tauler = tauler;
     }
-    public void setView(View vista)
+    public void setView(IView vista)
     {
         this.vista = vista;
     }
@@ -71,16 +71,16 @@ public class Game {
     }
     public void startedGame()
     {
-        while ((getGameOver() == false) && (getWin()==false))
-        {
-            String accio = vista.getAction();
-            int x = vista.getX();
-            int y = vista.getY();
-            System.out.println(accio + "" + x + "" + y + "/n");
-            act(accio, x, y);
+        String accio = vista.getAction();
+        int x = vista.getClickedX();
+        int y = vista.getClickedY();
+
         
-        }
-        }
+        act(accio, x, y);
+
+        vista.refresh();
+        
+    }
 
     
 
