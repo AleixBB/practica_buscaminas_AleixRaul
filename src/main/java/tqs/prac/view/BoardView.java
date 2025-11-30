@@ -48,7 +48,6 @@ public class BoardView extends JPanel {
 
                         view.setCoords(x, y);
 
-                        // procesar jugada
                         game.startedGame();
 
                         // mostrar resultado
@@ -82,12 +81,10 @@ public class BoardView extends JPanel {
                 btn.setText("🚩");
                 btn.setEnabled(true);
             }
-            // Si la celda NO está revelada y NO está marcada
             else if (!c.isRevelaed()) {
                 btn.setText("");
                 btn.setEnabled(true);
             }
-            // Si la celda ESTÁ revelada
             else { 
                 btn.setEnabled(false); 
 

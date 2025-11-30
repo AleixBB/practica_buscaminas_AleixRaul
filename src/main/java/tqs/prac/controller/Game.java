@@ -71,9 +71,11 @@ public class Game {
     }
     public void startedGame()
     {
+        System.out.println("Crida");
         String accio = vista.getAction();
         int x = vista.getClickedX();
         int y = vista.getClickedY();
+        System.out.println(accio + "" + x + "" + y + "/n");
 
         act(accio, x, y);
 
@@ -84,7 +86,6 @@ public class Game {
             String accio = vista.getAction();
             int x = vista.getX();
             int y = vista.getY();
-            System.out.println(accio + "" + x + "" + y + "/n");
             act(accio, x, y);
         
         }*/

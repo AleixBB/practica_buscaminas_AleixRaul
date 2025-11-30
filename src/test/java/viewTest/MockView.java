@@ -17,14 +17,16 @@ public class MockView extends View {
     {
         return actions.poll();
     }
-    public int getX()
+    public int getClickedX()
     {
         return xs.poll();
     }
-    public int getY()
+
+    public int getClickedY()
     {
         return ys.poll();
     }
+    
     public void setUpActions(int type)
     {
         switch (type){
@@ -57,6 +59,10 @@ public class MockView extends View {
 
 
         }
+    }
+    @Override
+    public void refresh() {
+        
     }
     
     
