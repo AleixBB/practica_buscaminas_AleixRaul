@@ -71,24 +71,15 @@ public class Game {
     }
     public void startedGame()
     {
-        System.out.println("Crida");
         String accio = vista.getAction();
         int x = vista.getClickedX();
         int y = vista.getClickedY();
-        System.out.println(accio + "" + x + "" + y + "/n");
 
+        
         act(accio, x, y);
 
-        // Actualizar vista
         vista.refresh();
-        /*while ((getGameOver() == false) && (getWin()==false))
-        {
-            String accio = vista.getAction();
-            int x = vista.getX();
-            int y = vista.getY();
-            act(accio, x, y);
         
-        }*/
     }
 
     
