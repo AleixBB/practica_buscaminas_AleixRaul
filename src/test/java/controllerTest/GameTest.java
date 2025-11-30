@@ -138,6 +138,7 @@ public class GameTest {
         view.setUpActions(1);
         while ((game.getGameOver() == false) && (game.getWin()==false)){
         game.startedGame();
+        System.out.println(game.getWin());
         }
         assertFalse(game.getGameOver());
         assertTrue(game.getWin());
