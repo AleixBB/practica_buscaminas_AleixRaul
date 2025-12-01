@@ -82,6 +82,46 @@ public class MockBoard extends Board {
             break;
             }
     }
+    public void setUpMockBoardplus(int type)
+    {
+        switch (type){
+            case 1:
+                this.matrix= new Cell[][] { //8x8 amb 13 mines
+                { new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(0) },
+                { new Cell(0),  new Cell(0), new Cell(0),  new Cell(0),  new Cell(0), new Cell(-1), new Cell(0), new Cell(0)  },
+                { new Cell(-1),  new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0),new Cell(0), new Cell(0), new Cell(0)  },
+                { new Cell(0),  new Cell(0),  new Cell(0), new Cell(0),  new Cell(-1), new Cell(0), new Cell(0), new Cell(0)  },
+                { new Cell(0), new Cell(-1),  new Cell(0),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(0)  },
+                {new Cell(0), new Cell(0),  new Cell(-1),  new Cell(0),  new Cell(0), new Cell(0), new Cell(0), new Cell(-1)},
+                {new Cell(-1), new Cell(0),  new Cell(0),  new Cell(-1),  new Cell(0), new Cell(-1), new Cell(0), new Cell(0)},
+                {new Cell(0), new Cell(0),  new Cell(0),  new Cell(-1),  new Cell(0), new Cell(0), new Cell(-1), new Cell(0) }};
+                for (int i=0; i<8; i++)
+                {
+                    for (int j=0; j<8; j++)
+                    {
+                        if ((i == 0 && j == 1) || (i == 2 && j == 3) || (i == 4 && j == 4) ||
+                        (i == 6 && j == 2) || (i == 7 && j == 7)) {
+                            this.getCell(i, j).reveal();}
+                        if ((i == 4 && j == 1) || (i == 0 && j == 4) ||   (i == 7 && j == 0)) {  
+                            this.getCell(i, j).toggleFlag();
+                        }
+                    }
+                }  
+                break; 
+            case 2:
+                  this.matrix = new Cell[][]{
+                { new Cell(-1), new Cell( 1), new Cell( 1), new Cell( 1), new Cell( 1), new Cell(0),  new Cell(0),  new Cell(0) },
+                { new Cell( 1), new Cell( 1), new Cell( 1), new Cell(-1), new Cell( 1), new Cell(1), new Cell(1), new Cell(1) },
+                { new Cell( 0), new Cell( 0), new Cell( 1), new Cell( 1), new Cell( 1), new Cell(1), new Cell(-1), new Cell(1) },
+                { new Cell( 1), new Cell( 1), new Cell( 1), new Cell( 0), new Cell( 0), new Cell(1), new Cell(1), new Cell(1) },
+                { new Cell( 1), new Cell(-1), new Cell( 1), new Cell( 0), new Cell( 1), new Cell(1), new Cell(1), new Cell(0) },
+                { new Cell( 1), new Cell( 1), new Cell( 1), new Cell( 0), new Cell( 1), new Cell(-1), new Cell(1), new Cell(0) },
+                { new Cell( 0), new Cell( 1), new Cell( 1), new Cell( 1), new Cell( 1), new Cell(1), new Cell(1), new Cell(0) },
+                { new Cell( 0), new Cell( 1), new Cell(-1), new Cell( 1), new Cell( 0), new Cell(0), new Cell(0), new Cell(0) }};
+
+                    break;
+                  }
+    }
 
 
 }

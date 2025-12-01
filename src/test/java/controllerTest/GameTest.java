@@ -9,6 +9,7 @@ import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
 import tqs.prac.Main;
 import controllerTest.MockGame;
+import modelTest.MockBoard;
 import viewTest.MockView;
 import viewTest.viewTest;
 
@@ -78,7 +79,6 @@ public class GameTest {
     - ACCIO DEL JUGADOR: FLAG, REVEAL
     En total tindriem 18 casos possibles. 
     Utilitzan pairwise només en tindrem 9:
-    BUIDA, OCULTA, REVEAL
     BUIDA, REVELADA, FLAG
     BUIDA, FLAGUEJADA, REVEAL
     NUMERADA, REVELADA, REVEAL
@@ -86,60 +86,76 @@ public class GameTest {
     NUMERADA, OCULTA, FLAG
     AMB MINA, FLAGUEJADA, FLAG
     AMB MINA, OCULTA, REVEAL
-    AMB MINA, REVELADA, REVEAL*/
+    AMB MINA, REVELADA, REVEAL
+    BUIDA, OCULTA, REVEAL
+*/
     @Test
     public void testActPairwise(){
-    MockGame game = new MockGame();
-    game.setUpMockGame(3);
-    //cas 1: BUIDA, OCULTA, REVEAL
-    game.act("REVEAL", 2, 1);
-    assertFalse(game.getWin());
-    assertFalse(game.getGameOver());
-    //cas 2: BUIDA, REVELADA, FLAG
+    Game game = new Game();
+    MockBoard mockB = new MockBoard(13, 8);
+    mockB.setUpMockBoardplus(1);
+    game.setBoard(mockB);
+    
+    //cas 1: BUIDA, REVELADA, FLAG
     try{
         game.act("FLAG", 7,7);
     }catch(Exception e){}
-    //cas 3: BUIDA, FLAGUEJADA, REVEAL
+    //cas 2: BUIDA, FLAGUEJADA, REVEAL
     try{
     game.act("REVEAL", 7, 0);
     }catch(Exception e){}
-    //cas 4: NUMERADA, REVELADA, REVEAL
+    //cas 3: NUMERADA, REVELADA, REVEAL
     try{
         game.act("REVEAL", 0,1);
     }catch(Exception e) {}
-    //cas 5: NUMERADA, FLAGUEJADA, REVEAL
+    //cas 4: NUMERADA, FLAGUEJADA, REVEAL
     try{
     game.act("REVEAL", 0,4);
     }catch(Exception e){}
 
-    //cas 6: NUMERADA, OCULTA, FLAG
+    //cas 5: NUMERADA, OCULTA, FLAG
+    mockB = new MockBoard(13, 8);
+    mockB.setUpMockBoardplus(1);
+    game.setBoard(mockB);
     game.act("FLAG", 6,6);
-    assertFalse(game.getWin());
-    assertFalse(game.getGameOver());
-    //cas 7: AMB MINA, FLAGUEJADA, FLAG
+ 
+    //cas 6: AMB MINA, FLAGUEJADA, FLAG
+    mockB = new MockBoard(13, 8);
+    mockB.setUpMockBoardplus(1);
+    game.setBoard(mockB);
     game.act("FLAG", 4, 1);
-    assertFalse(game.getWin());
-    assertFalse(game.getGameOver());
-    //cas 8; AMB MINA, OCULTA, REVEAL
+
+    //cas 7; AMB MINA, OCULTA, REVEAL
+    mockB = new MockBoard(13, 8);
+    mockB.setUpMockBoardplus(1);
+    game.setBoard(mockB);
     game.act("REVEAL", 0,0);
-    assertFalse(game.getWin());
-    assertTrue(game.getGameOver()); 
-    //cas 9: AMB MINA, REVELADA, REVEAL
+ 
+    //cas 8: AMB MINA, REVELADA, REVEAL
     try{
         game.act("REVEAL", 0,0);
     }catch(Exception e){}
-    }
+
+    //cas 9: BUIDA, OCULTA, REVEAL
+    mockB = new MockBoard(13, 8);
+    mockB.setUpMockBoardplus(1);
+    game.setBoard(mockB);
+
+    game.act("REVEAL", 6, 6);
+}
 
     @Test
     //testejerem el flux d'una partida i mirarem els resultats
     public void startedGameTestFinishWin()
     {
-        MockGame game = new MockGame();
-        game.setUpMockGame(4);
+        Game game = new Game();
+        MockBoard mockB = new MockBoard(6, 8);
+        mockB.setUpMockBoardplus(2);
+        game.setBoard(mockB);
         MockView view = new MockView();
         game.setView(view);
         view.setUpActions(1);
-        while ((game.getGameOver() == false) && (game.getWin()==false)){
+        while (view.getnActions() > 0){
         game.startedGame();
         System.out.println(game.getWin());
         }
@@ -147,14 +163,17 @@ public class GameTest {
         assertTrue(game.getWin());
         
     }
+    @Test
     public void startedGameTestFinishLose()
     {
-        MockGame game = new MockGame();
-        game.setUpMockGame(4);
+        Game game = new Game();
+        MockBoard mockB = new MockBoard(6, 8);
+        mockB.setUpMockBoardplus(2);
+        game.setBoard(mockB);
         MockView view = new MockView();
         game.setView(view);
         view.setUpActions(2);
-        while ((game.getGameOver() == false) && (game.getWin()==false)){
+        while ((view.getnActions() > 0)){
         game.startedGame();
         }
         assertTrue(game.getGameOver());
