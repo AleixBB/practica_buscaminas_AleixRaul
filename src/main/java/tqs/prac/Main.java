@@ -13,11 +13,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        String[] opciones = { "Fácil", "Medio", "Difícil" };
+        String[] opciones = { "Fàcil", "Mitjà", "Difícil" };
 
         int eleccion = JOptionPane.showOptionDialog(
                 null,
-                "Selecciona la dificultad",
+                "Selecciona la dificultat",
                 "Buscamines_AleixBenet_RaulMancebo",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, 
@@ -31,18 +31,18 @@ public class Main {
 
         switch (eleccion) {
             case 0:
-                size = 8;
-                mines = 10;
+                size = 6;
+                mines = 12;
                 break;
 
             case 1:
-                size = 16;
-                mines = 55;
+                size = 10;
+                mines = 30;
                 break;
 
             case 2:
-                size = 24;
-                mines = 80;
+                size = 14;
+                mines = 60xw;
                 break;
 
             default:
