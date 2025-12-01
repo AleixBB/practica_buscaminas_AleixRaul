@@ -42,7 +42,7 @@ public class Main {
 
             case 2:
                 size = 14;
-                mines = 60xw;
+                mines = 60;
                 break;
 
             default:
