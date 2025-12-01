@@ -8,7 +8,6 @@ import tqs.prac.controller.Game;
 import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
 import tqs.prac.Main;
-import controllerTest.MockGame;
 import modelTest.MockBoard;
 import viewTest.MockView;
 import viewTest.viewTest;
@@ -54,8 +53,10 @@ public class GameTest {
     //test1: flagejar una cel.la no win
     @Test
     public void testActFlagCellnWin(){
-        MockGame game = new MockGame();
-        game.setUpMockGame(1);
+        Game game = new Game();
+        MockBoard mockB = new MockBoard(1, 3);
+        mockB.setUpMockBoardplus(3);
+        game.setBoard(mockB);
         game.act("FLAG", 1,0);
         assertFalse(game.getWin());
         assertFalse(game.getGameOver());
@@ -64,8 +65,10 @@ public class GameTest {
     //test2: revelar cel.la amb mina
     @Test
     public void testActRevealCellwMine(){
-        MockGame game = new MockGame();
-        game.setUpMockGame(1);
+        Game game = new Game();
+        MockBoard mockB = new MockBoard(1, 3);
+        mockB.setUpMockBoardplus(3);
+        game.setBoard(mockB);
         game.act("REVEAL", 2,0);
         assertFalse(game.getWin());
         assertTrue(game.getGameOver());

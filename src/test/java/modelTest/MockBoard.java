@@ -120,7 +120,16 @@ public class MockBoard extends Board {
                 { new Cell( 0), new Cell( 1), new Cell(-1), new Cell( 1), new Cell( 0), new Cell(0), new Cell(0), new Cell(0) }};
 
                     break;
-                  }
+                  
+            case 3:
+                this.matrix= new Cell[][] { //3x3 amb 1 mina
+                { new Cell(0),  new Cell(0),  new Cell(0)},
+                { new Cell(0),  new Cell(0), new Cell(0)},
+                { new Cell(-1), new Cell(0),  new Cell(0)}
+            
+ 
+            };
+        }
     }
 
 
