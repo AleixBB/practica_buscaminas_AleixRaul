@@ -1,4 +1,3 @@
-
 package tqs.prac.view;
 public interface IView {
     String getAction();
