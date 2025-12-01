@@ -1,3 +1,4 @@
+
 package tqs.prac.model;
 import java.util.Random;
 
@@ -80,6 +81,9 @@ public class Board {
         }
         System.out.println(); 
     }
+    }
+    public int getSize(){
+        return this.size;
     }
     
     
