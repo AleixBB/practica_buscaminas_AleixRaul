@@ -58,6 +58,10 @@ public class Game {
                 {
                     throw new IllegalArgumentException();
                 }
+                if ((tauler.getCell(x, y).isFlagged()))
+                {
+                    throw new IllegalArgumentException();
+                }
                 Boolean hayJuego = tauler.firstClick(x, y);
                 if (!hayJuego)
                 {
