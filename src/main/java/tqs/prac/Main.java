@@ -32,17 +32,17 @@ public class Main {
         switch (eleccion) {
             case 0:
                 size = 6;
-                mines = 12;
+                mines = 6;
                 break;
 
             case 1:
                 size = 10;
-                mines = 30;
+                mines = 20;
                 break;
 
             case 2:
                 size = 14;
-                mines = 60;
+                mines = 50;
                 break;
 
             default:
