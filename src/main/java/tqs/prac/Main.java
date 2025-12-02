@@ -2,17 +2,15 @@
 package tqs.prac;
 
 import tqs.prac.model.Board;
+import tqs.prac.model.GenRandom;
 import tqs.prac.controller.Game;
 import tqs.prac.view.View;
 
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Main {
 
     public static void main(String[] args) {
-
-
         String[] opciones = { "Fàcil", "Mitjà", "Difícil" };
 
         int eleccion = JOptionPane.showOptionDialog(
@@ -21,7 +19,7 @@ public class Main {
                 "Buscamines_AleixBenet_RaulMancebo",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, 
-                null,      // ← IMAGEN AQUÍ
+                null,      
                 opciones,
                 opciones[0]
         );
@@ -48,8 +46,8 @@ public class Main {
             default:
                 System.exit(0);
         }
-
-        Board board = new Board(mines, size);
+        GenRandom rand = new GenRandom();
+        Board board = new Board(mines, size, rand);
         board.putMinesintoBoard();
         board.insertValueintoCells();
 

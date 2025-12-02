@@ -9,6 +9,7 @@ import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
 import tqs.prac.Main;
 import modelTest.MockBoard;
+import modelTest.MockGenRandom;
 import viewTest.MockView;
 import viewTest.viewTest;
 
@@ -40,7 +41,8 @@ public class GameTest {
     @Test
     void testGetSetBoard(){
         Game game = new Game();
-        Board b = new Board(3,3);
+        MockGenRandom rand = new MockGenRandom(null);
+        Board b = new Board(3,3, rand);
         game.setBoard(b);
 
         assertEquals(b, game.getBoard());
@@ -54,7 +56,8 @@ public class GameTest {
     @Test
     public void testActFlagCellnWin(){
         Game game = new Game();
-        MockBoard mockB = new MockBoard(1, 3);
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 3, random);
         mockB.setUpMockBoardplus(3);
         game.setBoard(mockB);
         game.act("FLAG", 1,0);
@@ -66,7 +69,8 @@ public class GameTest {
     @Test
     public void testActRevealCellwMine(){
         Game game = new Game();
-        MockBoard mockB = new MockBoard(1, 3);
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 3, random);
         mockB.setUpMockBoardplus(3);
         game.setBoard(mockB);
         game.act("REVEAL", 2,0);
@@ -95,7 +99,8 @@ public class GameTest {
     @Test
     public void testActPairwise(){
     Game game = new Game();
-    MockBoard mockB = new MockBoard(13, 8);
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
     game.setBoard(mockB);
     
@@ -117,19 +122,22 @@ public class GameTest {
     }catch(Exception e){}
 
     //cas 5: NUMERADA, OCULTA, FLAG
-    mockB = new MockBoard(13, 8);
+    random = new MockGenRandom(null);
+    mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
     game.setBoard(mockB);
     game.act("FLAG", 6,6);
  
     //cas 6: AMB MINA, FLAGUEJADA, FLAG
-    mockB = new MockBoard(13, 8);
+    random = new MockGenRandom(null);
+    mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
     game.setBoard(mockB);
     game.act("FLAG", 4, 1);
 
     //cas 7; AMB MINA, OCULTA, REVEAL
-    mockB = new MockBoard(13, 8);
+    random = new MockGenRandom(null);
+    mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
     game.setBoard(mockB);
     game.act("REVEAL", 0,0);
@@ -140,7 +148,8 @@ public class GameTest {
     }catch(Exception e){}
 
     //cas 9: BUIDA, OCULTA, REVEAL
-    mockB = new MockBoard(13, 8);
+    MockGenRandom rand = new MockGenRandom(null);
+    mockB = new MockBoard(13, 8, rand);
     mockB.setUpMockBoardplus(1);
     game.setBoard(mockB);
 
@@ -152,7 +161,8 @@ public class GameTest {
     public void startedGameTestFinishWin()
     {
         Game game = new Game();
-        MockBoard mockB = new MockBoard(6, 8);
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(6, 8, random);
         mockB.setUpMockBoardplus(2);
         game.setBoard(mockB);
         MockView view = new MockView();
@@ -160,7 +170,6 @@ public class GameTest {
         view.setUpActions(1);
         while (view.getnActions() > 0){
         game.startedGame();
-        System.out.println(game.getWin());
         }
         assertFalse(game.getGameOver());
         assertTrue(game.getWin());
@@ -170,7 +179,8 @@ public class GameTest {
     public void startedGameTestFinishLose()
     {
         Game game = new Game();
-        MockBoard mockB = new MockBoard(6, 8);
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(6, 8, random);
         mockB.setUpMockBoardplus(2);
         game.setBoard(mockB);
         MockView view = new MockView();

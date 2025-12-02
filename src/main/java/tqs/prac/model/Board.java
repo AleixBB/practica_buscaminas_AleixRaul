@@ -6,9 +6,10 @@ public class Board {
     protected int nMines;
     protected int size;
     protected Cell[][] matrix;
+    private GenRandom random;
 
 
-    public Board(int nMines, int size)
+    public Board(int nMines, int size, GenRandom rand)
     {
         //precondicions
         if (nMines < 0 || size <= 0)
@@ -17,6 +18,7 @@ public class Board {
         }
         this.nMines = nMines;
         this.size = size;
+        this.random = rand;
         matrix = new Cell[size][size];
         for (int i=0; i<size; i++)
         {
@@ -36,11 +38,10 @@ public class Board {
         if (nMines > size * size) {
             throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
         }
-        Random rand = new Random();
         int count = 0;
         while (count < nMines) {
-            int r = rand.nextInt(size);
-            int c = rand.nextInt(size);
+            int r = random.nextInt(size);
+            int c = random.nextInt(size);
             if (matrix[r][c].getValue() == 0) {
                 matrix[r][c].setValue(-1);
                 count++;

@@ -2,12 +2,13 @@ package modelTest;
 import tqs.prac.Main;
 import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
+import tqs.prac.model.GenRandom;
 
 public class MockBoardValues extends Board {
 
 
-    public MockBoardValues(int nMines, int size) {
-        super(nMines, size);
+    public MockBoardValues(int nMines, int size, GenRandom ran) {
+        super(nMines, size, ran);
     }
     public void setUpMockBoard(int type)
     {

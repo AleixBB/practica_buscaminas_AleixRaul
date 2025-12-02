@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*; 
 import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
+import tqs.prac.model.GenRandom;
 import tqs.prac.Main;
 
 
@@ -13,7 +14,8 @@ public class BoardTest {
     {
     int mines = 4;
     int size = 6;
-    Board tauler = new Board(mines, size);
+    MockGenRandom  rand = new MockGenRandom(null);
+    Board tauler = new Board(mines, size, rand);
     for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 assertEquals(0 ,tauler.getCell(i, j).getValue());
@@ -25,27 +27,28 @@ public class BoardTest {
     @Test
     void testInitnegatius()
     {
+        MockGenRandom  rand = new MockGenRandom(null);
         //valorsfora rang
         try{
-            Board tauler=new Board(-2, -4);
+            Board tauler=new Board(-2, -4, rand);
             assertTrue(false);
 
         //valor frontera i valor fora rang  
         }catch (Exception e){}
         try{
-            Board tauler=new Board(-1, 0);
+            Board tauler=new Board(-1, 0, rand);
             assertTrue(false);
 
         //valor correcte i valor fora rang
         }catch (Exception e){}
         try{
-            Board tauler=new Board(2, -1);
+            Board tauler=new Board(2, -1, rand);
             assertTrue(false);
 
         //valor correcte i valor fora rang   
         }catch (Exception e){}
         try{
-            Board tauler=new Board(0, 0);
+            Board tauler=new Board(0, 0, rand);
             assertTrue(false);
         
         //valor frontera
@@ -60,7 +63,8 @@ public class BoardTest {
     int size = 6;
     int nMines = 10;
     int contador = 0;
-    Board tauler = new Board(nMines, size);
+    GenRandom  rand = new GenRandom();
+    Board tauler = new Board(nMines, size, rand);
     tauler.putMinesintoBoard();
     for (int i=0; i<size; i++)
     {
@@ -82,7 +86,9 @@ public class BoardTest {
         int size = 3;
         int nMines = 9;
         int contador = 0;
-        Board tauler = new Board(nMines, size);
+        GenRandom rand = new GenRandom();
+
+        Board tauler = new Board(nMines, size, rand);
         tauler.putMinesintoBoard();
         for (int i=0; i<size; i++)
         {       
@@ -99,7 +105,7 @@ public class BoardTest {
         size = 3;
         nMines = 0;
         contador = 0;
-        tauler = new Board(nMines, size);
+        tauler = new Board(nMines, size, rand);
         tauler.putMinesintoBoard();
         for (int i=0; i<size; i++)
         {    
@@ -117,7 +123,7 @@ public class BoardTest {
         nMines = -1;
         contador = 0;
         try{
-            tauler = new Board(nMines, size);
+            tauler = new Board(nMines, size, rand);
             tauler.putMinesintoBoard();
             assertTrue(false);
         }catch (Exception e){}  
@@ -126,75 +132,93 @@ public class BoardTest {
         nMines = 10;
         contador = 0;
         try{
-            tauler = new Board(nMines, size);
+            tauler = new Board(nMines, size, rand);
             tauler.putMinesintoBoard();
             assertTrue(false);
         }catch (Exception e){}  
 
     }
     @Test
-    //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen en relacio a les mines les diferents celes son correctes
-    void testValorsCelles()
-    {   
-        int size = 5;
-        int nMines = 4;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(1);
-        mockB.insertValueintoCells();
-        int[][] boardResultant = {
+    //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen 
+    // en relacio a les mines les diferents celes son correctes
+void testValorsCelles()
+{
+    int size = 5;
+    int nMines = 4;
+
+    // Mock que genera exactamente las minas del type 1
+    MockGenRandom mockGen = new MockGenRandom(
+        0,3,
+        1,1,
+        3,2,
+        4,0
+    );
+
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard();     
+    b.insertValueintoCells(); 
+
+    int[][] boardResultant = {
         { 1,  1,  2, -1,  1 },
         { 1, -1,  2,  1,  1 },
         { 1,  2,  2,  1,  0 },
-         { 1,  2, -1,  1,  0 },
-        { -1, 2,  1,  1,  0 }};
-        for (int i =0; i<size; i++)
-        {
-            for (int j=0; j<size; j++)
-            {
-                assertEquals(boardResultant[i][j], mockB.getCell(i, j).getValue());
-            }
-        }
+        { 1,  2, -1,  1,  0 },
+        { -1, 2,  1,  1,  0 }
+    };
 
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            assertEquals(boardResultant[i][j], b.getCell(i, j).getValue());
+        }
     }
+}
+
 
     @Test
     void firstClickTest()
     {
         int size = 5;
         int nMines = 4;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(1);
-        mockB.insertValueintoCells();
+        MockGenRandom mockGen = new MockGenRandom(
+        0,3,
+        1,1,
+        3,2,
+        4,0
+        );
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         System.out.println("______________");
-        mockB.printBoard();
         Boolean[][] boardResultant = {
         { false,  false,  false, false,  false },
         { false, false,  false,  false,  false },
         { false,  false,  false,  false,  false },
          { false,  false, false,  true, false},
         { false,false,  false,  false,  false }};
-        mockB.firstClick(3, 3);
+        b.firstClick(3, 3);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
             {
-            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
-        System.out.println("________________");
 
 
     }
+
    @Test 
     void firstClickTest8x8()
     {
         int size = 8;
         int nMines = 16;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(2);
-        mockB.insertValueintoCells();
+        MockGenRandom mockGen = new MockGenRandom(
+        0,3, 0,5, 0,7, 1,0, 1,7, 2,5, 3,3, 3,4, 4,0,
+        4,7, 5,7, 5,1, 5,3, 7,0, 7,2, 7,4 );        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         System.out.println("______________");
-        mockB.printBoard();
         Boolean[][] boardResultant = {
         {false,false, false, false, false, false, false, false },
         { false, false,  false,  false,  false,  false,  false, false },
@@ -205,25 +229,27 @@ public class BoardTest {
         {  false,  false,  false,  false,  false,  false,  false,  false },
         { false,  false, false,  false, false,  false,  false,  false }};
 
-        mockB.firstClick(2, 1);
+        b.firstClick(2, 1);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
             {
-            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
     }
+     
     @Test
     void firstClick2ndTest8x8()
     {
         int size = 8;
         int nMines = 10;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(3);
-        mockB.insertValueintoCells();
+        MockGenRandom mockGen = new MockGenRandom(
+        0,0, 1,5, 2,1, 3,4, 4,1, 5,2, 5,7, 6,0, 6,3, 6,5 );        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         System.out.println("______________");
-        mockB.printBoard();
         Boolean[][] boardResultant2 = {
         {false,false,false,false,false,false,false,false},
         {false,false,false,false,false,false,false,false},
@@ -234,12 +260,12 @@ public class BoardTest {
         {false,false,false,false,false,false,false,false},
         {false,false,false,false,false,false,false,false}};
 
-        mockB.firstClick(4, 4);
+        b.firstClick(4, 4);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
             {
-            assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
+            assertEquals(boardResultant2[i][j],b.getCell(i, j).isRevelaed());
             }
         }
     }
@@ -248,23 +274,22 @@ public class BoardTest {
     {
         int size = 3;
         int nMines = 1;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(4);
-        mockB.insertValueintoCells();
-        //mockB.printBoard();
+        MockGenRandom mockGen = new MockGenRandom(2,0);
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         Boolean[][] boardResultant2 = {
         {true,true,true},
         {true,true, true},
         {false,true, true}};
         
-        mockB.firstClick(0, 0);
-        System.out.println("After first click:");
+        b.firstClick(0, 0);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
             {
-            System.out.println(mockB.getCell(i, j).isRevelaed() + " ");
-            assertEquals(boardResultant2[i][j],mockB.getCell(i, j).isRevelaed());
+            System.out.println(b.getCell(i, j).isRevelaed() + " ");
+            assertEquals(boardResultant2[i][j],b.getCell(i, j).isRevelaed());
 
             }
 
@@ -275,23 +300,22 @@ public class BoardTest {
     {
         int size = 3;
         int nMines = 1;
-        MockBoard mockB2 = new MockBoard(nMines,size);
-        mockB2.setUpMockBoard(4);
-        mockB2.insertValueintoCells();
-        mockB2.printBoard();
+        MockGenRandom mockGen = new MockGenRandom(2,0 );        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         Boolean[][] boardResultant2 = {
         {false,false,false},
         {true,false, false},
         {false,false, false}};
         
-        mockB2.firstClick(1, 0);
+        b.firstClick(1, 0);
         System.out.println("After first click:");
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
             {
-            System.out.println(mockB2.getCell(i, j).isRevelaed() + " ");
-            assertEquals(boardResultant2[i][j],mockB2.getCell(i, j).isRevelaed());
+            assertEquals(boardResultant2[i][j],b.getCell(i, j).isRevelaed());
 
             }
 
@@ -301,11 +325,12 @@ public class BoardTest {
     @Test
     void testExpandZeros()
     {
-        
-        MockBoard b = new MockBoard(1,5);
-        b.setUpMockBoard(5);
+        int nMines = 1;
+        int size = 5;
+        MockGenRandom mockGen = new MockGenRandom(3,1 );        
+        Board b = new Board(nMines, size, mockGen); 
+        b.putMinesintoBoard();
         b.insertValueintoCells();
-        b.printBoard();
         b.expandZeros(0, 0);
         Boolean[][] boardResultant = {
         {true, true, true, true, true},
@@ -329,11 +354,12 @@ public class BoardTest {
     {
         int size = 8;
         int nMines = 16;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(2);
-        mockB.insertValueintoCells();
-        mockB.printBoard();
-        mockB.firstClick(1, 0); //click a mina
+        MockGenRandom mockGen = new MockGenRandom(0,3, 0,5, 0,7, 1,0, 1,7, 2,5, 3,3, 3,4, 4,0,
+        4,7, 5,7, 5,1, 5,3, 7,0, 7,2, 7,4);        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
+        b.firstClick(1, 0); //click a mina
         Boolean[][] boardResultant = {
         { false, false, false, true, false, true, false, true },
         { true, false, false, false, false, false, false, true },
@@ -349,19 +375,20 @@ public class BoardTest {
         {
             for (int j=0; j<size; j++)
             {
-            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
-    }
+    } 
     @Test
     void testClickAMina3x3()
     {
         int size = 3;
         int nMines = 1;
-        MockBoard mockB = new MockBoard(nMines,size);
-        mockB.setUpMockBoard(4);
-        mockB.insertValueintoCells();
-        mockB.firstClick(2, 0); //click a mina
+        MockGenRandom mockGen = new MockGenRandom(2,0 );        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
+        b.firstClick(2, 0); //click a mina
         Boolean[][] boardResultant = {
         { false, false, false},
         { false, false, false },
@@ -370,47 +397,53 @@ public class BoardTest {
         {
             for (int j=0; j<size; j++)
             {
-            assertEquals(boardResultant[i][j],mockB.getCell(i, j).isRevelaed());
+            assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
     }
 
-
+     
     @Test
     void testIsWin()
     {
         int size = 5;
         int nMines = 1;
-        MockBoardValues mockB = new MockBoardValues(nMines, size);
-        mockB.setUpMockBoard(1);
+        MockGenRandom mockGen = new MockGenRandom(1,1 );        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (mockB.getCell(i, j).getValue() != -1) {
-                    mockB.getCell(i, j).reveal();
+                if (b.getCell(i, j).getValue() != -1) {
+                    b.getCell(i, j).reveal();
                 }
             }       
     }
-    // Ahora isWin() debería devolver true
-        assertTrue(mockB.isWin());
+        assertTrue(b.isWin());
     }
     @Test
     void SegontestIsWin()
     {
         int size = 3;
         int nMines = 1;
-        MockBoardValues mockB = new MockBoardValues(nMines, size);
-        mockB.setUpMockBoard(2);
+         MockGenRandom mockGen = new MockGenRandom(2,0 );        
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        b.insertValueintoCells();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (mockB.getCell(i, j).getValue() != -1) {
+                if (b.getCell(i, j).getValue() != -1) {
                     if (i!=0 || j!=2) 
                     {// Dejo una celda sin revelar
-                    mockB.getCell(i, j).reveal();
+                    b.getCell(i, j).reveal();
                     }
                 }
             }       
     }
-        assertFalse(mockB.isWin());
+        assertFalse(b.isWin());
     }
+    
+
+
 }   
 
