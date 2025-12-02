@@ -23,14 +23,12 @@ public class Main {
                 opciones,
                 opciones[0]
         );
-
         int size = 8;
         int mines = 10;
-
         switch (eleccion) {
             case 0:
                 size = 6;
-                mines = 6;
+                mines = 2;
                 break;
 
             case 1:

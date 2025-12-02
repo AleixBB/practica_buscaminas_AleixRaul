@@ -1,6 +1,5 @@
 
 package tqs.prac.model;
-import java.util.Random;
 
 public class Board {
     protected int nMines;

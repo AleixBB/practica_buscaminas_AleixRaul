@@ -49,7 +49,6 @@ public class BoardView extends JPanel {
 
                         game.startedGame();
 
-                        // mostrar resultado
                         if (game.getGameOver()) {
                             JOptionPane.showMessageDialog(null, "💥 Has perduuut!");
                         }

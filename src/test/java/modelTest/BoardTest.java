@@ -426,7 +426,7 @@ void testValorsCelles()
     {
         int size = 3;
         int nMines = 1;
-         MockGenRandom mockGen = new MockGenRandom(2,0 );        
+        MockGenRandom mockGen = new MockGenRandom(2,0 );        
         Board b = new Board(nMines, size, mockGen);
         b.putMinesintoBoard();
         b.insertValueintoCells();
