@@ -59,6 +59,13 @@ public class MockView implements IView {
                 addAction("FLAG", 2, 4);
                 addAction("REVEAL", 3, 3);
                 addAction("REVEAL", 0,0);
+            break;
+            case 3:
+                addAction("FLAG", 2, 4);
+                addAction("REVEAL", 3, 3);
+                addAction("REVEAL", 0,0);
+                addAction("FLAG", 2,3);
+                addAction("REVEAL", 4,6);
 
 
 
