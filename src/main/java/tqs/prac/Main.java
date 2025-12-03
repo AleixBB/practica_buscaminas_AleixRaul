@@ -46,7 +46,6 @@ public class Main {
         }
         GenRandom rand = new GenRandom();
         Board board = new Board(mines, size, rand);
-        board.putMinesintoBoard();
         board.insertValueintoCells();
 
         Game game = new Game();

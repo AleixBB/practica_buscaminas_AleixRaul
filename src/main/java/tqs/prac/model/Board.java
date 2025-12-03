@@ -32,20 +32,27 @@ public class Board {
     public Cell getCell(int fila, int col){
         return matrix[fila][col];
     }
-    public void putMinesintoBoard()
+    public void putMinesintoBoard(int fila, int columna)
     {
-        if (nMines > size * size) {
+        if (nMines > (size*size-9)){
             throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
         }
         int count = 0;
         while (count < nMines) {
-            int r = random.nextInt(size);
-            int c = random.nextInt(size);
-            if (matrix[r][c].getValue() == 0) {
-                matrix[r][c].setValue(-1);
-                count++;
-            }
-        }   
+        int r = random.nextInt(size);
+        int c = random.nextInt(size);
+
+        // Evitar primera celda y alrededores (opcional mejora)
+        if (Math.abs(r - fila) <= 1 && Math.abs(c - columna) <= 1) {
+            continue;
+        }
+
+        if (matrix[r][c].getValue() == 0) {
+            matrix[r][c].setValue(-1);
+            count++;
+        }
+        }
+      
     }  
     public void insertValueintoCells()
     {
