@@ -1,5 +1,3 @@
-
-
 package controllerTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -192,6 +190,24 @@ public class GameTest {
         assertTrue(game.getGameOver());
         assertFalse(game.getWin());
     }
+    @Test
+     public void startedGameTestFinishLoseMoreActions()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(6, 8, random);
+        mockB.setUpMockBoardplus(2);
+        game.setBoard(mockB);
+        MockView view = new MockView();
+        game.setView(view);
+        view.setUpActions(3);
+        while ((view.getnActions() > 0)){
+        game.startedGame();
+        }
+        assertTrue(game.getGameOver());
+        assertFalse(game.getWin());
+    }
+    
     
     
 
