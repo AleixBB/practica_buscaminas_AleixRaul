@@ -76,15 +76,17 @@ public class Game {
     }
     public void startedGame()
     {
+        
         String accio = vista.getAction();
         int x = vista.getClickedX();
         int y = vista.getClickedY();
-
         
+        if (this.getWin() == false && this.getGameOver() == false)
+        { 
         act(accio, x, y);
-
-        vista.refresh();
         
+        vista.refresh();
+        } 
     }
 
     
