@@ -159,6 +159,7 @@ public class GameTest {
     public void startedGameTestFinishWin()
     {
         Game game = new Game();
+        game.setFirstClick(false);
         MockGenRandom random = new MockGenRandom(null);
         MockBoard mockB = new MockBoard(6, 8, random);
         mockB.setUpMockBoardplus(2);
@@ -177,6 +178,7 @@ public class GameTest {
     public void startedGameTestFinishLose()
     {
         Game game = new Game();
+        game.setFirstClick(false);
         MockGenRandom random = new MockGenRandom(null);
         MockBoard mockB = new MockBoard(6, 8, random);
         mockB.setUpMockBoardplus(2);
@@ -194,6 +196,7 @@ public class GameTest {
      public void startedGameTestFinishLoseMoreActions()
     {
         Game game = new Game();
+        game.setFirstClick(false);
         MockGenRandom random = new MockGenRandom(null);
         MockBoard mockB = new MockBoard(6, 8, random);
         mockB.setUpMockBoardplus(2);

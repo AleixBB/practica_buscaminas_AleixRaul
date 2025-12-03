@@ -9,7 +9,7 @@ public class Game {
     protected Boolean gameOver;
     protected Boolean win;
     protected Board tauler;
-    private Boolean firstClick;
+    protected Boolean firstClick;
     protected IView vista;
     public Game(){
         this.gameOver= false;
@@ -17,6 +17,10 @@ public class Game {
         this.tauler = null;
         this.vista = null;
         this.firstClick = true;
+    }
+    public void setFirstClick(Boolean bool)
+    {
+        this.firstClick = bool;
     }
     public Boolean getGameOver(){
         return this.gameOver;

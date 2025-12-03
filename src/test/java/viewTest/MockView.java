@@ -1,3 +1,4 @@
+
 package viewTest;
 import tqs.prac.view.View;
 import java.util.LinkedList;
