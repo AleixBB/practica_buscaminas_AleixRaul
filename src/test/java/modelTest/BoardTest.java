@@ -65,7 +65,7 @@ public class BoardTest {
     int contador = 0;
     GenRandom  rand = new GenRandom();
     Board tauler = new Board(nMines, size, rand);
-    tauler.putMinesintoBoard();
+    tauler.putMinesintoBoard(9,9);
     for (int i=0; i<size; i++)
     {
         for (int j=0; j<size; j++)
@@ -78,18 +78,53 @@ public class BoardTest {
     }
     assertEquals(contador, nMines);
     }
+    //test que comprova que les mines que s'introdueixen al tauler estiguin al voltant de la primera clic
+    @Test void testPutMinesavoidingFirstClick()
+    {
+        int firstX = 2;
+        int firstY = 2;
+        int size = 5;
+        int nMines = 5;
+        MockGenRandom mockGen = new MockGenRandom(
+        2,2, //no permes
+        1,2, //no permes
+        2,3, //no permes
+        0,0, //permes
+        4,4, //permes
+        0,4, //permes
+        4,0, //permes
+        1,4, //permes 
+        3,3);  //no permes 5 mines superades         
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard(firstX,firstY);
+        
+        
+        b.firstClick(firstX, firstY);
+
+        // Comprobar que la zona del clic no tiene minas:
+        for (int i = firstX - 1; i <= firstX + 1; i++) {
+            for (int j = firstY - 1; j <= firstY + 1; j++) {
+                if (i >= 0 && i < 5 && j >= 0 && j < 5) {
+                    assertNotEquals(-1, b.getCell(i, j).getValue());
+                }
+            }
+        }
+    }
+    
+
+
     @Test
     void testRandommines2()
     {
         //test que comprova com es comporta el putMinesintoBoard segons el nombre de mines i la mida del tauler
-        //1. 9 mines en tauler 3x3 (valor frontera)
-        int size = 3;
-        int nMines = 9;
+        //1. 5 mines en tauler 4x4 (valor frontera)
+        int size = 4;
+        int nMines = 5;
         int contador = 0;
         GenRandom rand = new GenRandom();
 
         Board tauler = new Board(nMines, size, rand);
-        tauler.putMinesintoBoard();
+        tauler.putMinesintoBoard(999,999);
         for (int i=0; i<size; i++)
         {       
             for (int j=0; j<size; j++)
@@ -106,7 +141,7 @@ public class BoardTest {
         nMines = 0;
         contador = 0;
         tauler = new Board(nMines, size, rand);
-        tauler.putMinesintoBoard();
+        tauler.putMinesintoBoard(999,999);
         for (int i=0; i<size; i++)
         {    
             for (int j=0; j<size; j++)
@@ -124,7 +159,7 @@ public class BoardTest {
         contador = 0;
         try{
             tauler = new Board(nMines, size, rand);
-            tauler.putMinesintoBoard();
+            tauler.putMinesintoBoard(9999,9999);
             assertTrue(false);
         }catch (Exception e){}  
         //4. 10 mines en tauler 3x3(valor fora rang)
@@ -133,7 +168,7 @@ public class BoardTest {
         contador = 0;
         try{
             tauler = new Board(nMines, size, rand);
-            tauler.putMinesintoBoard();
+            tauler.putMinesintoBoard(999,999);
             assertTrue(false);
         }catch (Exception e){}  
 
@@ -155,7 +190,7 @@ void testValorsCelles()
     );
 
     Board b = new Board(nMines, size, mockGen);
-    b.putMinesintoBoard();     
+    b.putMinesintoBoard(999,999);     
     b.insertValueintoCells(); 
 
     int[][] boardResultant = {
@@ -186,7 +221,7 @@ void testValorsCelles()
         4,0
         );
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(6,6);
         b.insertValueintoCells();
         System.out.println("______________");
         Boolean[][] boardResultant = {
@@ -216,7 +251,7 @@ void testValorsCelles()
         0,3, 0,5, 0,7, 1,0, 1,7, 2,5, 3,3, 3,4, 4,0,
         4,7, 5,7, 5,1, 5,3, 7,0, 7,2, 7,4 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(999,999);
         b.insertValueintoCells();
         System.out.println("______________");
         Boolean[][] boardResultant = {
@@ -247,7 +282,7 @@ void testValorsCelles()
         MockGenRandom mockGen = new MockGenRandom(
         0,0, 1,5, 2,1, 3,4, 4,1, 5,2, 5,7, 6,0, 6,3, 6,5 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(99,99);
         b.insertValueintoCells();
         System.out.println("______________");
         Boolean[][] boardResultant2 = {
@@ -272,16 +307,17 @@ void testValorsCelles()
     @Test
     void firstClick3x3amb1mina()
     {
-        int size = 3;
+        int size = 4;
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0);
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(99,99);
         b.insertValueintoCells();
         Boolean[][] boardResultant2 = {
-        {true,true,true},
-        {true,true, true},
-        {false,true, true}};
+        {true,true,true, true},
+        {true,true, true, true},
+        {false,true, true, true},
+        {false, true, true, true}};
         
         b.firstClick(0, 0);
         for(int i=0; i<size; i++)
@@ -298,19 +334,18 @@ void testValorsCelles()
     @Test
     void firstClick3x3Clickingotherplace()
     {
-        int size = 3;
+        int size = 4;
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(999,999);
         b.insertValueintoCells();
         Boolean[][] boardResultant2 = {
-        {false,false,false},
-        {true,false, false},
-        {false,false, false}};
-        
-        b.firstClick(1, 0);
-        System.out.println("After first click:");
+        {false,false,false, false},
+        {true,false, false, false},
+        {false,false, false, false},
+        {false, false, false, false}};
+        b.firstClick(1,0);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -329,7 +364,7 @@ void testValorsCelles()
         int size = 5;
         MockGenRandom mockGen = new MockGenRandom(3,1 );        
         Board b = new Board(nMines, size, mockGen); 
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(4,4);
         b.insertValueintoCells();
         b.expandZeros(0, 0);
         Boolean[][] boardResultant = {
@@ -357,7 +392,7 @@ void testValorsCelles()
         MockGenRandom mockGen = new MockGenRandom(0,3, 0,5, 0,7, 1,0, 1,7, 2,5, 3,3, 3,4, 4,0,
         4,7, 5,7, 5,1, 5,3, 7,0, 7,2, 7,4);        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(999,999);
         b.insertValueintoCells();
         b.firstClick(1, 0); //click a mina
         Boolean[][] boardResultant = {
@@ -382,17 +417,18 @@ void testValorsCelles()
     @Test
     void testClickAMina3x3()
     {
-        int size = 3;
+        int size = 4;
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(3,3);
         b.insertValueintoCells();
         b.firstClick(2, 0); //click a mina
         Boolean[][] boardResultant = {
-        { false, false, false},
-        { false, false, false },
-        { true, false, false }};
+        { false, false, false, false},
+        { false, false, false, false },
+        { true, false, false, false },
+        {false, false, false, false}};
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -410,7 +446,7 @@ void testValorsCelles()
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(1,1 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
+        b.putMinesintoBoard(4,3);
         b.insertValueintoCells();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -428,7 +464,6 @@ void testValorsCelles()
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard();
         b.insertValueintoCells();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {

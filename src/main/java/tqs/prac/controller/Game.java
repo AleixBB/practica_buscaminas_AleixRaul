@@ -9,12 +9,18 @@ public class Game {
     protected Boolean gameOver;
     protected Boolean win;
     protected Board tauler;
+    protected Boolean firstClick;
     protected IView vista;
     public Game(){
         this.gameOver= false;
         this.win= false;
         this.tauler = null;
         this.vista = null;
+        this.firstClick = true;
+    }
+    public void setFirstClick(Boolean bool)
+    {
+        this.firstClick = bool;
     }
     public Boolean getGameOver(){
         return this.gameOver;
@@ -80,7 +86,10 @@ public class Game {
         String accio = vista.getAction();
         int x = vista.getClickedX();
         int y = vista.getClickedY();
-        
+        if (firstClick == true)
+        {
+            tauler.putMinesintoBoard(x, y);
+        }
         if (this.getWin() == false && this.getGameOver() == false)
         { 
         act(accio, x, y);
