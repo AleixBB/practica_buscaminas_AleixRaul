@@ -27,8 +27,8 @@ public class Main {
         int mines = 10;
         switch (eleccion) {
             case 0:
-                size = 6;
-                mines = 2;
+                size = 8;
+                mines = 15;
                 break;
 
             case 1:
@@ -46,12 +46,11 @@ public class Main {
         }
         GenRandom rand = new GenRandom();
         Board board = new Board(mines, size, rand);
-        board.insertValueintoCells();
-
         Game game = new Game();
         game.setBoard(board);
 
         View view = new View(board, game);
         game.setView(view);
+
     }
 }

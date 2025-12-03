@@ -89,6 +89,8 @@ public class Game {
         if (firstClick == true)
         {
             tauler.putMinesintoBoard(x, y);
+            tauler.insertValueintoCells();
+            firstClick = false;
         }
         if (this.getWin() == false && this.getGameOver() == false)
         { 
