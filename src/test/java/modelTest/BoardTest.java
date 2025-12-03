@@ -307,16 +307,17 @@ void testValorsCelles()
     @Test
     void firstClick3x3amb1mina()
     {
-        int size = 3;
+        int size = 4;
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0);
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard(2,2);
+        b.putMinesintoBoard(99,99);
         b.insertValueintoCells();
         Boolean[][] boardResultant2 = {
-        {true,true,true},
-        {true,true, true},
-        {false,true, true}};
+        {true,true,true, true},
+        {true,true, true, true},
+        {false,true, true, true},
+        {false, true, true, true}};
         
         b.firstClick(0, 0);
         for(int i=0; i<size; i++)
@@ -333,19 +334,18 @@ void testValorsCelles()
     @Test
     void firstClick3x3Clickingotherplace()
     {
-        int size = 3;
+        int size = 4;
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard(2,2);
+        b.putMinesintoBoard(999,999);
         b.insertValueintoCells();
         Boolean[][] boardResultant2 = {
-        {false,false,false},
-        {true,false, false},
-        {false,false, false}};
-        
-        b.firstClick(1, 0);
-        System.out.println("After first click:");
+        {false,false,false, false},
+        {true,false, false, false},
+        {false,false, false, false},
+        {false, false, false, false}};
+        b.firstClick(1,0);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -392,7 +392,7 @@ void testValorsCelles()
         MockGenRandom mockGen = new MockGenRandom(0,3, 0,5, 0,7, 1,0, 1,7, 2,5, 3,3, 3,4, 4,0,
         4,7, 5,7, 5,1, 5,3, 7,0, 7,2, 7,4);        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard(2,1);
+        b.putMinesintoBoard(999,999);
         b.insertValueintoCells();
         b.firstClick(1, 0); //click a mina
         Boolean[][] boardResultant = {
@@ -417,17 +417,18 @@ void testValorsCelles()
     @Test
     void testClickAMina3x3()
     {
-        int size = 3;
+        int size = 4;
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(2,0 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard(2,2);
+        b.putMinesintoBoard(3,3);
         b.insertValueintoCells();
         b.firstClick(2, 0); //click a mina
         Boolean[][] boardResultant = {
-        { false, false, false},
-        { false, false, false },
-        { true, false, false }};
+        { false, false, false, false},
+        { false, false, false, false },
+        { true, false, false, false },
+        {false, false, false, false}};
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -445,7 +446,7 @@ void testValorsCelles()
         int nMines = 1;
         MockGenRandom mockGen = new MockGenRandom(1,1 );        
         Board b = new Board(nMines, size, mockGen);
-        b.putMinesintoBoard(2,2);
+        b.putMinesintoBoard(4,3);
         b.insertValueintoCells();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
