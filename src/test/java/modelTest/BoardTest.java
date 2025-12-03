@@ -78,6 +78,41 @@ public class BoardTest {
     }
     assertEquals(contador, nMines);
     }
+    //test que comprova que les mines que s'introdueixen al tauler estiguin al voltant de la primera clic
+    @Test void testPutMinesavoidingFirstClick()
+    {
+        int firstX = 2;
+        int firstY = 2;
+        int size = 5;
+        int nMines = 5;
+        MockGenRandom mockGen = new MockGenRandom(
+        2,2, //no permes
+        1,2, //no permes
+        2,3, //no permes
+        0,0, //permes
+        4,4, //permes
+        0,4, //permes
+        4,0, //permes
+        1,4, //permes 
+        3,3);  //no permes 5 mines superades         
+        Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard();
+        
+        
+        b.firstClick(firstX, firstY);
+
+        // Comprobar que la zona del clic no tiene minas:
+        for (int i = firstX - 1; i <= firstX + 1; i++) {
+            for (int j = firstY - 1; j <= firstY + 1; j++) {
+                if (i >= 0 && i < 5 && j >= 0 && j < 5) {
+                    assertNotEquals(-1, b.getCell(i, j).getValue());
+                }
+            }
+        }
+    }
+    
+
+
     @Test
     void testRandommines2()
     {
