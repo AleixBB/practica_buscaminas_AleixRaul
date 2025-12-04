@@ -92,11 +92,13 @@ public class Game {
             tauler.insertValueintoCells();
             firstClick = false;
         }
-        if (this.getWin() == false && this.getGameOver() == false)
+        if (this.getWin() == false)
         { 
-        act(accio, x, y);
-        
-        vista.refresh();
+            if (this.getGameOver() == false)
+            {
+            act(accio, x, y);
+            vista.refresh();
+            } 
         } 
     }
 

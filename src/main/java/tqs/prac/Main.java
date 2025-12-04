@@ -44,12 +44,12 @@ public class Main {
             default:
                 System.exit(0);
         }
-        GenRandom rand = new GenRandom();
-        Board board = new Board(mines, size, rand);
-        Game game = new Game();
-        game.setBoard(board);
+        GenRandom rand = new GenRandom(); //model
+        Board board = new Board(mines, size, rand); //model
+        Game game = new Game(); //controlador
+        game.setBoard(board); 
 
-        View view = new View(board, game);
+        View view = new View(board, game); //vista
         game.setView(view);
 
     }

@@ -34,7 +34,7 @@ public class Board {
     }
     public void putMinesintoBoard(int fila, int columna)
     {
-        if (nMines > (size*size-9)){
+        if (nMines > (size*size-8)){
             throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
         }
         int count = 0;
@@ -81,14 +81,7 @@ public class Board {
     }
 }
         
-   public void printBoard() {
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            System.out.print(matrix[i][j].getValue() + " ");
-        }
-        System.out.println(); 
-    }
-    }
+   
     public int getSize(){
         return this.size;
     }
