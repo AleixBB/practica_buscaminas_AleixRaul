@@ -211,6 +211,25 @@ public class GameTest {
         assertFalse(game.getWin());
     }
     
+   @Test
+   public void startedGameTestwFirstClickFinishLose()
+   {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(0,0,7,0,7,7,6,7,2,
+        7,4,6,7,6,7,4,3,3,0,4,4,1);
+    MockBoard mockB = new MockBoard(8,8, random);
+    mockB.setUpMockBoardplus(4);
+    game.setBoard(mockB);
+    MockView view = new MockView();
+    game.setView(view);
+    view.setUpActions(4);
+    while ((view.getnActions() > 0 ))
+    {
+        game.startedGame();
+    }
+    assertTrue(game.getGameOver());
+    assertFalse(game.getWin());
+   }
     
     
 

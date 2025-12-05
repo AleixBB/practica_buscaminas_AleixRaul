@@ -42,7 +42,6 @@ public class Board {
         int r = random.nextInt(size);
         int c = random.nextInt(size);
 
-        // Evitar primera celda y alrededores (opcional mejora)
         if (Math.abs(r - fila) <= 1 && Math.abs(c - columna) <= 1) {
             continue;
         }

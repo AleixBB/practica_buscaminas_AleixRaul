@@ -28,12 +28,12 @@ public class Main {
         switch (eleccion) {
             case 0:
                 size = 8;
-                mines = 15;
+                mines = 10;
                 break;
 
             case 1:
                 size = 10;
-                mines = 20;
+                mines = 30;
                 break;
 
             case 2:

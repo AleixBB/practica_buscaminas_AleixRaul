@@ -16,7 +16,7 @@ public class MockGenRandom extends GenRandom {
     @Override
     public int nextInt(int bound) {
         if (index >= values.length) {
-            throw new IllegalStateException("MockGenRandom: no queden valores per retornar");
+            throw new IllegalStateException("MockGenRandom: no queden valors per retornar");
         }
         int retorn = values[index];
         index++;
