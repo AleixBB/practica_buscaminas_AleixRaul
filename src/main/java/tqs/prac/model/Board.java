@@ -1,46 +1,41 @@
 package tqs.prac.model;
 import java.lang.Math;
+
 public class Board {
     protected int nMines;
     protected int size;
     protected Cell[][] matrix;
     private GenRandom random;
 
-
-    public Board(int nMines, int size, GenRandom rand)
-    {
+    public Board(int nMines, int size, GenRandom rand)  {
         //precondicions
-        if (nMines < 0 || size <= 0)
-        {
+        if (nMines < 0 || size <= 0) {
             throw new IllegalArgumentException("nombre de mines o mida fora de rang");
         }
         this.nMines = nMines;
         this.size = size;
         this.random = rand;
         matrix = new Cell[size][size];
-        for (int i=0; i<size; i++)
-        {
-            for (int j=0; j<size; j++)
-            {
+        for (int i=0; i<size; i++) {
+            for (int j=0; j<size; j++) {
                 matrix[i][j] = new Cell(0);
             }
-        }
-       
-
+        }  
     }
+
     public Cell getCell(int fila, int col){
         return matrix[fila][col];
     }
-    public void putMinesintoBoard(int fila, int columna)
-    {
+
+    public void putMinesintoBoard(int fila, int columna)  {
         int zonaProtegidaFiles = (Math.min(fila + 1, size-1) - Math.max(fila - 1, 0)) + 1;
         int zonaProtegidaCols = Math.min(columna + 1, size - 1) - Math.max(columna - 1, 0) + 1;
         int tamanyZonaProtegida = zonaProtegidaFiles * zonaProtegidaCols;
         int celdasDisponibles = size * size - tamanyZonaProtegida;
     
-    if (nMines > celdasDisponibles) {
-        throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
-    }
+        if (nMines > celdasDisponibles) {
+            throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
+        }
         int count = 0;
         while (count < nMines) {
             int r = random.nextInt(size);
@@ -54,119 +49,102 @@ public class Board {
                 matrix[r][c].setValue(-1);
                 count++;
             }
-        }
-      
+        }  
     }  
-    public void insertValueintoCells()
-    {
+
+    public void insertValueintoCells() {
         for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            if (matrix[i][j].getValue() == -1) //si es mina
-                continue;
-
-            int count = 0;
-            for (int di = -1; di <= 1; di++) {
-                for (int dj = -1; dj <= 1; dj++) {
-                    if (di == 0 && dj == 0)
-                        continue;
-
-                    int ni = i + di;
-                    int nj = j + dj;
-                    if (ni >= 0 && ni < size && nj >= 0 && nj < size) {
-                        if (matrix[ni][nj].getValue() == -1)
-                            count++;
+            for (int j = 0; j < size; j++) {
+                if (matrix[i][j].getValue() == -1) { //si es mina
+                    continue;
+                }
+                int count = 0;
+                for (int di = -1; di <= 1; di++) {
+                    for (int dj = -1; dj <= 1; dj++) {
+                        if (di == 0 && dj == 0) {
+                            continue;
+                        }
+                        int ni = i + di;
+                        int nj = j + dj;
+                        if (ni >= 0 && ni < size && nj >= 0 && nj < size) {
+                            if (matrix[ni][nj].getValue() == -1)
+                                count++;
+                        }
                     }
                 }
+                matrix[i][j].setValue(count);
             }
-
-            matrix[i][j].setValue(count);
         }
-    }
-}
-        
-   
+    }   
+          
     public int getSize(){
         return this.size;
     }
     
-    
-   public Boolean firstClick(int fila, int columna){
-    Cell clicked = matrix[fila][columna];
-    
-    if (matrix[fila][columna].getValue() == -1)
-    {
-        clickAMina();
-        return false;
+    public Boolean firstClick(int fila, int columna){
+        Cell clicked = matrix[fila][columna];
+        
+        if (matrix[fila][columna].getValue() == -1)  {
+            clickAMina();
+            return false;
+        } else {
+            if(clicked.getValue() == 0) {
+                expandZeros(fila, columna);
+            } else  {
+                clicked.reveal();
+            }
+        }  
+        return true;      
     }
-    else
-    {
-        if(clicked.getValue() == 0)
-        {
-            expandZeros(fila, columna);
+
+    public void expandZeros(int fila, int columna) {
+        if (fila < 0||fila > (size-1) || columna < 0 ||columna > (size-1))  {
+            return;
         }
-        else
-        {
-            clicked.reveal();
+        Cell cell = matrix[fila][columna];
+        if (cell.isRevelaed() || cell.getValue() == -1) {
+            return;
         }
-    }  
-    return true;      
-}
-
-
-
-public void expandZeros(int fila, int columna){
-    if (fila < 0||fila > (size-1) || columna < 0 ||columna > (size-1))
-    {
-        return;
-    }
-    Cell cell = matrix[fila][columna];
-    if (cell.isRevelaed() || cell.getValue() == -1)
-    {
-        return;
-    }
-    
-    cell.reveal();
-    
-    if (cell.getValue() > 0)
-    {
-        return;
-    }
-    
-    for (int i = -1; i<= 1; i++)
-    {
-        for (int j=-1; j<=1; j++)
-        {
-            if (i==0 && j==0) continue;
-            expandZeros(fila+i, columna+j);
+        
+        cell.reveal();
+        
+        if (cell.getValue() > 0) {
+            return;
         }
-    }
- }
-
-public void clickAMina()
-{
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            if (matrix[i][j].getValue() == -1) {
-                matrix[i][j].reveal();
+        
+        for (int i = -1; i<= 1; i++) {
+            for (int j=-1; j<=1; j++) {
+                if (i==0 && j==0) {
+                    continue;
+                }
+                expandZeros(fila+i, columna+j);
             }
         }
     }
-}
 
-
-public Boolean isWin()
-{
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            Cell cell = matrix[i][j];
-            if (cell.getValue() != -1 && !cell.isRevelaed()) {
-                return false;
+    public void clickAMina() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (matrix[i][j].getValue() == -1) {
+                    matrix[i][j].reveal();
+                }
             }
         }
     }
-    return true;
-    }
+
+    public Boolean isWin() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                Cell cell = matrix[i][j];
+                if (cell.getValue() != -1 && !cell.isRevelaed()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }   
 }
+
 
 
 
