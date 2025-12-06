@@ -682,5 +682,143 @@ void testPutMinesLoop_Nplus1() { //n+1
         // ¡Éxito! Se lanzó la excepción por demasiadas minas
         assertTrue(e.getMessage().contains("excedeix"));
     }
-}
+    }
+
+
+    //insertValueIntoCells
+    @Test
+    void testInsertValue_ZeroIterations() { //0 iteracions
+    try {
+        int size = 0;
+        int nMines = 0;
+        GenRandom rand = new GenRandom();
+        Board board = new Board(nMines, size, rand);
+        board.putMinesintoBoard(0, 0);
+        board.insertValueintoCells();
+        } catch (IllegalArgumentException e) {
+    }
+    }
+
+    @Test
+    void testInsertValue_OneIterations(){ //1 iteracio (la del bucle exterior)
+        int size = 1;
+        int nMines = 0;
+        GenRandom rand = new GenRandom();
+        Board board = new Board(nMines, size, rand);
+        board.putMinesintoBoard(0, 0);
+        board.insertValueintoCells();
+        assertEquals(0, board.getCell(0, 0).getValue());
+    }
+    @Test
+    void testInsertValue_TwoIterations(){ //2 iteracions al bucle exterior
+    int size = 2;
+    int nMines = 0;
+    
+    // Mina en (0,0)
+    MockGenRandom mockGen = new MockGenRandom();
+    Board board = new Board(nMines, size, mockGen);
+    board.putMinesintoBoard(1, 1);
+    board.insertValueintoCells();    
+    assertEquals(0, board.getCell(0, 0).getValue());
+    assertEquals(0, board.getCell(0, 1).getValue());
+    assertEquals(0, board.getCell(1, 0).getValue());
+    assertEquals(0, board.getCell(1, 1).getValue());
+    }
+
+    @Test
+    void testInsertValue_ThreeIterations(){ //3 iteracions
+    int size = 4;  
+    int nMines = 2;  
+    
+   
+    MockGenRandom mockGen = new MockGenRandom(2, 0, 3, 3);
+    Board board = new Board(nMines, size, mockGen);
+    
+    board.putMinesintoBoard(0, 2);
+    board.insertValueintoCells();
+    
+    assertEquals(-1, board.getCell(2, 0).getValue());
+    assertEquals(-1, board.getCell(3, 3).getValue());
+    assertEquals(0, board.getCell(0, 0).getValue());
+
+    }
+    @Test
+    void testInsertValue_NminusOneIteracions(){ //n-1 iteracions
+    int size = 4;
+    int zonaProtegida = 4; 
+    int maxMines = size * size - zonaProtegida; // 16 - 4 = 12
+    int nMines = maxMines - 1; // n-1 = 11 minas
+    MockGenRandom mockGen = new MockGenRandom(
+        2,0, 2,1, 2,2, 2,3,
+        3,0, 3,1, 3,2, 3,3,
+        0,2, 0,3, 1,2  
+    );
+    
+    Board board = new Board(nMines, size, mockGen);
+    board.putMinesintoBoard(0, 0); 
+    board.insertValueintoCells();
+    
+    int mineCount = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mineCount++;
+            }
+        }
+    }
+    
+    assertEquals(nMines, mineCount);
+    }
+
+
+    @Test
+    void testInsertValue_NIteracions(){ //n iteracions
+    int size = 4;
+    int zonaProtegida = 4; 
+    int maxMines = size * size - zonaProtegida; // 16 - 4 = 12
+    
+    MockGenRandom mockGen = new MockGenRandom(
+        2,0, 2,1, 2,2, 2,3,
+        3,0, 3,1, 3,2, 3,3,
+        0,2, 0,3, 1,2, 1,3
+    );
+    
+    Board board = new Board(maxMines, size, mockGen);
+    board.putMinesintoBoard(0, 0);
+    board.insertValueintoCells();
+    
+    int mineCount = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mineCount++;
+            }
+        }
+    }
+    
+    assertEquals(maxMines, mineCount);
+    }
+
+@Test
+void testInsertValue_NplusOne() { 
+    int size = 4;
+    int zonaProtegida = 4; 
+    int maxMines = size * size - zonaProtegida; // 16 - 4 = 12
+    int nMines = maxMines + 1; 
+    
+    MockGenRandom mockGen = new MockGenRandom(
+        2,0, 2,1, 2,2, 2,3,
+        3,0, 3,1, 3,2, 3,3,
+        0,2, 0,3, 1,2, 1,3
+    );
+    
+    Board board = new Board(nMines, size, mockGen);
+    
+    try {
+        board.putMinesintoBoard(0, 0);
+    } catch (IllegalArgumentException e) {
+    }
+}  
+
+
 }

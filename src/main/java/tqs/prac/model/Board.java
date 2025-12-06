@@ -36,9 +36,7 @@ public class Board {
         int zonaProtegidaFiles = (Math.min(fila + 1, size-1) - Math.max(fila - 1, 0)) + 1;
         int zonaProtegidaCols = Math.min(columna + 1, size - 1) - Math.max(columna - 1, 0) + 1;
         int tamanyZonaProtegida = zonaProtegidaFiles * zonaProtegidaCols;
-    
-    // Las celdas disponibles son: total - zona protegida
-    int celdasDisponibles = size * size - tamanyZonaProtegida;
+        int celdasDisponibles = size * size - tamanyZonaProtegida;
     
     if (nMines > celdasDisponibles) {
         throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
