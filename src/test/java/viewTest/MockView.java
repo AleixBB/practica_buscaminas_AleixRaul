@@ -75,13 +75,15 @@ public class MockView implements IView {
                 addAction("FLAG", 7, 7);
                 addAction("FLAG", 6,7);
                 addAction("REVEAL", 7,7);
-
-
-
-
-
-
-
+            break;
+            case 5:
+                addAction("REVEAL", 3, 2);
+                
+            break;
+            case 6:
+                addAction("REVEAL", 3,2);
+                addAction("REVEAL", 0,0);
+            break;
         }
     }
     public void refresh() {
