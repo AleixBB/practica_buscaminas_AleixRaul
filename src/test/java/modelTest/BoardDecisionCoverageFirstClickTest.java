@@ -7,14 +7,10 @@ import tqs.prac.model.Cell;
 
 public class BoardDecisionCoverageFirstClickTest {
 
- @Test
+    @Test
     void testFirstClick_Decision1_Mina() {
         MockGenRandom random = new MockGenRandom(0,0, 3,2);
         Board board = new Board(2, 4, random);
-        
-        // Decision cubierta:
-        // 1. if (getValue() == -1) → true ✓
-        // Ejecuta clickAMina() y retorna false
         
         board.putMinesintoBoard(3, 0);
         board.insertValueintoCells();
@@ -22,9 +18,27 @@ public class BoardDecisionCoverageFirstClickTest {
         assertFalse(retorn);
         assertTrue(board.getCell(0, 0).isRevelaed());
         
-        
         }
+        @Test
+        void testFirstClick_Decision2_CellBuida() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1); // Mina lejos
+        Board board = new Board(2, 4, random);
+        board.putMinesintoBoard(0, 3);
+        board.insertValueintoCells();
+        boolean retorn = board.firstClick(3, 0);
+        assertTrue(retorn);
+        assertTrue(board.getCell(3, 0).isRevelaed());
+    }
+    @Test
+    void testFirstClick_Decision3_CellNumerada() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1);
+        Board board = new Board(2, 4, random);
+        board.putMinesintoBoard(0, 3);
+        board.insertValueintoCells();
+        boolean retorn = board.firstClick(1, 0);
+        assertTrue(retorn);
+        assertTrue(board.getCell(1, 0).isRevelaed());
 
-
-
+        
+    }
 }
