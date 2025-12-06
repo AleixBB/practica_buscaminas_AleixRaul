@@ -529,12 +529,89 @@ void testPutMinesIntoBoard_0iteracions(){ //0 iteracions
             }
         }
     }
-    
     assertEquals(0, mines);
-
-
     }
 
 
+@Test
+void testPutMinesIntoBoard_1iteracio() { //1 iteracio
+    int size = 4;
+    int nMines = 1;
+    MockGenRandom random = new MockGenRandom(0,0);
+    Board board = new Board(nMines, size, random);
+    board.putMinesintoBoard(2, 2);
+    int mines = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mines++;
+            }
+        }
+    }
+    
+    assertEquals(1, mines);
+    assertEquals(-1, board.getCell(0, 0).getValue());
+    }
 
+@Test
+void testPutMinesIntoBoard_2iteracions(){ //2 iteracions
+    int size = 5;
+    int nMines = 2;
+    MockGenRandom mockGen = new MockGenRandom(
+        0, 0,
+        4, 4  
+    );
+    Board board = new Board(nMines, size, mockGen);    
+    board.putMinesintoBoard(2, 2); 
+    
+    int mines = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mines++;
+            }
+        }
+    }
+    
+    assertEquals(2, mines);
+    assertTrue(board.getCell(0, 0).getValue() == -1 || 
+               board.getCell(4, 4).getValue() == -1);
+
+}
+
+@Test
+void testPutMinesIntoBoard_4iteracions() {  // m < n i provem el continue de dins el loop
+    int size = 4;
+    int nMines = 2;
+    
+    MockGenRandom mockGen = new MockGenRandom(
+        1, 1,  // continue
+        1, 2,  // continue  
+        3, 2,  // Válida - mina 1
+        3, 3   //valida - mina 2
+    );
+    Board board = new Board(nMines, size, mockGen);
+    board.putMinesintoBoard(1, 1); 
+    int mines = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mines++;
+            }
+        }
+    }
+    
+    assertEquals(2, mines);
+}
+
+@Test
+void testPutMinesIntoBoard_Nmenys1iteracions(){ //n-1 iteracions
+    int size = 4; //16 cel.les
+    int nMines = 6; //16-9 = n = 7
+    MockGenRandom mockGen = new MockGenRandom(
+        2, 0, 2, 1, 2, 2, 2, 3,
+        3, 0, 3, 1, 3, 2
+    );
+    
+}
 }
