@@ -175,9 +175,72 @@ void testPutMinesParticionsEquivalentsCentre() {
         }
         assertEquals(contador, nMines);
     }
-    
+   @Test 
+    void testPutMinesParticionsEquivalentsCantonada() {
+        
 
-         
+    // 1. 5 mines en tauler 5x5, fila i columna son cantonada (valor dins rang)
+        int size = 5;
+        int nMines = 5;
+        int contador = 0;
+        GenRandom rand = new MockGenRandom(0,0,0,1,0,2,0,3,0,4);
+
+        Board tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(3, 0);
+        for (int i = 0; i < size; i++) {       
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }
+        }
+        assertEquals(contador, nMines);
+        
+        // 2. 12 mines en tauler 4x4, fila i columna son cantonada (valor frontera)
+        size = 4;
+        nMines = 12;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,0,1,1,1,2,1,3,2,2,2,3,3,2,3,3);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(3, 0);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+        
+        // 3. 13 mines en tauler 4x4, fila i columna son centre (valor limit)
+        size = 4;
+        nMines = 13;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,0,1,1,1,2,1,3,2,2,2,3,3,2,3,3,2,0);
+
+        try {
+            tauler = new Board(nMines, size, rand);
+            tauler.putMinesintoBoard(3, 0);
+            assertTrue(false);
+        } catch (Exception e) {}  
+        
+        // 4. 11 mines en tauler 4x4, fila i columna son centre (valor limit)
+        size = 4;
+        nMines = 11;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,0,1,1,1,2,1,3,2,2,2,3,3,3);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(3, 0);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+    }
+    
     
 
     @Test
