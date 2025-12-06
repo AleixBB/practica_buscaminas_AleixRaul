@@ -47,7 +47,7 @@ public class BoardDecisionCoveragePutMinesTest {
 
     //celda ja te mina 
     @Test
-    void testPutMines_Decision4_CeldaAmbMina() {
+    void testPutMines_Decision4_CellAmbMina() {
         MockGenRandom random = new MockGenRandom(0,0, 0,0, 1,1);
         
         Board board = new Board(2, 4, random);
@@ -69,16 +69,12 @@ public class BoardDecisionCoveragePutMinesTest {
 
     //sense mines
     @Test
-    void testPutMines_Decision5_SinMinas() {
+    void testPutMines_Decision5_0Mines() {
         MockGenRandom random = new MockGenRandom(0,0,1,1);
         Board board = new Board(0, 4, random); // 0 minas
-        
-        // Decision: while (count < nMines) → nMines=0 → NO entra al bucle
-        
+                
         board.putMinesintoBoard(2, 2);
-        
-        // Verificar que NO hay minas
-        for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 assertFalse(board.getCell(i, j).getValue() == -1);
             }
