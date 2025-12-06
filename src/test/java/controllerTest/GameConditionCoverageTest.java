@@ -17,7 +17,6 @@ public class GameConditionCoverageTest {
         
     @Test
     void testStartedGame_Case1_firstClickTrue_winFalse_gameOverFalse() {
-        // Cas A: firstClick=true, win=false, gameOver=false
         Game game = new Game();
         game.setFirstClick(true);
         
@@ -35,9 +34,9 @@ public class GameConditionCoverageTest {
         assertFalse(game.getWin());
         assertFalse(game.getGameOver());
     }
+
     @Test
     void testStartedGame_Case2_firstClickTrue_winFalse_gameOverTrue() {
-        // Caso B: firstClick=true, win=false, gameOver=true
         Game game = new Game();
         
         MockGenRandom random = new MockGenRandom(0,0,1,2);
@@ -55,6 +54,7 @@ public class GameConditionCoverageTest {
         assertTrue(game.getGameOver());
         assertFalse(game.getWin());
     }
+
     @Test
     void testStartedGame_Case3_firstClickTrue_winTrue_gameOverFalse() {
         Game game = new Game();
@@ -73,6 +73,7 @@ public class GameConditionCoverageTest {
         assertTrue(game.getWin());
         assertFalse(game.getGameOver());
     }
+
      @Test
     void testStartedGame_Case4_firstClickFalse_winFalse_gameOverFalse() {
         Game game = new Game();
@@ -91,6 +92,7 @@ public class GameConditionCoverageTest {
         assertFalse(game.getWin());
         assertFalse(game.getGameOver());
     }
+
     @Test
     void testStartedGame_Case5_firstClickFalse_winFalse_gameOverTrue() {
         Game game = new Game();
@@ -110,6 +112,7 @@ public class GameConditionCoverageTest {
         assertFalse(game.getWin());
         assertTrue(game.getGameOver());
     }
+    
     @Test
     void testStartedGame_Case6_firstClickFalse_winTrue_gameOverFalse() {
         Game game = new Game();
@@ -126,6 +129,17 @@ public class GameConditionCoverageTest {
         game.startedGame();
         assertTrue(game.getWin());
         assertFalse(game.getGameOver());
+    }
+
+    @Test
+    void testCoverage()
+    {
+        testStartedGame_Case1_firstClickTrue_winFalse_gameOverFalse();
+        testStartedGame_Case2_firstClickTrue_winFalse_gameOverTrue();
+        testStartedGame_Case3_firstClickTrue_winTrue_gameOverFalse();
+        testStartedGame_Case4_firstClickFalse_winFalse_gameOverFalse();
+        testStartedGame_Case5_firstClickFalse_winFalse_gameOverTrue();
+        testStartedGame_Case6_firstClickFalse_winTrue_gameOverFalse();
     }
     
     
