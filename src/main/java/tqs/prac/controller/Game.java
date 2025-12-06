@@ -81,20 +81,20 @@ public class Game {
         }
     }
     
-    public void startedGame() {
+    public void startedGame() { // Controlador interactua amb la vista
         String accio = vista.getAction();
         int x = vista.getClickedX();
         int y = vista.getClickedY();
       
-        if (firstClick == true)  {
+        if (firstClick == true)  { // Colocar mines i valos de les cel·les
             tauler.putMinesintoBoard(x, y);
             tauler.insertValueintoCells();
             firstClick = false;
         }
-        if (this.getWin() == false)  { 
-            if (this.getGameOver() == false) {
+        if (this.getWin() == false)  { // Si encara no hem acabat
+            if (this.getGameOver() == false) { // Si no hem perdut
                 act(accio, x, y);
-                vista.refresh();
+                vista.refresh(); // Refresequem la vista
             } 
         } 
     }
