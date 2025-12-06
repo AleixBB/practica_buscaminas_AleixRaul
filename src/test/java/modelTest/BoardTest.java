@@ -615,6 +615,72 @@ void testPutMinesIntoBoard_Nmenys1iteracions(){ //n-1 iteracions
         2, 0, 2, 1, 2, 2, 2, 3,
         3, 0, 3, 1, 3, 2
     );
+    Board board = new Board(nMines, size, mockGen);
     
+    board.putMinesintoBoard(0, 0);
+    
+    int mineCount = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mineCount++;
+            }
+        }
+    }
+    
+    assertEquals(6, mineCount);
+    
+}
+@Test
+void testPutMinesLoop_NIterations_Maxim() { //n iteracions
+    int size = 5;
+    int nMines = size * size - 9; // 25 - 9 = 16 minas (máximo)
+    MockGenRandom mockGen = new MockGenRandom(
+        0,0, 0,1, 0,2, 0,3, 0,4,
+        1,0,                 1,4,
+        2,0,                 2,4,
+        3,0,                 3,4,
+        4,0, 4,1, 4,2, 4,3, 4,4
+    );
+    
+    Board board = new Board(nMines, size, mockGen);
+    board.putMinesintoBoard(2, 2);
+    int mines= 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mines++;
+            }
+        }
+    }
+    
+    assertEquals(nMines, mines);
+}
+@Test
+void testPutMinesLoop_Nplus1() { //n+1
+ 
+    int size = 5;
+    int maxMines = size * size - 9; // 25 - 9 = 16
+    int nMines = maxMines + 1; // 17 > 16
+    
+    // Necesitamos valores para 17 minas (34 números)
+    // Pero también debemos considerar que si hay colisiones,
+    // el bucle podría necesitar MÁS intentos
+    
+    int[] muchosValores = new int[100];
+    for (int i = 0; i < 100; i++) {
+        muchosValores[i] = 0; // Todos 0, siempre fuera de zona protegida
+    }
+    
+    MockGenRandom mockGen = new MockGenRandom(muchosValores);
+    Board board = new Board(nMines, size, mockGen);
+    
+    try {
+        board.putMinesintoBoard(2, 2);
+        fail("Debería haber lanzado IllegalArgumentException");
+    } catch (IllegalArgumentException e) {
+        // ¡Éxito! Se lanzó la excepción por demasiadas minas
+        assertTrue(e.getMessage().contains("excedeix"));
+    }
 }
 }

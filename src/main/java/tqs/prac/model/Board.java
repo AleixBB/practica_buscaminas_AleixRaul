@@ -1,6 +1,5 @@
-
 package tqs.prac.model;
-
+import java.lang.Math;
 public class Board {
     protected int nMines;
     protected int size;
@@ -34,7 +33,7 @@ public class Board {
     }
     public void putMinesintoBoard(int fila, int columna)
     {
-        int zonaProtegidaFiles = Math.min(fila + 1, 2) - Math.max(fila - 1, 0) + 1;
+        int zonaProtegidaFiles = (Math.min(fila + 1, size-1) - Math.max(fila - 1, 0)) + 1;
         int zonaProtegidaCols = Math.min(columna + 1, size - 1) - Math.max(columna - 1, 0) + 1;
         int tamanyZonaProtegida = zonaProtegidaFiles * zonaProtegidaCols;
     
