@@ -62,7 +62,7 @@ public class GameConditionCoverageTest {
         
         MockGenRandom random = new MockGenRandom(0,0);
         MockBoard mockB = new MockBoard(1, 4, random);
-        mockB.setUpMockBoardplus(6);
+        mockB.setUpMockBoardplus(5);
         game.setBoard(mockB);
         
         MockView view = new MockView();
