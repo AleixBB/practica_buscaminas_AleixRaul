@@ -6,11 +6,11 @@ import tqs.prac.view.*;
 import tqs.prac.Main;
 
 public class Game {
-    protected Boolean gameOver;
-    protected Boolean win;
+    protected Boolean gameOver; // Indica si el jugador a perdut (ha clicat en una mina).
+    protected Boolean win; // Indica si el jugador ha guanyat.
     protected Board tauler;
-    protected Boolean firstClick;
-    protected IView vista;
+    protected Boolean firstClick; // Serveix per indicar la primera acció del joc.
+    protected IView vista; 
     
     public Game(){
         this.gameOver= false;
@@ -54,35 +54,34 @@ public class Game {
         this.vista = vista;
     }
 
-    public void act(String action, int x, int y)  {
+    public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
         switch(action){
-            case "FLAG":
-                if (tauler.getCell(x, y).isRevelaed()){
-                    throw new IllegalArgumentException();
+            case "FLAG": 
+                if (tauler.getCell(x, y).isRevelaed()){ //  Comprovem si esta revelada
+                    throw new IllegalArgumentException(); // Llançem excepció perque no es pot revelaar si ja esta revelada
                 }
-                tauler.getCell(x, y).toggleFlag();
+                tauler.getCell(x, y).toggleFlag(); // Si es vàlid cambiem a flagged
                 break;
             case "REVEAL":
-                if ((tauler.getCell(x, y).isRevelaed())) {
+                if ((tauler.getCell(x, y).isRevelaed())) { // Comprovar si esta revelada
                     throw new IllegalArgumentException();
                 }
-                if ((tauler.getCell(x, y).isFlagged())) {
+                if ((tauler.getCell(x, y).isFlagged())) { // Comprovar si esta flagged
                     throw new IllegalArgumentException();
                 }
-                Boolean hayJuego = tauler.firstClick(x, y);
+                Boolean hayJuego = tauler.firstClick(x, y); 
                 if (!hayJuego)  {
-                    this.gameOver = true;
+                    this.gameOver = true; // Si es una mina 
                 }
-                Boolean win = tauler.isWin();
+                Boolean win = tauler.isWin(); // Comprobar si hem guanyat o no
                 if (win) {
-                    this.win = true;
+                    this.win = true; 
                 }
                 break;
         }
     }
     
-    public void startedGame()
-    {
+    public void startedGame() {
         String accio = vista.getAction();
         int x = vista.getClickedX();
         int y = vista.getClickedY();
