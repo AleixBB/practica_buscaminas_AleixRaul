@@ -97,18 +97,35 @@ public class GameConditionCoverageTest {
         game.setFirstClick(false);
         
         MockGenRandom random = new MockGenRandom(null);
-        MockBoard mockB = new MockBoard(2, 3, random);
-        mockB.setUpMockBoardplus(3);
+        MockBoard mockB = new MockBoard(2, 4, random);
+        mockB.setUpMockBoardplus(6);
         game.setBoard(mockB);
         
         MockView view = new MockView();
         game.setView(view);
-        view.setUpActions(1);
+        view.setUpActions(7);
         
         game.startedGame();
         
         assertFalse(game.getWin());
         assertTrue(game.getGameOver());
+    }
+    @Test
+    void testStartedGame_Case6_firstClickFalse_winTrue_gameOverFalse() {
+        Game game = new Game();
+        game.setFirstClick(false);
+        
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(2, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        
+        MockView view = new MockView();
+        game.setView(view);
+        view.setUpActions(8);
+        game.startedGame();
+        assertTrue(game.getWin());
+        assertFalse(game.getGameOver());
     }
     
     
