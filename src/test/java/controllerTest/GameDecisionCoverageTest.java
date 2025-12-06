@@ -10,7 +10,7 @@ import modelTest.MockGenRandom;
 import viewTest.MockView;
 
 
-public class GameConditionCoverageTest {
+public class GameDecisionCoverageTest {
     //aplicat a startedGame
     // 3 condiciones: firstClick, win, gameOver
     // Necessitem cubrir todas las combinaciones true/false

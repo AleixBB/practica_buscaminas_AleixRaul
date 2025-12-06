@@ -1,5 +1,4 @@
 package tqs.prac.view;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -7,13 +6,16 @@ import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 import tqs.prac.controller.Game;
 
+
+
 public class BoardView extends JPanel {
 
     private Board board;
     private Game game;
     private View view;
-
     private JButton[][] buttons;
+    
+    private static final int CELL_SIZE = 45;
 
     public BoardView(Board board, Game game, View view) {
         this.board = board;
@@ -22,15 +24,26 @@ public class BoardView extends JPanel {
 
         int size = board.getSize();
 
-        setLayout(new GridLayout(size, size));
+        setLayout(new GridLayout(size, size, 2, 2));
+        setBackground(Color.BLACK);
         buttons = new JButton[size][size];
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
                 JButton btn = new JButton();
-                btn.setPreferredSize(new Dimension(40, 40));
-                btn.setFont(new Font("Arial", Font.BOLD, 14));
+                
+                btn.setPreferredSize(new Dimension(CELL_SIZE, CELL_SIZE));
+                btn.setMinimumSize(new Dimension(CELL_SIZE, CELL_SIZE));
+                btn.setMaximumSize(new Dimension(CELL_SIZE, CELL_SIZE));
+                
+                btn.setFont(new Font("Arial", Font.BOLD, 22));
+                btn.setMargin(new Insets(0, 0, 0, 0));
+                btn.setFocusPainted(false);
+                btn.setOpaque(true);
+                btn.setBorderPainted(true);
+                btn.setContentAreaFilled(true);
+                btn.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 
                 final int x = i;
                 final int y = j;
@@ -50,10 +63,10 @@ public class BoardView extends JPanel {
                         game.startedGame();
 
                         if (game.getGameOver()) {
-                            JOptionPane.showMessageDialog(null, "💥 Has perduuut!");
+                            JOptionPane.showMessageDialog(null, "💥 Has perdut!");
                         }
                         if (game.getWin()) {
-                            JOptionPane.showMessageDialog(null, "🎉 ¡Has guanyaaat!");
+                            JOptionPane.showMessageDialog(null, "🎉 ¡Has guanyat!");
                         }
 
                         view.refresh();
@@ -69,74 +82,76 @@ public class BoardView extends JPanel {
     }
 
     public void refresh() {
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
 
-    for (int i = 0; i < board.getSize(); i++) {
-        for (int j = 0; j < board.getSize(); j++) {
+                Cell c = board.getCell(i, j);
+                JButton btn = buttons[i][j];
 
-            Cell c = board.getCell(i, j);
-            JButton btn = buttons[i][j];
-
-            // Estado: bandera
-            if (c.isFlagged()) {
-                btn.setText("🚩");
-                btn.setForeground(Color.RED);
-                btn.setBackground(new Color(30, 30, 30));
-                btn.setEnabled(true);
-                continue;
-            }
-
-            // Estado: no revelado
-            if (!c.isRevelaed()) {
+                // Limpiar completamente el botón primero
                 btn.setText("");
-                btn.setBackground(new Color(70, 70, 70)); // gris suave
+                btn.setForeground(Color.BLACK);
+                btn.setBackground(Color.LIGHT_GRAY);
                 btn.setEnabled(true);
-                continue;
+
+                if (c.isFlagged()) {
+                    btn.setText("🚩");
+                    btn.setForeground(Color.RED);
+                    btn.setBackground(new Color(220, 220, 220));
+                    continue;
+                }
+
+                if (!c.isRevelaed()) {
+                    btn.setBackground(new Color(200, 200, 255)); // Azul muy clarito
+                    continue;
+                }
+
+                btn.setEnabled(false);
+
+                if (c.getValue() == -1) {
+                    btn.setText("💣");
+                    btn.setForeground(Color.BLACK);
+                    btn.setBackground(Color.RED);
+                    continue;
+                }
+
+                if (c.getValue() == 0) {
+                    btn.setBackground(Color.WHITE);
+                    continue;
+                }
+
+                int value = c.getValue();
+                btn.setText(String.valueOf(value));
+                btn.setForeground(getColorForNumber(value));
+                btn.setBackground(Color.WHITE);
             }
+        }
+        
+        // Forzar repintado
+        revalidate();
+        repaint();
+    }
 
-            // Estado: revelado
-            styleRevealedButton(btn);
-
-            // Mina
-            if (c.getValue() == -1) {
-                btn.setText("💣");
-                btn.setForeground(Color.RED);
-                btn.setBackground(new Color(120, 0, 0));
-                continue;
-            }
-
-            // Casilla vacía
-            if (c.getValue() == 0) {
-                btn.setText("");
-                btn.setBackground(new Color(90, 90, 90));
-                continue;
-            }
-
-            // Número 1-8
-            btn.setText(String.valueOf(c.getValue()));
-            btn.setForeground(getColorForNumber(c.getValue()));
-            btn.setBackground(new Color(30, 30, 30));
+    private Color getColorForNumber(int n) {
+        // Colores MUY FUERTES y saturados
+        switch (n) {
+            case 1: return new Color(0, 0, 255);     // AZUL brillante
+            case 2: return new Color(0, 200, 0);     // VERDE brillante
+      
+            case 3: return new Color(255, 0, 0);
+             // ROJO brillante
+            case 4: return new Color(0, 0, 150); 
+             // Azul oscuro
+            case 5: return new Color(150, 0, 0); 
+               // Rojo oscuro
+            case 6: return new Color(0, 150, 150);  
+             // Turquesa
+            case 7: return new Color(255,255,255); // Negro
+                        
+            case 8: return new Color(128, 128, 128); // Gris medio
+             
+            default: return new Color(128,232,232);
+            
         }
     }
-    }
-    private Color getColorForNumber(int n) {
-    return switch (n) {
-        case 1 -> new Color(25, 118, 210);   // azul
-        case 2 -> new Color(56, 142, 60);    // verde
-        case 3 -> new Color(211, 47, 47);    // rojo
-        case 4 -> new Color(123, 31, 162);   // púrpura
-        case 5 -> new Color(255, 111, 0);    // naranja
-        case 6 -> new Color(0, 151, 167);    // turquesa
-        case 7 -> Color.BLACK;               // negro
-        case 8 -> Color.GRAY;                // gris
-        default -> Color.WHITE;
-    };
-    }
-    private void styleRevealedButton(JButton btn) {
-        btn.setEnabled(false);
-        btn.setOpaque(true);
-        btn.setBackground(new Color(50, 50, 50)); // gris oscuro elegante
-        btn.setBorder(BorderFactory.createLineBorder(new Color(80, 80, 80), 2));
-}
-
-
 }
