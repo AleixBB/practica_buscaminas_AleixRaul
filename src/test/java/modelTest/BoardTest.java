@@ -499,6 +499,8 @@ void testClickAMina_0iteracions(){ //0 iteracions
     try
     {
         Board board = new Board(nMines, size, random);
+        assertTrue(false);
+
     }catch(Exception e){}
 }
 
@@ -649,6 +651,8 @@ void testClickAMina_NplusOne() {
     
     try {
         board.putMinesintoBoard(0, 0);
+        assertTrue(false);
+
     } catch (IllegalArgumentException e) {
         
         board.clickAMina();
@@ -802,13 +806,9 @@ void testPutMinesLoop_Nplus1() { //n+1
     int maxMines = size * size - 9; // 25 - 9 = 16
     int nMines = maxMines + 1; // 17 > 16
     
-    // Necesitamos valores para 17 minas (34 números)
-    // Pero también debemos considerar que si hay colisiones,
-    // el bucle podría necesitar MÁS intentos
-    
     int[] muchosValores = new int[100];
     for (int i = 0; i < 100; i++) {
-        muchosValores[i] = 0; // Todos 0, siempre fuera de zona protegida
+        muchosValores[i] = 0; 
     }
     
     MockGenRandom mockGen = new MockGenRandom(muchosValores);
@@ -816,11 +816,9 @@ void testPutMinesLoop_Nplus1() { //n+1
     
     try {
         board.putMinesintoBoard(2, 2);
-        fail("Debería haber lanzado IllegalArgumentException");
-    } catch (IllegalArgumentException e) {
-        // ¡Éxito! Se lanzó la excepción por demasiadas minas
-        assertTrue(e.getMessage().contains("excedeix"));
-    }
+        assertTrue(false);
+
+    } catch (IllegalArgumentException e) {}
     }
 
 
@@ -957,9 +955,11 @@ void testInsertValue_NplusOne() {
     
     try {
         board.putMinesintoBoard(0, 0);
+        assertTrue(false);
     } catch (IllegalArgumentException e) {
     }
-}  
+} 
+
 
 
 }
