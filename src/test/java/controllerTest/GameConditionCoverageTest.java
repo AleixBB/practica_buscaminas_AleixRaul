@@ -34,6 +34,7 @@ public class GameConditionCoverageTest {
         assertFalse(game.getWin());
         assertFalse(game.getGameOver());
     }
+
     @Test
     void testStartedGame_Case2_firstClickTrue_winFalse_gameOverTrue() {
         Game game = new Game();
@@ -53,6 +54,7 @@ public class GameConditionCoverageTest {
         assertTrue(game.getGameOver());
         assertFalse(game.getWin());
     }
+
     @Test
     void testStartedGame_Case3_firstClickTrue_winTrue_gameOverFalse() {
         Game game = new Game();
@@ -71,6 +73,7 @@ public class GameConditionCoverageTest {
         assertTrue(game.getWin());
         assertFalse(game.getGameOver());
     }
+
      @Test
     void testStartedGame_Case4_firstClickFalse_winFalse_gameOverFalse() {
         Game game = new Game();
@@ -89,6 +92,7 @@ public class GameConditionCoverageTest {
         assertFalse(game.getWin());
         assertFalse(game.getGameOver());
     }
+
     @Test
     void testStartedGame_Case5_firstClickFalse_winFalse_gameOverTrue() {
         Game game = new Game();
@@ -108,6 +112,7 @@ public class GameConditionCoverageTest {
         assertFalse(game.getWin());
         assertTrue(game.getGameOver());
     }
+    
     @Test
     void testStartedGame_Case6_firstClickFalse_winTrue_gameOverFalse() {
         Game game = new Game();

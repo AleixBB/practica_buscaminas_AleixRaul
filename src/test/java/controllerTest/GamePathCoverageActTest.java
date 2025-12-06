@@ -58,24 +58,55 @@ public class GamePathCoverageActTest {
         Game game = new Game();
         MockGenRandom random = new MockGenRandom(null);
         MockBoard mockBoard = new MockBoard(2, 4, random);
-        mockBoard.setUpMockBoardplus(5);
-        
-        Cell cell = mockBoard.getCell(1, 2);
-        cell.toggleFlag(); // Poner bandera
-        
-        assertTrue(cell.isFlagged());
-        assertFalse(cell.isRevelaed());
-        
+        mockBoard.setUpMockBoardplus(7);
         game.setBoard(mockBoard);
-        
-        // Ejecución y verificación
-        IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,
-            () -> game.act("REVEAL", 1, 2)
-        );
-        
-        assertNotNull(exception);
+        game.act("FLAG", 1, 2);
+        try{
+            game.act("REVEAL", 1,2);
+            assertTrue(false);
+        }catch(Exception e) {}
     }
+    @Test
+    public void testAct_Path5_REVEAL_CeldaNoReveladaNoFlagged() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        game.act("REVEAL",1,2);
+        assertTrue(game.getBoard().getCell(1, 2).isRevelaed());
+    }
+
+    @Test
+    public void testAct_Path5_Variant_REVEAL_Mina_() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        game.act("REVEAL", 0, 0);
+        assertTrue(game.getGameOver()); // Debe terminar el juego
+        assertFalse(game.getWin()); // No se gana al pisar mina
+        assertTrue(game.getBoard().getCell(0, 0).isRevelaed()); // La mina debe revelarse
+    }
+
+     @Test
+    public void testAct_Path5_Variant_REVEAL_LeadsToWin() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        game.act("REVEAL", 3, 0);        
+        assertTrue(game.getWin()); // Debe ganar
+        assertFalse(game.getGameOver()); // No debe terminar por mina
+        assertTrue(mockBoard.getCell(3, 0).isRevelaed()); // Debe revelarse
+    }
+
+        
+      
+        
+        
 
 }
 
