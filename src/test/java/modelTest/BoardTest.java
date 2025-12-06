@@ -111,15 +111,17 @@ public class BoardTest {
         }
     }
     @Test
-void testRandommines2() {
-    // 1. 5 mines en tauler 4x4 (valor frontera)
-        int size = 4;
+void testPutMinesParticionsEquivalentsCentre() {
+        
+
+    // 1. 5 mines en tauler 5x5, fila i columna son centre (valor dins rang)
+        int size = 5;
         int nMines = 5;
         int contador = 0;
-        GenRandom rand = new GenRandom();
+        GenRandom rand = new MockGenRandom(4,0,4,1,4,2,4,3,4,4);
 
         Board tauler = new Board(nMines, size, rand);
-        tauler.putMinesintoBoard(3, 3);
+        tauler.putMinesintoBoard(2, 2);
         for (int i = 0; i < size; i++) {       
             for (int j = 0; j < size; j++) {
                 if (tauler.getCell(i, j).getValue() == -1) {
@@ -129,12 +131,13 @@ void testRandommines2() {
         }
         assertEquals(contador, nMines);
         
-        // 2. 0 mines en tauler 3x3 (valor frontera)
-        size = 3;
-        nMines = 0;
+        // 2. 7 mines en tauler 4x4, fila i columna son centre (valor frontera)
+        size = 4;
+        nMines = 7;
         contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,3,2,3,3,3);
         tauler = new Board(nMines, size, rand);
-        tauler.putMinesintoBoard(2, 2);
+        tauler.putMinesintoBoard(2, 1);
         for (int i = 0; i < size; i++) {    
             for (int j = 0; j < size; j++) {
                 if (tauler.getCell(i, j).getValue() == -1) {
@@ -144,29 +147,165 @@ void testRandommines2() {
         }
         assertEquals(contador, nMines);
         
-        // 3. -1 mina en tauler 3x3 (valor fora rang)
-        size = 3;
-        nMines = -1;
+        // 3. 8 mines en tauler 4x4, fila i columna son centre (valor limit)
+        size = 4;
+        nMines = 8;
         contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,3,2,3,3,3,1,2);
+
         try {
             tauler = new Board(nMines, size, rand);
             tauler.putMinesintoBoard(2, 2);
             assertTrue(false);
         } catch (Exception e) {}  
         
-        // 4. 10 mines en tauler 3x3 (valor fora rang)
-        size = 3;
-        nMines = 10;
+        // 4. 6 mines en tauler 4x4, fila i columna son centre (valor limit)
+        size = 4;
+        nMines = 6;
         contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,3,2,3);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(2, 1);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+    }
+   @Test 
+    void testPutMinesParticionsEquivalentsCantonada() {
+        
+
+    // 1. 5 mines en tauler 5x5, fila i columna son cantonada (valor dins rang)
+        int size = 5;
+        int nMines = 5;
+        int contador = 0;
+        GenRandom rand = new MockGenRandom(0,0,0,1,0,2,0,3,0,4);
+
+        Board tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(3, 0);
+        for (int i = 0; i < size; i++) {       
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }
+        }
+        assertEquals(contador, nMines);
+        
+        // 2. 12 mines en tauler 4x4, fila i columna son cantonada (valor frontera)
+        size = 4;
+        nMines = 12;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,0,1,1,1,2,1,3,2,2,2,3,3,2,3,3);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(3, 0);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+        
+        // 3. 13 mines en tauler 4x4, fila i columna son centre (valor limit)
+        size = 4;
+        nMines = 13;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,0,1,1,1,2,1,3,2,2,2,3,3,2,3,3,2,0);
+
         try {
             tauler = new Board(nMines, size, rand);
-            tauler.putMinesintoBoard(2, 2);
+            tauler.putMinesintoBoard(3, 0);
             assertTrue(false);
         } catch (Exception e) {}  
+        
+        // 4. 11 mines en tauler 4x4, fila i columna son centre (valor limit)
+        size = 4;
+        nMines = 11;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,1,0,1,1,1,2,1,3,2,2,2,3,3,3);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(3, 0);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
     }
-    
 
-         
+    @Test
+    void testPutMinesParticionsEquivalentsExtremSupInfLat() {
+        
+
+    // 1. 3 mines en tauler 4x4, fila i columna son extrem superior (valor dins rang)
+        int size = 4;
+        int nMines = 3;
+        int contador = 0;
+        GenRandom rand = new MockGenRandom(3,0,3,1,3,2);
+
+        Board tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(0, 2);
+        for (int i = 0; i < size; i++) {       
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }
+        }
+        assertEquals(contador, nMines);
+        
+        // 2. 10 mines en tauler 4x4, fila i columna son extrem superior (valor frontera)
+        size = 4;
+        nMines = 10;
+        contador = 0;
+        rand = new MockGenRandom(0,0,1,0,2,0,3,0,2,1,2,2,2,3,3,1,3,2,3,3);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(0, 2);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+        
+        // 3. 11 mines en tauler 4x4, fila i columna son extrem superior (valor limit)
+        size = 4;
+        nMines = 11;
+        contador = 0;
+        rand = new MockGenRandom(0,0,0,1,0,2,0,3,0,2,1,2,2,2,3,3,1,3,2,3,3,1,3);
+
+        try {
+            tauler = new Board(nMines, size, rand);
+            tauler.putMinesintoBoard(0, 2);
+            assertTrue(false);
+        } catch (Exception e) {}  
+        
+        // 4. 9 mines en tauler 4x4, fila i columna son extrem superior (valor limit)
+        size = 4;
+        nMines = 9;
+        contador = 0;
+        rand = new MockGenRandom(0,0,1,0,2,0,3,0,2,1,2,2,2,3,3,1,3,3,3,2);
+        tauler = new Board(nMines, size, rand);
+        tauler.putMinesintoBoard(0, 2);
+        for (int i = 0; i < size; i++) {    
+            for (int j = 0; j < size; j++) {
+                if (tauler.getCell(i, j).getValue() == -1) {
+                    contador += 1;
+                }
+            }   
+        }
+        assertEquals(contador, nMines);
+    }
     
 
     @Test
