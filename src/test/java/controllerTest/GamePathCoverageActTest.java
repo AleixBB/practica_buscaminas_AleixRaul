@@ -78,7 +78,7 @@ public class GamePathCoverageActTest {
     }
 
     @Test
-    public void testAct_Path5_Variant_REVEAL_Mina_() {
+    public void testAct_Path6_Variant_REVEAL_Mina_() {
         Game game = new Game();
         MockGenRandom random = new MockGenRandom(null);
         MockBoard mockBoard = new MockBoard(2, 4, random);
@@ -91,7 +91,7 @@ public class GamePathCoverageActTest {
     }
 
      @Test
-    public void testAct_Path5_Variant_REVEAL_LeadsToWin() {
+    public void testAct_Path7_Variant_REVEAL_LeadsToWin() {
         Game game = new Game();
         MockGenRandom random = new MockGenRandom(null);
         MockBoard mockBoard = new MockBoard(2, 4, random);
