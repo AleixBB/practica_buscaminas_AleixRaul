@@ -80,6 +80,7 @@ public class Game {
                 break;
         }
     }
+    
     public void startedGame()
     {
         String accio = vista.getAction();
