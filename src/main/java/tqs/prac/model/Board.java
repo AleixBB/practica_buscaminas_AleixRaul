@@ -1,6 +1,5 @@
-
 package tqs.prac.model;
-
+import java.lang.Math;
 public class Board {
     protected int nMines;
     protected int size;
@@ -34,22 +33,27 @@ public class Board {
     }
     public void putMinesintoBoard(int fila, int columna)
     {
-        if (nMines > (size*size-8)){
-            throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
-        }
+        int zonaProtegidaFiles = (Math.min(fila + 1, size-1) - Math.max(fila - 1, 0)) + 1;
+        int zonaProtegidaCols = Math.min(columna + 1, size - 1) - Math.max(columna - 1, 0) + 1;
+        int tamanyZonaProtegida = zonaProtegidaFiles * zonaProtegidaCols;
+        int celdasDisponibles = size * size - tamanyZonaProtegida;
+    
+    if (nMines > celdasDisponibles) {
+        throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
+    }
         int count = 0;
         while (count < nMines) {
-        int r = random.nextInt(size);
-        int c = random.nextInt(size);
+            int r = random.nextInt(size);
+            int c = random.nextInt(size);
 
-        if (Math.abs(r - fila) <= 1 && Math.abs(c - columna) <= 1) {
-            continue;
-        }
+            if (Math.abs(r - fila) <= 1 && Math.abs(c - columna) <= 1) {
+                continue;
+            }
 
-        if (matrix[r][c].getValue() == 0) {
-            matrix[r][c].setValue(-1);
-            count++;
-        }
+            if (matrix[r][c].getValue() == 0) {
+                matrix[r][c].setValue(-1);
+                count++;
+            }
         }
       
     }  
