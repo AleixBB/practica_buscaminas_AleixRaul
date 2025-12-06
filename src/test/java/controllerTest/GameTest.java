@@ -231,6 +231,4 @@ public class GameTest {
     assertFalse(game.getWin());
    }
     
-    
-
 }

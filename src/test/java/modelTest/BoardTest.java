@@ -173,6 +173,7 @@ public class BoardTest {
         }catch (Exception e){}  
 
     }
+
     @Test
     //aquest Test avalua mitjançant un mock object del tauler si els valors que prenen 
     // en relacio a les mines les diferents celes son correctes
@@ -478,7 +479,62 @@ void testValorsCelles()
         assertFalse(b.isWin());
     }
     
+ 
 
 
-}   
+//TESTOS DE CAIXA BLANCA
+//LOOP TESTING
 
+
+//clickAMina
+
+@Test
+void testClickAMina_0iteracions(){ //0 iteracions
+    int size = 0;
+    int nMines = 0;
+    MockGenRandom random = new MockGenRandom(null);
+    try
+    {
+        Board board = new Board(nMines, size, random);
+    }catch(Exception e){}
+}
+
+@Test
+void testClickAMina_1iteracio() {//1 iteració
+    int size = 4;
+    int nMines = 1;
+    MockGenRandom mockGen = new MockGenRandom(0, 0);
+    Board board = new Board(nMines, size, mockGen);
+    board.putMinesintoBoard(2, 2);
+    assertFalse(board.getCell(0, 0).isRevelaed());
+    board.clickAMina();
+    assertTrue(board.getCell(0, 0).isRevelaed());
+
+}
+
+//putMinesIntoBoard
+@Test
+void testPutMinesIntoBoard_0iteracions(){ //0 iteracions
+    int size = 4;
+    int nMines = 0;
+    MockGenRandom random = new MockGenRandom(null);
+    Board board = new Board(nMines, size, random);
+    board.putMinesintoBoard(1, 1);
+    
+    int mines = 0;
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (board.getCell(i, j).getValue() == -1) {
+                mines++;
+            }
+        }
+    }
+    
+    assertEquals(0, mines);
+
+
+    }
+
+
+
+}
