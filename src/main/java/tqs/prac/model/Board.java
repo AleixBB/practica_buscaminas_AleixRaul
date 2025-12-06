@@ -18,10 +18,10 @@ public class Board {
 
         this.nMines = nMines;
         this.size = size;
-        this.random = rand; // Mock object injectat
+        this.random = rand;
         matrix = new Cell[size][size];
 
-        for (int i=0; i<size; i++) { // Totes les cel·les amb valor 0.3x3
+        for (int i=0; i<size; i++) { // Totes les cel·les amb valor 0
             for (int j=0; j<size; j++) {
                 matrix[i][j] = new Cell(0);
             }

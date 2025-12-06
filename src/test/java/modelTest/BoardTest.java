@@ -28,12 +28,11 @@ public class BoardTest {
     void testInitnegatius()
     {
         MockGenRandom  rand = new MockGenRandom(null);
-        //valorsfora rang
+        //valors fora rang
         try{
             Board tauler=new Board(-2, -4, rand);
             assertTrue(false);
-
-        //valor frontera i valor fora rang  
+        //valor limit (-1) i valor frontera (0)  
         }catch (Exception e){}
         try{
             Board tauler=new Board(-1, 0, rand);
@@ -45,14 +44,15 @@ public class BoardTest {
             Board tauler=new Board(2, -1, rand);
             assertTrue(false);
 
-        //valor correcte i valor fora rang   
+        //valor frontera (0) i valor limit (0)  
         }catch (Exception e){}
         try{
             Board tauler=new Board(0, 0, rand);
             assertTrue(false);
-        
-        //valor frontera
         }catch (Exception e){}
+        //valor correcte i valor correcte
+        Board tauler = new Board(1,2, rand);
+        assertNotNull(tauler);
         
     }
 

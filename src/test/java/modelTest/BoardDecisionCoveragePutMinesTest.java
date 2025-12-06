@@ -16,7 +16,7 @@ public class BoardDecisionCoveragePutMinesTest {
             
         }catch(Exception e){}
     }
-    // TEST 2: nMines válido, zona NO protegida
+    // TEST 2: nMines válid, zona NO protegida
     @Test
     void testPutMines_Decision2_ZonaNoProtegida() {
         MockGenRandom random = new MockGenRandom(0,0,1,1);
