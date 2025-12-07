@@ -234,6 +234,7 @@ public class GameTest {
 
     }catch(Exception e){}
     }
+
     @Test
     public void testAct_ActionNull()
     {
@@ -247,6 +248,39 @@ public class GameTest {
         assertTrue(false);
 
     }catch(Exception e){}
+    }
+
+    @Test
+    public void testAct_ActionDespresGameOver()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.gameOver();
+        try{
+            game.act("FLAG", 3,3);
+            assertTrue(false);
+
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_ActionDespresWin()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.win();
+        try{
+            game.act("FLAG", 3,3);
+            assertTrue(false);
+
+        }catch(Exception e){}
+
     }
 
 
