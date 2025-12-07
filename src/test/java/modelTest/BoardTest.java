@@ -424,8 +424,7 @@ void testPutMinesParticionsEquivalentsCentre() {
     assertEquals(b.getCell(2, 0).getValue(), 2);
     }
 
-    @Test
-    void testInsertValuesParticionsequivalent_
+  
 
 
 
