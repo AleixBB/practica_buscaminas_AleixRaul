@@ -5,6 +5,7 @@ import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 import tqs.prac.model.GenRandom;
 import tqs.prac.Main;
+import java.util.ArrayList;
 
 
 public class BoardTest {
@@ -700,7 +701,6 @@ public class BoardTest {
         {
             for (int j=0; j<5; j++)
             {
-            System.out.println(b.getCell(i, j).isRevelaed() + " ");
             assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
@@ -708,20 +708,82 @@ public class BoardTest {
     @Test
     void testExpandZeros_ParticionsEquivalentFilaiColumnaInvalides(){
        
-       
+       //hauria de fer return, per tant no revela res
         int nMines = 1;
         int size = 5;
         MockGenRandom mockGen = new MockGenRandom(3,1 );        
         Board b = new Board(nMines, size, mockGen); 
         b.putMinesintoBoard(4,4);
         b.insertValueintoCells();
+        ArrayList<Cell> llistaRevelades = new ArrayList<>();
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaRevelades.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        ArrayList<Cell> llistaReveladesDespres = new ArrayList<>();
 
-        //fila es -1 (valor limit) i columna es 0 (valor frontera)
-        //hauria de fer return
-       
-        
-
+        b.expandZeros(-1, 0);
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaReveladesDespres.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        assertEquals(llistaRevelades,llistaReveladesDespres);
     }
+
+   @Test
+   void testExpandZeros_ParticionsEquivalents_CellaAmbZero()
+   {
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1,0,3,2 );        
+    Board b = new Board(nMines, size, mockGen); 
+    b.putMinesintoBoard(0,4);
+    b.insertValueintoCells();
+    b.expandZeros(4, 0);
+    //les del voltant es revelen 
+    assertTrue(b.getCell(4, 0).isRevelaed()); 
+    assertTrue(b.getCell(3, 0).isRevelaed()); 
+    assertTrue(b.getCell(4, 1).isRevelaed()); 
+    assertTrue(b.getCell(3, 1).isRevelaed()); 
+    assertTrue(b.getCell(2, 1).isRevelaed()); 
+    assertTrue(b.getCell(2, 0).isRevelaed()); 
+   } 
+   @Test
+    void testExpandZeros_CeldaConNumero() {
+    
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1, 0,3,2); 
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard(0, 4);
+    b.insertValueintoCells();
+   
+    b.expandZeros(4, 1);
+    //les del voltant no es revelen
+    assertTrue(b.getCell(4, 1).isRevelaed()); 
+    assertFalse(b.getCell(4, 0).isRevelaed());
+    assertFalse(b.getCell(3, 0).isRevelaed()); 
+    assertFalse(b.getCell(3, 1).isRevelaed()); 
+    assertFalse(b.getCell(3, 2).isRevelaed()); 
+    assertFalse(b.getCell(4, 2).isRevelaed()); 
+
+
+ 
+
+
+}
 
 
 
