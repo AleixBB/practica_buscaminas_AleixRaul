@@ -154,6 +154,29 @@ public class GameTest {
     game.act("REVEAL", 6, 6);
 }
 
+
+    //particions equivalents
+    @Test
+    public void testAct_coordenadesCantonada(){
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        //valors frontera
+        // Sup.esq
+        game.act("FLAG", 0, 0);
+    
+        // Sup.dreta
+        game.act("FLAG", 3, 0);
+    
+        //Inf.esq
+        game.act("FLAG", 0, 3);
+    
+        // Inf.dreta
+        game.act("FLAG", 3, 3);
+    }
+
     @Test
     //testejerem el flux d'una partida i mirarem els resultats
     public void startedGameTestFinishWin()

@@ -57,16 +57,16 @@ public class Game {
     public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
         switch(action){
             case "FLAG": 
-                if (tauler.getCell(x, y).isRevelaed()){ //  Comprovem si esta revelada
+                if (tauler.getCell(x, y).isRevelaed()){ 
                     throw new IllegalArgumentException(); // Llançem excepció perque no es pot revelaar si ja esta revelada
                 }
-                tauler.getCell(x, y).toggleFlag(); // Si es vàlid cambiem a flagged
+                tauler.getCell(x, y).toggleFlag(); 
                 break;
             case "REVEAL":
-                if ((tauler.getCell(x, y).isRevelaed())) { // Comprovar si esta revelada
+                if ((tauler.getCell(x, y).isRevelaed())) { 
                     throw new IllegalArgumentException();
                 }
-                if ((tauler.getCell(x, y).isFlagged())) { // Comprovar si esta flagged
+                if ((tauler.getCell(x, y).isFlagged())) { 
                     throw new IllegalArgumentException();
                 }
                 Boolean hayJuego = tauler.firstClick(x, y); 
