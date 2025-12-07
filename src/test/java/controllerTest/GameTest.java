@@ -176,6 +176,55 @@ public class GameTest {
         // Inf.dreta
         game.act("FLAG", 3, 3);
     }
+    @Test
+    public void testAct_CoordenadasInvalidas() {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(1, 4, random);
+    mockB.setUpMockBoardplus(6);
+    game.setBoard(mockB);
+    
+    //valors limit (ha de llançar excepcio)
+    try{
+        game.act("FLAG", -1, 0);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 1, -1);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 0, 4);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 4, 1);
+        assertTrue(false);
+    }catch(Exception e){}
+    //valors fora rang
+    try{
+        game.act("FLAG", 5, 0);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 2, -2);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", -2, 6);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 3, 7);
+        assertTrue(false);
+    }catch(Exception e){}
+    
+    
+    assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
+        game.act("FLAG", 3, 0);
+    });
+}
+
 
     @Test
     //testejerem el flux d'una partida i mirarem els resultats
