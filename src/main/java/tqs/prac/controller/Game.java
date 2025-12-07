@@ -89,8 +89,8 @@ public class Game {
                     throw new IllegalArgumentException();
                 }
                 Boolean hayJuego = tauler.firstClick(x, y); 
-                if (!hayJuego)  {
-                    this.gameOver = true; // Si es una mina 
+                if (!hayJuego)  { //game over o win???
+                    this.gameOver = true;  
                 }
                 Boolean win = tauler.isWin(); // Comprobar si hem guanyat o no
                 if (win) {
