@@ -983,7 +983,6 @@ void testExpandZeros_CeldaAmbMina() {
         }
     }
 } 
-
      
     @Test
     void testIsWin()
@@ -1024,6 +1023,44 @@ void testExpandZeros_CeldaAmbMina() {
         assertFalse(b.isWin());
     }
     
+   @Test
+   void testIsWin_ParticionsEquivalents_TotesReveal()
+   {
+    int size = 5;
+    int nMines = 1;
+    MockGenRandom mockGen = new MockGenRandom(2,1 );        
+    Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard(4,3);
+        b.insertValueintoCells();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (b.getCell(i, j).getValue() != -1) {
+                    b.getCell(i, j).reveal();
+                }
+            }       
+    }
+        assertTrue(b.isWin());
+
+   } 
+   @Test
+   void testIsWin_ParticionsEquivalents_TotesRevealMenysUna()
+   {
+    int size = 5;
+    int nMines = 1;
+    MockGenRandom mockGen = new MockGenRandom(2,1 );        
+    Board b = new Board(nMines, size, mockGen);
+        b.putMinesintoBoard(4,3);
+        b.insertValueintoCells();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (b.getCell(i, j).getValue() != -1) {
+                    b.getCell(i, j).reveal();
+                }
+            }       
+    }
+        assertTrue(b.isWin());
+
+   } 
  
 
 
