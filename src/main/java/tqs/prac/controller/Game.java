@@ -55,7 +55,13 @@ public class Game {
     }
 
     public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
-        if (x < 0 || x >= this.getBoard().getSize()) //precondicio
+        //precondicions
+        if (this.getGameOver() == true ||  this.getWin() == true)
+        {
+            throw new IllegalArgumentException("La partida ha finalitzat");
+        }
+        
+        if (x < 0 || x >= this.getBoard().getSize()) 
         {
             throw new IllegalArgumentException("Fila fora de rang");
         }
@@ -67,10 +73,11 @@ public class Game {
         {
             throw new IllegalArgumentException("Accio Invalida");
         }
+        
         switch(action){
             case "FLAG": 
                 if (tauler.getCell(x, y).isRevelaed()){ 
-                    throw new IllegalArgumentException(); // Llançem excepció perque no es pot revelaar si ja esta revelada
+                    throw new IllegalArgumentException(); 
                 }
                 tauler.getCell(x, y).toggleFlag(); 
                 break;

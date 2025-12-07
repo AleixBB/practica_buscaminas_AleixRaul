@@ -282,6 +282,65 @@ public class GameTest {
         }catch(Exception e){}
 
     }
+    @Test
+    public void testAct_multiplesFlags()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("FLAG", 0,0);
+        game.act("FLAG", 2,2);
+        game.act("FLAG", 0,0);
+        assertFalse(game.getBoard().getCell(0, 0).isFlagged());
+        assertTrue(game.getBoard().getCell(2, 2).isFlagged());
+    }
+    @Test
+    public void testAct_flagDespresDeReveal()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("REVEAL", 0, 0);
+        try{
+        game.act("FLAG", 0,0);
+        assertTrue(false);
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_RevealDespresDeFlag()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("FLAG", 0, 0);
+        try{
+        game.act("REVEAL", 0,0);
+        assertTrue(false);
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_RevealDespresDeReveal()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("REVEAL", 0, 0);
+        try{
+        game.act("REVEAL", 0,0);
+        assertTrue(false);
+        }catch(Exception e){}
+
+    }
 
 
 
