@@ -120,6 +120,7 @@ public class GameTest {
     }catch(Exception e){}
 
     //cas 5: NUMERADA, OCULTA, FLAG
+    game = new Game();
     random = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
@@ -127,6 +128,7 @@ public class GameTest {
     game.act("FLAG", 6,6);
  
     //cas 6: AMB MINA, FLAGUEJADA, FLAG
+    game = new Game();
     random = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
@@ -134,6 +136,7 @@ public class GameTest {
     game.act("FLAG", 4, 1);
 
     //cas 7; AMB MINA, OCULTA, REVEAL
+    game = new Game();
     random = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
@@ -146,6 +149,7 @@ public class GameTest {
     }catch(Exception e){}
 
     //cas 9: BUIDA, OCULTA, REVEAL
+    game = new Game();
     MockGenRandom rand = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, rand);
     mockB.setUpMockBoardplus(1);
