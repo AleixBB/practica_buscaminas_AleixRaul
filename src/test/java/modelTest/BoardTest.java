@@ -778,12 +778,90 @@ public class BoardTest {
     assertFalse(b.getCell(3, 1).isRevelaed()); 
     assertFalse(b.getCell(3, 2).isRevelaed()); 
     assertFalse(b.getCell(4, 2).isRevelaed()); 
+    }
+    @Test
+void testExpandZeros_CeldaConMina() {
+    
 
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1,0,3,2 ); 
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard(0, 4);
+    b.insertValueintoCells();
+    b.expandZeros(1, 0);
+    //hauria de fer un return i no fer res
+    ArrayList<Cell> llistaRevelades = new ArrayList<>();
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaRevelades.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        ArrayList<Cell> llistaReveladesDespres = new ArrayList<>();
 
- 
+        b.expandZeros(-1, 0);
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaReveladesDespres.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        assertEquals(llistaRevelades,llistaReveladesDespres);
+    }
+    @Test
+    void testExpandZeros_CeldaYaRevelada() {
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1,0,3,2 ); 
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard(0, 4);
+    b.insertValueintoCells();
+    b.expandZeros(0, 4); //revelada ja per la primera expansio
+    b.expandZeros(1, 1);
 
+    //no hauria de canviar res
+    ArrayList<Cell> llistaRevelades = new ArrayList<>();
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaRevelades.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        ArrayList<Cell> llistaReveladesDespres = new ArrayList<>();
+
+        b.expandZeros(-1, 0);
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaReveladesDespres.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        assertEquals(llistaRevelades,llistaReveladesDespres);
+    
 
 }
+    
+   
+
+
+
 
 
 
