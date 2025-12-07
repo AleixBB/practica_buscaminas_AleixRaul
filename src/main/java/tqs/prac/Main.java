@@ -38,7 +38,7 @@ public class Main {
 
             case 2:
                 size = 14;
-                mines = 50;
+                mines = 40;
                 break;
 
             default:
