@@ -220,6 +220,22 @@ public class GameTest {
     }catch(Exception e){}
     }
 
+    @Test
+    public void testAct_ActionInvalida()
+    {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(1, 4, random);
+    mockB.setUpMockBoardplus(6);
+    game.setBoard(mockB);
+    try{
+        game.act("INVALID", 2,2);
+        assertTrue(false);
+
+    }catch(Exception e){}
+
+    }
+
 
 
 
