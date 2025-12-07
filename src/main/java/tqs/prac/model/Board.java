@@ -93,6 +93,15 @@ public class Board {
     }
     
     public Boolean firstClick(int fila, int columna){
+        if (fila >= this.size || fila < 0)
+        {
+            throw new IllegalArgumentException("Fila fora rang");
+        }
+        if (columna >= this.size || columna < 0)
+        {
+            throw new IllegalArgumentException("Columna fora rang");
+        }
+
         Cell clicked = matrix[fila][columna];
         // Clic a una mina
         if (matrix[fila][columna].getValue() == -1)  {
