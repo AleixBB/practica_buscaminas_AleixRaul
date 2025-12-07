@@ -761,7 +761,7 @@ public class BoardTest {
     assertTrue(b.getCell(2, 0).isRevelaed()); 
    } 
    @Test
-    void testExpandZeros_CeldaConNumero() {
+    void testExpandZeros_CellaAmbNum() {
     
     int nMines = 2;
     int size = 5;
@@ -780,7 +780,7 @@ public class BoardTest {
     assertFalse(b.getCell(4, 2).isRevelaed()); 
     }
     @Test
-void testExpandZeros_CeldaConMina() {
+void testExpandZeros_CeldaAmbMina() {
     
 
     int nMines = 2;
@@ -818,7 +818,7 @@ void testExpandZeros_CeldaConMina() {
         assertEquals(llistaRevelades,llistaReveladesDespres);
     }
     @Test
-    void testExpandZeros_CeldaYaRevelada() {
+    void testExpandZeros_CellYaRevelada() {
     int nMines = 2;
     int size = 5;
     MockGenRandom mockGen = new MockGenRandom(1,0,3,2 ); 
@@ -859,12 +859,6 @@ void testExpandZeros_CeldaConMina() {
 }
     
    
-
-
-
-
-
-
     @Test
     void testClickAMina() {
         int size = 8;
@@ -882,7 +876,6 @@ void testExpandZeros_CeldaConMina() {
         b.insertValueintoCells();
         b.firstClick(1, 0); 
         
-    // Resultado esperado
         Boolean[][] boardResultant = {
             { false, false, false, true, false, true, false, true },
             { true, false, false, false, false, false, false, true },
@@ -924,6 +917,23 @@ void testExpandZeros_CeldaConMina() {
             }
         }
     }
+   @Test
+   void testParticionsEquivalents_ClickAMinaTaulerSenseMines()
+   {
+    int size = 3;
+    int nMines = 0;
+    MockGenRandom  random = new MockGenRandom();
+    Board b = new Board(nMines, size, random);
+    b.insertValueintoCells();
+    b.clickAMina();
+    //no es revela cap perq no hi ha cap mina
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            assertFalse(b.getCell(i, j).isRevelaed());
+        }
+    }
+    
+   }
 
      
     @Test
