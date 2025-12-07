@@ -55,18 +55,37 @@ public class Game {
     }
 
     public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
+        //precondicions
+        if (this.getGameOver() == true ||  this.getWin() == true)
+        {
+            throw new IllegalArgumentException("La partida ha finalitzat");
+        }
+        
+        if (x < 0 || x >= this.getBoard().getSize()) 
+        {
+            throw new IllegalArgumentException("Fila fora de rang");
+        }
+        if (y < 0 || y >= this.getBoard().getSize())
+        {
+            throw new IllegalArgumentException("Columna fora de rang");
+        }
+        if (action != "FLAG" && action != "REVEAL")
+        {
+            throw new IllegalArgumentException("Accio Invalida");
+        }
+        
         switch(action){
             case "FLAG": 
-                if (tauler.getCell(x, y).isRevelaed()){ //  Comprovem si esta revelada
-                    throw new IllegalArgumentException(); // Llançem excepció perque no es pot revelaar si ja esta revelada
+                if (tauler.getCell(x, y).isRevelaed()){ 
+                    throw new IllegalArgumentException(); 
                 }
-                tauler.getCell(x, y).toggleFlag(); // Si es vàlid cambiem a flagged
+                tauler.getCell(x, y).toggleFlag(); 
                 break;
             case "REVEAL":
-                if ((tauler.getCell(x, y).isRevelaed())) { // Comprovar si esta revelada
+                if ((tauler.getCell(x, y).isRevelaed())) { 
                     throw new IllegalArgumentException();
                 }
-                if ((tauler.getCell(x, y).isFlagged())) { // Comprovar si esta flagged
+                if ((tauler.getCell(x, y).isFlagged())) { 
                     throw new IllegalArgumentException();
                 }
                 Boolean hayJuego = tauler.firstClick(x, y); 

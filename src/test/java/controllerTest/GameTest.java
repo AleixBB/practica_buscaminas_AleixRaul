@@ -120,6 +120,7 @@ public class GameTest {
     }catch(Exception e){}
 
     //cas 5: NUMERADA, OCULTA, FLAG
+    game = new Game();
     random = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
@@ -127,6 +128,7 @@ public class GameTest {
     game.act("FLAG", 6,6);
  
     //cas 6: AMB MINA, FLAGUEJADA, FLAG
+    game = new Game();
     random = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
@@ -134,6 +136,7 @@ public class GameTest {
     game.act("FLAG", 4, 1);
 
     //cas 7; AMB MINA, OCULTA, REVEAL
+    game = new Game();
     random = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, random);
     mockB.setUpMockBoardplus(1);
@@ -146,6 +149,7 @@ public class GameTest {
     }catch(Exception e){}
 
     //cas 9: BUIDA, OCULTA, REVEAL
+    game = new Game();
     MockGenRandom rand = new MockGenRandom(null);
     mockB = new MockBoard(13, 8, rand);
     mockB.setUpMockBoardplus(1);
@@ -153,6 +157,197 @@ public class GameTest {
 
     game.act("REVEAL", 6, 6);
 }
+
+
+    //particions equivalents
+    @Test
+    public void testAct_coordenadesCantonada(){
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        //valors frontera
+        // Sup.esq
+        game.act("FLAG", 0, 0);
+    
+        // Sup.dreta
+        game.act("FLAG", 3, 0);
+    
+        //Inf.esq
+        game.act("FLAG", 0, 3);
+    
+        // Inf.dreta
+        game.act("FLAG", 3, 3);
+    }
+    @Test
+    public void testAct_CoordenadasInvalidas() {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(1, 4, random);
+    mockB.setUpMockBoardplus(6);
+    game.setBoard(mockB);
+    
+    //valors limit (ha de llançar excepcio)
+    try{
+        game.act("FLAG", -1, 0);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 1, -1);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 0, 4);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 4, 1);
+        assertTrue(false);
+    }catch(Exception e){}
+    //valors fora rang
+    try{
+        game.act("FLAG", 5, 0);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 2, -2);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", -2, 6);
+        assertTrue(false);
+    }catch(Exception e){}
+    try{
+        game.act("FLAG", 3, 7);
+        assertTrue(false);
+    }catch(Exception e){}
+    }
+
+    @Test
+    public void testAct_ActionInvalida()
+    {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(1, 4, random);
+    mockB.setUpMockBoardplus(6);
+    game.setBoard(mockB);
+    try{
+        game.act("INVALID", 2,2);
+        assertTrue(false);
+
+    }catch(Exception e){}
+    }
+
+    @Test
+    public void testAct_ActionNull()
+    {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(1, 4, random);
+    mockB.setUpMockBoardplus(6);
+    game.setBoard(mockB);
+    try{
+        game.act(null, 2,2);
+        assertTrue(false);
+
+    }catch(Exception e){}
+    }
+
+    @Test
+    public void testAct_ActionDespresGameOver()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.gameOver();
+        try{
+            game.act("FLAG", 3,3);
+            assertTrue(false);
+
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_ActionDespresWin()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.win();
+        try{
+            game.act("FLAG", 3,3);
+            assertTrue(false);
+
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_multiplesFlags()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("FLAG", 0,0);
+        game.act("FLAG", 2,2);
+        game.act("FLAG", 0,0);
+        assertFalse(game.getBoard().getCell(0, 0).isFlagged());
+        assertTrue(game.getBoard().getCell(2, 2).isFlagged());
+    }
+    @Test
+    public void testAct_flagDespresDeReveal()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("REVEAL", 0, 0);
+        try{
+        game.act("FLAG", 0,0);
+        assertTrue(false);
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_RevealDespresDeFlag()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("FLAG", 0, 0);
+        try{
+        game.act("REVEAL", 0,0);
+        assertTrue(false);
+        }catch(Exception e){}
+
+    }
+    @Test
+    public void testAct_RevealDespresDeReveal()
+    {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockB = new MockBoard(1, 4, random);
+        mockB.setUpMockBoardplus(6);
+        game.setBoard(mockB);
+        game.act("REVEAL", 0, 0);
+        try{
+        game.act("REVEAL", 0,0);
+        assertTrue(false);
+        }catch(Exception e){}
+
+    }
+
+
+
 
     @Test
     //testejerem el flux d'una partida i mirarem els resultats
