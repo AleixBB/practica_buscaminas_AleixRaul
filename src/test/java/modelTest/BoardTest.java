@@ -670,6 +670,7 @@ void testPutMinesParticionsEquivalentsCentre() {
 
 
 
+
     @Test
     void testExpandZeros()
     {
@@ -695,10 +696,41 @@ void testPutMinesParticionsEquivalentsCentre() {
             assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
-        
     }
     @Test
-void testClickAMina() {
+    void testExpandZeros_ParticionsEquivalentFilaiColumnaInvalides(){
+       
+       
+        int nMines = 1;
+        int size = 5;
+        MockGenRandom mockGen = new MockGenRandom(3,1 );        
+        Board b = new Board(nMines, size, mockGen); 
+        b.putMinesintoBoard(4,4);
+        b.insertValueintoCells();
+
+        //fila es -1 (valor limit) i columna es 0 (valor frontera)
+        try{
+        b.expandZeros(-1, 0);
+        }catch(Exception e){}
+        //fila es 0 (valor frontera) i columna es -1 (valor limit)
+        try{
+        b.expandZeros(0,-1);
+        }catch(Exception e){}
+        //fila es 1 (valor limit) i columna es 5 (valor limit)
+        try{
+        b.expandZeros(-1, 5);
+        }catch(Exception e){}
+        //fila es 1 (valor limit) i columna es 4 (valor frontera)
+        try{
+        b.expandZeros(1, 4);
+        }catch(Exception e){}
+        b.expandZeros(0, 0); //fila i columna son 0 (valor frontera)
+    }
+
+
+
+    @Test
+    void testClickAMina() {
         int size = 8;
         int nMines = 16;
         MockGenRandom mockGen = new MockGenRandom(
