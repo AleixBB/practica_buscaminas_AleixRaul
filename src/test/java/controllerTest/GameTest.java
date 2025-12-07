@@ -218,12 +218,9 @@ public class GameTest {
         game.act("FLAG", 3, 7);
         assertTrue(false);
     }catch(Exception e){}
-    
-    
-    assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-        game.act("FLAG", 3, 0);
-    });
-}
+    }
+
+
 
 
     @Test

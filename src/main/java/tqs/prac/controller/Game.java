@@ -55,6 +55,14 @@ public class Game {
     }
 
     public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
+        if (x < 0 || x >= this.getBoard().getSize()) //precondicio
+        {
+            throw new IllegalArgumentException("Fila fora de rang");
+        }
+        if (y < 0 || y >= this.getBoard().getSize())
+        {
+            throw new IllegalArgumentException("Columna fora de rang");
+        }
         switch(action){
             case "FLAG": 
                 if (tauler.getCell(x, y).isRevelaed()){ 
