@@ -101,7 +101,7 @@ public class BoardTest {
         
         b.firstClick(firstX, firstY);
 
-        // Comprobar que la zona del clic no tiene minas:
+        // Comprobar que la zona del clic no te minas:
         for (int i = firstX - 1; i <= firstX + 1; i++) {
             for (int j = firstY - 1; j <= firstY + 1; j++) {
                 if (i >= 0 && i < 5 && j >= 0 && j < 5) {
@@ -340,6 +340,32 @@ void testPutMinesParticionsEquivalentsCentre() {
             }
         }
     }
+    @Test
+    void testInsertValuesParticionsequivalent_value0(){
+
+    //tauler sense mines, tots els valors han de ser zero
+    int size = 4;
+    int nMines = 0;
+    MockGenRandom random = new MockGenRandom(null);
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 0);
+    b.insertValueintoCells();
+    for (int i=0; i<size; i++)
+    {
+        for (int j=0; j<size; j++)
+        {
+            assertEquals(b.getCell(i, j).getValue(), 0);
+        }
+    }
+
+
+    }
+
+
+
+
+
+
 
 
     @Test
