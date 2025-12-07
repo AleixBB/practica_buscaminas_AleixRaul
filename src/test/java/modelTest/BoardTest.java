@@ -111,7 +111,7 @@ public class BoardTest {
         }
     }
     @Test
-void testPutMinesParticionsEquivalentsCentre() {
+    void testPutMinesParticionsEquivalentsCentre() {
         
 
     // 1. 5 mines en tauler 5x5, fila i columna son centre (valor dins rang)
@@ -638,36 +638,44 @@ void testPutMinesParticionsEquivalentsCentre() {
     //fila es -1 (valor limit) i columna 1(limit)
     try{
         boolean result = b.firstClick(-1, 1);
+        assertTrue(false);
     }catch(Exception e){}
 
     //columna es -1 (valor limit), fila es 0 (valor frontera)
     try{
         boolean result = b.firstClick(0, -1);
+        assertTrue(false);
+
     }catch(Exception e){}
 
-    //columna es 0 (valor frontera) i fila 1 (valor limit)
+    //columna es 0 (valor frontera) i fila -1 (valor limit)
      try{
-        boolean result = b.firstClick(1, 0);
+        boolean result = b.firstClick(-1, 0);
+        assertTrue(false);
+
     }catch(Exception e){}
 
     //columna es 2 (valor dins rang) i fila -1 (valor limit)
      try{
         boolean result = b.firstClick(-1, 2);
+        assertTrue(false);
+
     }catch(Exception e){}
 
     //fila es -2 (fora rang) i columna es 4 (valor limit)
     try{
         boolean result = b.firstClick(-2, 4);
+        assertTrue(false);
+
     }catch(Exception e){}
-    //fila es 3 (valor frontera) i columna es 0 (valor limit)
+    //fila es 4 (valor limit) i columna es 0 (valor limit)
     try{
-        boolean result = b.firstClick(3, 0);
+        boolean result = b.firstClick(4, 0);
+        assertTrue(false);
+
     }catch(Exception e){}
     boolean result = b.firstClick(3,3); //fila i columna son valors frontera
     }
-
-
-
 
 
 
@@ -709,22 +717,10 @@ void testPutMinesParticionsEquivalentsCentre() {
         b.insertValueintoCells();
 
         //fila es -1 (valor limit) i columna es 0 (valor frontera)
-        try{
-        b.expandZeros(-1, 0);
-        }catch(Exception e){}
-        //fila es 0 (valor frontera) i columna es -1 (valor limit)
-        try{
-        b.expandZeros(0,-1);
-        }catch(Exception e){}
-        //fila es 1 (valor limit) i columna es 5 (valor limit)
-        try{
-        b.expandZeros(-1, 5);
-        }catch(Exception e){}
-        //fila es 1 (valor limit) i columna es 4 (valor frontera)
-        try{
-        b.expandZeros(1, 4);
-        }catch(Exception e){}
-        b.expandZeros(0, 0); //fila i columna son 0 (valor frontera)
+        //hauria de fer return
+       
+        
+
     }
 
 
