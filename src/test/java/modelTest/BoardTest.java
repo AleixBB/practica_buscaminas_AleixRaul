@@ -341,7 +341,7 @@ void testPutMinesParticionsEquivalentsCentre() {
         }
     }
     @Test
-    void testInsertValuesParticionsequivalent_value0(){
+    void testInsertValuesParticionsequivalent_capMina(){
 
     //tauler sense mines, tots els valors han de ser zero
     int size = 4;
@@ -415,15 +415,17 @@ void testPutMinesParticionsEquivalentsCentre() {
     assertEquals(b.getCell(1, 1).getValue(), -1);
     assertEquals(b.getCell(1, 0).getValue(), -1);
     assertEquals(b.getCell(0, 0).getValue(), -1);
-    
+
     assertEquals(b.getCell(0, 1).getValue(), 3);
     assertEquals(b.getCell(0, 2).getValue(), 1);
     assertEquals(b.getCell(1, 2).getValue(), 1);
     assertEquals(b.getCell(2, 1).getValue(), 2);
     assertEquals(b.getCell(2, 2).getValue(), 1);
     assertEquals(b.getCell(2, 0).getValue(), 2);
-
     }
+
+    @Test
+    void testInsertValuesParticionsequivalent_
 
 
 

@@ -71,7 +71,7 @@ public class Board {
                 for (int di = -1; di <= 1; di++) { // Comptar veïns
                     for (int dj = -1; dj <= 1; dj++) {
                         if (di == 0 && dj == 0) {
-                            continue; // No contar l'actual
+                            continue; 
                         }
                         int ni = i + di;
                         int nj = j + dj;
