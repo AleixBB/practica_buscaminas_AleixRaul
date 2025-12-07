@@ -426,12 +426,6 @@ void testPutMinesParticionsEquivalentsCentre() {
 
   
 
-
-
-
-
-
-
     @Test
     void firstClickTest()
     {
@@ -584,6 +578,98 @@ void testPutMinesParticionsEquivalentsCentre() {
         }
     
     }
+    @Test
+    void testFirstClick_ParticionsEquivalents_clickAMina(){
+        //clic a mina al mig
+        int size = 4;
+        int nMines =1;
+        MockGenRandom random = new MockGenRandom(1,1);
+        Board b = new Board(nMines, size, random);
+        b.putMinesintoBoard(3, 3);
+        b.insertValueintoCells();
+        boolean resultat = b.firstClick(1, 1);
+        assertFalse(resultat);
+    }
+    @Test
+    void testFirstClick_particioCero() {
+    //clic a cel.la buida amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    boolean result = b.firstClick(3, 0);
+    assertTrue( result);
+    }
+    @Test
+    void testFirstClick_particioValorUn() {
+    //clic a cel.la amb valor 1 amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    boolean result = b.firstClick(3, 1);
+    assertTrue( result);
+    }
+    @Test
+    void testFirstClick_particioValorDos() {
+    //clic a cel.la amb valor 1 amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    boolean result = b.firstClick(1, 1);
+    assertTrue( result);
+    assertTrue(b.getCell(1, 1).isRevelaed());
+    }
+     @Test
+    void testFirstClick_particioFilaiColumnaInvalides() {
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    //fila es -1 (valor limit) i columna 1(limit)
+    try{
+        boolean result = b.firstClick(-1, 1);
+    }catch(Exception e){}
+
+    //columna es -1 (valor limit), fila es 0 (valor frontera)
+    try{
+        boolean result = b.firstClick(0, -1);
+    }catch(Exception e){}
+
+    //columna es 0 (valor frontera) i fila 1 (valor limit)
+     try{
+        boolean result = b.firstClick(1, 0);
+    }catch(Exception e){}
+
+    //columna es 2 (valor dins rang) i fila -1 (valor limit)
+     try{
+        boolean result = b.firstClick(-1, 2);
+    }catch(Exception e){}
+
+    //fila es -2 (fora rang) i columna es 4 (valor limit)
+    try{
+        boolean result = b.firstClick(-2, 4);
+    }catch(Exception e){}
+    //fila es 3 (valor frontera) i columna es 0 (valor limit)
+    try{
+        boolean result = b.firstClick(3, 0);
+    }catch(Exception e){}
+    boolean result = b.firstClick(3,3); //fila i columna son valors frontera
+    }
+
+
+
+
+
     @Test
     void testExpandZeros()
     {
