@@ -233,7 +233,20 @@ public class GameTest {
         assertTrue(false);
 
     }catch(Exception e){}
+    }
+    @Test
+    public void testAct_ActionNull()
+    {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockB = new MockBoard(1, 4, random);
+    mockB.setUpMockBoardplus(6);
+    game.setBoard(mockB);
+    try{
+        game.act(null, 2,2);
+        assertTrue(false);
 
+    }catch(Exception e){}
     }
 
 
