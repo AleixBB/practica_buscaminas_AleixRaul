@@ -92,7 +92,6 @@ public class Board {
         return this.size;
     }
     
-    // Processar la primera acció lógica
     public Boolean firstClick(int fila, int columna){
         Cell clicked = matrix[fila][columna];
         // Clic a una mina
