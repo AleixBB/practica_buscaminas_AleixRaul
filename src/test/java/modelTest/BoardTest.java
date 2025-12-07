@@ -357,10 +357,73 @@ void testPutMinesParticionsEquivalentsCentre() {
             assertEquals(b.getCell(i, j).getValue(), 0);
         }
     }
+    }
+    
+    @Test
+    void testInsertValuesParticionsequivalent_unaMina(){
 
+    //tauler ammb una mina, tots els valors del voltant han de ser 1 i la mina -1
+    int size = 4;
+    int nMines = 1;
+    MockGenRandom random = new MockGenRandom(1,1);
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(3, 3);
+    b.insertValueintoCells();
+    assertEquals(b.getCell(1, 1).getValue(), -1);
+    assertEquals(b.getCell(0, 0).getValue(), 1);
+    assertEquals(b.getCell(0, 1).getValue(), 1);
+    assertEquals(b.getCell(0, 2).getValue(), 1);
+    assertEquals(b.getCell(1, 2).getValue(), 1);
+    assertEquals(b.getCell(1, 0).getValue(), 1);
+    assertEquals(b.getCell(2, 1).getValue(), 1);
+    assertEquals(b.getCell(2, 2).getValue(), 1);
+    assertEquals(b.getCell(2, 0).getValue(), 1);
 
     }
+    @Test
+    void testInsertValuesParticionsequivalent_duesMines(){
 
+    //tauler ammb dues mines, tots els valors del voltant han de ser 1 o 2 i la mina -1
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,1, 1,0);
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(3, 3);
+    b.insertValueintoCells();
+    assertEquals(b.getCell(1, 1).getValue(), -1);
+    assertEquals(b.getCell(1, 0).getValue(), -1);
+
+    assertEquals(b.getCell(0, 0).getValue(), 2);
+    assertEquals(b.getCell(0, 1).getValue(), 2);
+    assertEquals(b.getCell(0, 2).getValue(), 1);
+    assertEquals(b.getCell(1, 2).getValue(), 1);
+    assertEquals(b.getCell(2, 1).getValue(), 2);
+    assertEquals(b.getCell(2, 2).getValue(), 1);
+    assertEquals(b.getCell(2, 0).getValue(), 2);
+    }
+
+    @Test
+    void testInsertValuesParticionsequivalent_tresMines(){
+
+    //tauler ammb tres mines, tots els valors del voltant han de ser 1,2 o 3 i la mina -1
+    int size = 4;
+    int nMines = 3;
+    MockGenRandom random = new MockGenRandom(1,1, 1,0,0,0);
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(3, 3);
+    b.insertValueintoCells();
+    assertEquals(b.getCell(1, 1).getValue(), -1);
+    assertEquals(b.getCell(1, 0).getValue(), -1);
+    assertEquals(b.getCell(0, 0).getValue(), -1);
+    
+    assertEquals(b.getCell(0, 1).getValue(), 3);
+    assertEquals(b.getCell(0, 2).getValue(), 1);
+    assertEquals(b.getCell(1, 2).getValue(), 1);
+    assertEquals(b.getCell(2, 1).getValue(), 2);
+    assertEquals(b.getCell(2, 2).getValue(), 1);
+    assertEquals(b.getCell(2, 0).getValue(), 2);
+
+    }
 
 
 
