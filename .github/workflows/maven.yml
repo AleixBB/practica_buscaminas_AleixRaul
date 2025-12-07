@@ -8,7 +8,7 @@ on:
 
 jobs:
   tests:
-    name: Run Maven Tests
+    name: Run Maven Tests & Code Quality
     runs-on: ubuntu-latest
 
     steps:
@@ -34,3 +34,6 @@ jobs:
 
       - name: Run tests
         run: mvn test
+
+      - name: Check code quality
+        run: mvn checkstyle:check
