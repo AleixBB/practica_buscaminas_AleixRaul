@@ -5,6 +5,7 @@ import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 import tqs.prac.model.GenRandom;
 import tqs.prac.Main;
+import java.util.ArrayList;
 
 
 public class BoardTest {
@@ -111,7 +112,7 @@ public class BoardTest {
         }
     }
     @Test
-void testPutMinesParticionsEquivalentsCentre() {
+    void testPutMinesParticionsEquivalentsCentre() {
         
 
     // 1. 5 mines en tauler 5x5, fila i columna son centre (valor dins rang)
@@ -638,35 +639,44 @@ void testPutMinesParticionsEquivalentsCentre() {
     //fila es -1 (valor limit) i columna 1(limit)
     try{
         boolean result = b.firstClick(-1, 1);
+        assertTrue(false);
     }catch(Exception e){}
 
     //columna es -1 (valor limit), fila es 0 (valor frontera)
     try{
         boolean result = b.firstClick(0, -1);
+        assertTrue(false);
+
     }catch(Exception e){}
 
-    //columna es 0 (valor frontera) i fila 1 (valor limit)
+    //columna es 0 (valor frontera) i fila -1 (valor limit)
      try{
-        boolean result = b.firstClick(1, 0);
+        boolean result = b.firstClick(-1, 0);
+        assertTrue(false);
+
     }catch(Exception e){}
 
     //columna es 2 (valor dins rang) i fila -1 (valor limit)
      try{
         boolean result = b.firstClick(-1, 2);
+        assertTrue(false);
+
     }catch(Exception e){}
 
     //fila es -2 (fora rang) i columna es 4 (valor limit)
     try{
         boolean result = b.firstClick(-2, 4);
+        assertTrue(false);
+
     }catch(Exception e){}
-    //fila es 3 (valor frontera) i columna es 0 (valor limit)
+    //fila es 4 (valor limit) i columna es 0 (valor limit)
     try{
-        boolean result = b.firstClick(3, 0);
+        boolean result = b.firstClick(4, 0);
+        assertTrue(false);
+
     }catch(Exception e){}
     boolean result = b.firstClick(3,3); //fila i columna son valors frontera
     }
-
-
 
 
 
@@ -691,14 +701,172 @@ void testPutMinesParticionsEquivalentsCentre() {
         {
             for (int j=0; j<5; j++)
             {
-            System.out.println(b.getCell(i, j).isRevelaed() + " ");
             assertEquals(boardResultant[i][j],b.getCell(i, j).isRevelaed());
             }
         }
-        
     }
     @Test
-void testClickAMina() {
+    void testExpandZeros_ParticionsEquivalentFilaiColumnaInvalides(){
+       
+       //hauria de fer return, per tant no revela res
+        int nMines = 1;
+        int size = 5;
+        MockGenRandom mockGen = new MockGenRandom(3,1 );        
+        Board b = new Board(nMines, size, mockGen); 
+        b.putMinesintoBoard(4,4);
+        b.insertValueintoCells();
+        ArrayList<Cell> llistaRevelades = new ArrayList<>();
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaRevelades.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        ArrayList<Cell> llistaReveladesDespres = new ArrayList<>();
+
+        b.expandZeros(-1, 0);
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaReveladesDespres.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        assertEquals(llistaRevelades,llistaReveladesDespres);
+    }
+
+   @Test
+   void testExpandZeros_ParticionsEquivalents_CellaAmbZero()
+   {
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1,0,3,2 );        
+    Board b = new Board(nMines, size, mockGen); 
+    b.putMinesintoBoard(0,4);
+    b.insertValueintoCells();
+    b.expandZeros(4, 0);
+    //les del voltant es revelen 
+    assertTrue(b.getCell(4, 0).isRevelaed()); 
+    assertTrue(b.getCell(3, 0).isRevelaed()); 
+    assertTrue(b.getCell(4, 1).isRevelaed()); 
+    assertTrue(b.getCell(3, 1).isRevelaed()); 
+    assertTrue(b.getCell(2, 1).isRevelaed()); 
+    assertTrue(b.getCell(2, 0).isRevelaed()); 
+   } 
+   @Test
+    void testExpandZeros_CeldaConNumero() {
+    
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1, 0,3,2); 
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard(0, 4);
+    b.insertValueintoCells();
+   
+    b.expandZeros(4, 1);
+    //les del voltant no es revelen
+    assertTrue(b.getCell(4, 1).isRevelaed()); 
+    assertFalse(b.getCell(4, 0).isRevelaed());
+    assertFalse(b.getCell(3, 0).isRevelaed()); 
+    assertFalse(b.getCell(3, 1).isRevelaed()); 
+    assertFalse(b.getCell(3, 2).isRevelaed()); 
+    assertFalse(b.getCell(4, 2).isRevelaed()); 
+    }
+    @Test
+void testExpandZeros_CeldaConMina() {
+    
+
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1,0,3,2 ); 
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard(0, 4);
+    b.insertValueintoCells();
+    b.expandZeros(1, 0);
+    //hauria de fer un return i no fer res
+    ArrayList<Cell> llistaRevelades = new ArrayList<>();
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaRevelades.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        ArrayList<Cell> llistaReveladesDespres = new ArrayList<>();
+
+        b.expandZeros(-1, 0);
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaReveladesDespres.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        assertEquals(llistaRevelades,llistaReveladesDespres);
+    }
+    @Test
+    void testExpandZeros_CeldaYaRevelada() {
+    int nMines = 2;
+    int size = 5;
+    MockGenRandom mockGen = new MockGenRandom(1,0,3,2 ); 
+    Board b = new Board(nMines, size, mockGen);
+    b.putMinesintoBoard(0, 4);
+    b.insertValueintoCells();
+    b.expandZeros(0, 4); //revelada ja per la primera expansio
+    b.expandZeros(1, 1);
+
+    //no hauria de canviar res
+    ArrayList<Cell> llistaRevelades = new ArrayList<>();
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaRevelades.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        ArrayList<Cell> llistaReveladesDespres = new ArrayList<>();
+
+        b.expandZeros(-1, 0);
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                if (b.getCell(i, j).isRevelaed())
+                {
+                 llistaReveladesDespres.add(b.getCell(i, j)); 
+                }
+            }
+        }
+        assertEquals(llistaRevelades,llistaReveladesDespres);
+    
+
+}
+    
+   
+
+
+
+
+
+
+    @Test
+    void testClickAMina() {
         int size = 8;
         int nMines = 16;
         MockGenRandom mockGen = new MockGenRandom(
