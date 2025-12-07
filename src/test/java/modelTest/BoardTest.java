@@ -426,12 +426,6 @@ void testPutMinesParticionsEquivalentsCentre() {
 
   
 
-
-
-
-
-
-
     @Test
     void firstClickTest()
     {
@@ -584,6 +578,60 @@ void testPutMinesParticionsEquivalentsCentre() {
         }
     
     }
+    @Test
+    void testFirstClick_ParticionsEquivalents_clickAMina(){
+        //clic a mina al mig
+        int size = 4;
+        int nMines =1;
+        MockGenRandom random = new MockGenRandom(1,1);
+        Board b = new Board(nMines, size, random);
+        b.putMinesintoBoard(3, 3);
+        b.insertValueintoCells();
+        boolean resultat = b.firstClick(1, 1);
+        assertFalse(resultat);
+    }
+    @Test
+    void testFirstClick_particioCero() {
+    //clic a cel.la buida amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    boolean result = b.firstClick(3, 0);
+    assertTrue( result);
+    }
+    @Test
+    void testFirstClick_particioValorUn() {
+    //clic a cel.la amb valor 1 amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    boolean result = b.firstClick(3, 1);
+    assertTrue( result);
+}
+    @Test
+    void testFirstClick_particioValorDos() {
+    //clic a cel.la amb valor 1 amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
+    int size = 4;
+    int nMines = 2;
+    MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
+    Board b = new Board(nMines, size, random);
+    b.putMinesintoBoard(0, 3); 
+    b.insertValueintoCells();
+    boolean result = b.firstClick(1, 1);
+    assertTrue( result);
+    assertTrue(b.getCell(1, 1).isRevelaed());
+}
+
+
+
+
+
     @Test
     void testExpandZeros()
     {
