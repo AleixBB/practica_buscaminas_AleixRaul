@@ -3,11 +3,18 @@ package tqs.prac.controller;
 import tqs.prac.model.Board;
 import tqs.prac.view.IView;
 
+/*
+S'encarrega de controlar l'estat del joc (victòria/derrota), 
+processar les accions del jugador (revelar o marcar) i inicialitzar 
+el tauler amb les mines després del primer clic vàlid.
+Actua com a intermediari entre la Vista (interfície d'usuari) i el Model (Board).
+ */
+
 public class Game {
     protected Boolean gameOver; // Indica si el jugador a perdut (ha clicat en una mina).
     protected Boolean win; // Indica si el jugador ha guanyat.
     protected Board tauler;
-    protected Boolean firstClick; // Serveix per indicar la primera acció del joc.
+    protected Boolean firstClick; // Serveix per indicar si s'ha realitzat la primera accio
     protected IView vista; 
     
     public Game(){
@@ -51,6 +58,10 @@ public class Game {
     public void setView(IView vista)  {
         this.vista = vista;
     }
+    /*
+     Processa l'acció del jugador ("FLAG" o "REVEAL") a les coordenades donades,
+     gestionant el canvi d'estat del joc (Game Over o Victòria) si s'escau.
+     */
 
     public void act(String action, int x, int y)  { // Rep acció del jugador i coords
         //precondicions
@@ -96,6 +107,10 @@ public class Game {
                 }
         }           
     }
+    /*
+    Executa la lògica d'una ronda de joc: llegeix l'entrada, gestiona el primer clic, 
+    processa l'acció amb act i refresca la vista si el joc continua.
+    */
     
     public void startedGame() { // Controlador interactua amb la vista
         String accio = vista.getAction();
