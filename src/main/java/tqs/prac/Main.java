@@ -33,7 +33,7 @@ public class Main {
 
             case 1:
                 size = 10;
-                mines = 30;
+                mines = 22;
                 break;
 
             case 2:

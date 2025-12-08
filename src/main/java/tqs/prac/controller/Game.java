@@ -67,11 +67,11 @@ public class Game {
         {
             throw new IllegalArgumentException("Columna fora de rang");
         }
-        if (action != "FLAG" && action != "REVEAL")
+        if (!(action.equals("FLAG")) && !(action.equals( "REVEAL")))
         {
             throw new IllegalArgumentException("Accio Invalida");
         }
-        if (action == "FLAG")
+        if (action.equals("FLAG"))
         {
             if (tauler.getCell(x, y).isRevelaed()){ 
                     throw new IllegalArgumentException(); 
@@ -102,7 +102,7 @@ public class Game {
         int x = vista.getClickedX();
         int y = vista.getClickedY();
       
-        if (firstClick == true)  { // Colocar mines i valos de les cel·les
+        if (firstClick == true && accio.equals("REVEAL"))  { // Colocar mines i valos de les cel·les
             tauler.putMinesintoBoard(x, y);
             tauler.insertValueintoCells();
             firstClick = false;
