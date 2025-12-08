@@ -85,9 +85,9 @@ public class GamePathCoverageActTest {
         mockBoard.setUpMockBoardplus(7);
         game.setBoard(mockBoard);
         game.act("REVEAL", 0, 0);
-        assertTrue(game.getGameOver()); // Debe terminar el juego
-        assertFalse(game.getWin()); // No se gana al pisar mina
-        assertTrue(game.getBoard().getCell(0, 0).isRevelaed()); // La mina debe revelarse
+        assertTrue(game.getGameOver()); 
+        assertFalse(game.getWin());
+        assertTrue(game.getBoard().getCell(0, 0).isRevelaed()); 
     }
 
      @Test
@@ -98,16 +98,119 @@ public class GamePathCoverageActTest {
         mockBoard.setUpMockBoardplus(7);
         game.setBoard(mockBoard);
         game.act("REVEAL", 3, 0);        
-        assertTrue(game.getWin()); // Debe ganar
-        assertFalse(game.getGameOver()); // No debe terminar por mina
-        assertTrue(mockBoard.getCell(3, 0).isRevelaed()); // Debe revelarse
+        assertTrue(game.getWin()); 
+        assertFalse(game.getGameOver()); 
+        assertTrue(mockBoard.getCell(3, 0).isRevelaed()); 
     }
+    @Test
+    public void testAct_Path_REVEAL_CeldaNormalNoGanadora() {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockBoard = new MockBoard(2, 4, random);
+    mockBoard.setUpMockBoardplus(7);
+    game.setBoard(mockBoard);
+    
+    game.act("REVEAL", 1, 1);
+    
+    assertFalse(game.getGameOver());  // No ha acabat
+    assertFalse(game.getWin());       // No ha guanyat
+    assertTrue(mockBoard.getCell(1, 1).isRevelaed());  // Però està revelada
+}
+@Test
+public void testAct_AccionInvalida() {
+    Game game = new Game();
+    MockGenRandom random = new MockGenRandom(null);
+    MockBoard mockBoard = new MockBoard(2, 4, random);
+    mockBoard.setUpMockBoardplus(7);
+    game.setBoard(mockBoard);
+    try{
+        game.act("ACCIOINVALIDA", 1,1);
+        assertTrue(false);
+    }catch(Exception e){}
+    
+    assertFalse(game.getGameOver());
+    assertFalse(game.getWin());
+    assertFalse(mockBoard.getCell(1, 1).isRevelaed());
+    assertFalse(mockBoard.getCell(1, 1).isFlagged());
+}
+@Test
+    public void testAct_CoordenadaXY_ForaRang() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        
+        // X negativa
+        try{
+            game.act("FLAG", -1, 1);
+
+        }catch(Exception e ){}
+        
+        
+        // Y negativa
+        try{
+            game.act("FLAG", 1, -1);
+
+        }catch(Exception e){}
+        
+    }
+    @Test
+    public void testAct_CoordenadaXY_MesqSize() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        
+        // X fora rang
+        try{
+            game.act("FLAG", 5, 1);
+
+        }catch(Exception e ){}
+        
+        
+        // Y fora rang
+        try{
+            game.act("FLAG", 3, 4);
+
+        }catch(Exception e){}
+        
+    }
+    @Test
+    public void testAct_GameOver() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        game.gameOver();
+        try{
+            game.act("FLAG", 1, 1);
+
+        }catch(Exception e ){}
+        
+    }
+    @Test
+    public void testAct_Win() {
+        Game game = new Game();
+        MockGenRandom random = new MockGenRandom(null);
+        MockBoard mockBoard = new MockBoard(2, 4, random);
+        mockBoard.setUpMockBoardplus(7);
+        game.setBoard(mockBoard);
+        game.win();
+        try{
+            game.act("FLAG", 1, 1);
+
+        }catch(Exception e ){}
+        
+    }
+    
 
         
       
         
-        
-
+    
 }
 
 

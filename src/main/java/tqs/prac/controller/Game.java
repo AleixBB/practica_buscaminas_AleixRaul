@@ -73,16 +73,16 @@ public class Game {
         {
             throw new IllegalArgumentException("Accio Invalida");
         }
-        
-        switch(action){
-            case "FLAG": 
-                if (tauler.getCell(x, y).isRevelaed()){ 
+        if (action == "FLAG")
+        {
+            if (tauler.getCell(x, y).isRevelaed()){ 
                     throw new IllegalArgumentException(); 
                 }
                 tauler.getCell(x, y).toggleFlag(); 
-                break;
-            case "REVEAL":
-                if ((tauler.getCell(x, y).isRevelaed())) { 
+        }
+        else
+        {
+            if ((tauler.getCell(x, y).isRevelaed())) { 
                     throw new IllegalArgumentException();
                 }
                 if ((tauler.getCell(x, y).isFlagged())) { 
@@ -96,8 +96,7 @@ public class Game {
                 if (win) {
                     this.win = true; 
                 }
-                break;
-        }
+        }           
     }
     
     public void startedGame() { // Controlador interactua amb la vista

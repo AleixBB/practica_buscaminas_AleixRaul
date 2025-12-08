@@ -1,5 +1,4 @@
 package tqs.prac.model;
-import java.lang.Math;
 
 public class Board {
     protected int nMines;
