@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import modelTest.MockBoard;
 import modelTest.MockGenRandom;
 import tqs.prac.controller.Game;
+/* donat un fitxer csv l'usem com a input simulant
+un usuari per veure les accions que faria i ho testejem */
 
 public class GameDataDrivenTest {
     

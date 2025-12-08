@@ -5,7 +5,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import tqs.prac.model.Board;
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/*donat un fitxer format csv, l'utilitzem com a input 
+per inicialitzar un tauler */
 public class BoardDataDrivenTest {
     @ParameterizedTest(name = "[CSV] {0} a ({1},{2}) → {3}")
     @CsvFileSource(files = "board_init_test_data.csv")
