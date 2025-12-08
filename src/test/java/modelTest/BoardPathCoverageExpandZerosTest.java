@@ -74,7 +74,43 @@ public class BoardPathCoverageExpandZerosTest {
         board.expandZeros(3, 1);
         assertTrue(board.getCell(3, 1).isRevelaed());
     }
-
+    @Test
+public void testExpandZeros_Path6_Celda0_ExpandeixAZerosAdjacents() {
+    MockGenRandom random = new MockGenRandom(0,0,1,0);
+    Board board = new Board(5, 5, random);
+   
+    board.getCell(2, 2).setValue(0);
+    board.getCell(2, 3).setValue(0);
+    board.getCell(3, 2).setValue(0);
+    board.getCell(3, 3).setValue(0);
+    
+    board.expandZeros(2, 2);
+    
+    assertTrue(board.getCell(2, 2).isRevelaed());
+    assertTrue(board.getCell(2, 3).isRevelaed());
+    assertTrue(board.getCell(3, 2).isRevelaed());
+    assertTrue(board.getCell(3, 3).isRevelaed());
+}
+@Test
+public void testExpandZeros_Path7_Celda0_ExpandeixANumerosAdjacents() {
+    MockGenRandom random = new MockGenRandom(0,0,1,0);
+    Board board = new Board(5, 5, random);
+    
+    board.getCell(2, 2).setValue(0);
+    board.getCell(1, 2).setValue(1);  // Amunt
+    board.getCell(3, 2).setValue(2);  // Avall
+    board.getCell(2, 1).setValue(3);  // Esquerra
+    board.getCell(2, 3).setValue(4);  // Dreta
+    
+    board.expandZeros(2, 2);
+    
+    assertTrue(board.getCell(2, 2).isRevelaed());
+    
+    assertTrue(board.getCell(1, 2).isRevelaed());
+    assertTrue(board.getCell(3, 2).isRevelaed());
+    assertTrue(board.getCell(2, 1).isRevelaed());
+    assertTrue(board.getCell(2, 3).isRevelaed());
+}
 
     
     

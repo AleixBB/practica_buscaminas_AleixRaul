@@ -41,4 +41,64 @@ public class BoardDecisionCoverageFirstClickTest {
 
         
     }
+    @Test
+    void testFirstClick_Decision4_filaForaRang() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1);
+        Board board = new Board(2, 4, random);
+        board.putMinesintoBoard(0, 3);
+        board.insertValueintoCells();
+        try
+        {
+        boolean retorn = board.firstClick(4, 0);
+        assertTrue(false);
+        }catch(Exception e){} 
+    }
+    @Test
+    void testFirstClick_Decision5_columnaForaRang() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1);
+        Board board = new Board(2, 4, random);
+        board.putMinesintoBoard(0, 3);
+        board.insertValueintoCells();
+        try
+        {
+        boolean retorn = board.firstClick(0, 4);
+        assertTrue(false);
+        }catch(Exception e){}
+    }
+    @Test
+    void testFirstClick_Decision6_clickAZero() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1);
+        Board board = new Board(2, 4, random);
+        board.getCell(0, 0).setValue(-1);
+        board.getCell(2, 2).setValue(0);
+       
+        
+        boolean retorn = board.firstClick(2, 2);
+        assertTrue(retorn);
+        
+    }
+    @Test
+    void testFirstClick_Decision5_columnaNegativa() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1);
+        Board board = new Board(2, 4, random);
+        board.putMinesintoBoard(0, 3);
+        board.insertValueintoCells();
+        try
+        {
+        boolean retorn = board.firstClick(0, -4);
+        assertTrue(false);
+        }catch(Exception e){}
+    }
+    @Test
+    void testFirstClick_Decision5_filaNegativa() {
+        MockGenRandom random = new MockGenRandom(0,0,3,1);
+        Board board = new Board(2, 4, random);
+        board.putMinesintoBoard(0, 3);
+        board.insertValueintoCells();
+        try
+        {
+        boolean retorn = board.firstClick(-3, 4);
+        assertTrue(false);
+        }catch(Exception e){}
+    }
 }

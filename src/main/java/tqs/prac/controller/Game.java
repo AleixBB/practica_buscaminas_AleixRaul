@@ -1,9 +1,7 @@
 
 package tqs.prac.controller;
-import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
-import tqs.prac.view.*;
-import tqs.prac.Main;
+import tqs.prac.view.IView;
 
 public class Game {
     protected Boolean gameOver; // Indica si el jugador a perdut (ha clicat en una mina).
@@ -54,7 +52,7 @@ public class Game {
         this.vista = vista;
     }
 
-    public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
+    public void act(String action, int x, int y)  { // Rep acció del jugador i coords
         //precondicions
         if (this.getGameOver() == true ||  this.getWin() == true)
         {
@@ -73,31 +71,30 @@ public class Game {
         {
             throw new IllegalArgumentException("Accio Invalida");
         }
-        
-        switch(action){
-            case "FLAG": 
-                if (tauler.getCell(x, y).isRevelaed()){ 
+        if (action == "FLAG")
+        {
+            if (tauler.getCell(x, y).isRevelaed()){ 
                     throw new IllegalArgumentException(); 
                 }
                 tauler.getCell(x, y).toggleFlag(); 
-                break;
-            case "REVEAL":
-                if ((tauler.getCell(x, y).isRevelaed())) { 
+        }
+        else
+        {
+            if ((tauler.getCell(x, y).isRevelaed())) { 
                     throw new IllegalArgumentException();
                 }
                 if ((tauler.getCell(x, y).isFlagged())) { 
                     throw new IllegalArgumentException();
                 }
                 Boolean hayJuego = tauler.firstClick(x, y); 
-                if (!hayJuego)  {
-                    this.gameOver = true; // Si es una mina 
+                if (!hayJuego)  { //game over o win???
+                    this.gameOver = true;  
                 }
                 Boolean win = tauler.isWin(); // Comprobar si hem guanyat o no
                 if (win) {
                     this.win = true; 
                 }
-                break;
-        }
+        }           
     }
     
     public void startedGame() { // Controlador interactua amb la vista
