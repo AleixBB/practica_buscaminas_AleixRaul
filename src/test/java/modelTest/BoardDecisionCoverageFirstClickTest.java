@@ -6,6 +6,10 @@ import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 
 public class BoardDecisionCoverageFirstClickTest {
+    /*TESTOS DE CAIXA BLANCA
+    DECISION COVERAGE
+    
+    */
 
     @Test
     void testClickACell_Decision1_Mina() {

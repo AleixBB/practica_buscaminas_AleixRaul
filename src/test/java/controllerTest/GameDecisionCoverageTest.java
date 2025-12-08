@@ -11,9 +11,13 @@ import viewTest.MockView;
 
 
 public class GameDecisionCoverageTest {
+    /*TESTOS DE CAIXA BLANCA
+    DECISION COVERAGE
+    
+    */
     //aplicat a startedGame
     // 3 condiciones: firstClick, win, gameOver
-    // Necessitem cubrir todas las combinaciones true/false
+    // Necessitem cubrir totes las combinaciones true/false
         
     @Test
     void testStartedGame_Case1_firstClickTrue_winFalse_gameOverFalse() {
