@@ -122,6 +122,7 @@ public class GamePathCoverageActTest {
     assertFalse(game.getWin());       // No ha guanyat
     assertTrue(mockBoard.getCell(1, 1).isRevelaed());  // Però està revelada
 }
+//a partir d'aqui venen testos que no passen les precondicions
 @Test
 public void testAct_AccionInvalida() {
     Game game = new Game();
