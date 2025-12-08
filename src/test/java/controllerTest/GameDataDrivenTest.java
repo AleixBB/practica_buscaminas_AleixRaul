@@ -17,7 +17,7 @@ un usuari per veure les accions que faria i ho testejem */
 public class GameDataDrivenTest {
     
     @ParameterizedTest(name = "[CSV] {0} a ({1},{2}) → {3}")
-    @CsvFileSource(files = "act_test_data.csv")
+    @CsvFileSource(files = "src/test/java/Resources/act_test_data.csv")
     void testAct_DataDriven(String accion, int x, int y, String resultadoEsperado) {
         // Configuració del test
         Game game = new Game();

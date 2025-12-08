@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 per inicialitzar un tauler */
 public class BoardDataDrivenTest {
     @ParameterizedTest(name = "[CSV] {0} a ({1},{2}) → {3}")
-    @CsvFileSource(files = "board_init_test_data.csv")
+    @CsvFileSource(files = "src/test/java/Resources/board_init_test_data.csv")
+
     void testAct_DataDriven(int nMines, int size, String resultadoEsperado) {
         MockGenRandom random = new MockGenRandom(null);
         switch (resultadoEsperado) {
