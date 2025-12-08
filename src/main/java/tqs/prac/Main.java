@@ -5,24 +5,15 @@ import tqs.prac.model.Board;
 import tqs.prac.model.GenRandom;
 import tqs.prac.controller.Game;
 import tqs.prac.view.View;
+import tqs.prac.view.Menu;
 
 import javax.swing.JOptionPane;
 
 public class Main {
 
     public static void main(String[] args) {
-        String[] opciones = { "Fàcil", "Mitjà", "Difícil" };
-
-        int eleccion = JOptionPane.showOptionDialog(
-                null,
-                "Selecciona la dificultat",
-                "Buscamines_AleixBenet_RaulMancebo",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.INFORMATION_MESSAGE, 
-                null,      
-                opciones,
-                opciones[0]
-        );
+        Menu menu;
+        int eleccion = menu.menu()
         int size = 8;
         int mines = 10;
         switch (eleccion) {
