@@ -71,7 +71,7 @@ public class Game {
         {
             throw new IllegalArgumentException("Accio Invalida");
         }
-        if (action == "FLAG")
+        if (action.equals("FLAG"))
         {
             if (tauler.getCell(x, y).isRevelaed()){ 
                     throw new IllegalArgumentException(); 
