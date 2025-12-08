@@ -95,6 +95,19 @@ public class MockBoard extends Board {
                 {new Cell(0), new Cell(0), new Cell(1), new Cell(1)},
                 {new Cell(0), new Cell(0), new Cell(1), new Cell(-1)}};
                 break;
+            case 8:
+                this.matrix = new Cell[][]{
+                {new Cell(1),  new Cell(-1), new Cell(1),  new Cell(1),  new Cell(2),  new Cell(-1), new Cell(1),  new Cell(0)},
+                {new Cell(2),  new Cell(3),  new Cell(2),  new Cell(1),  new Cell(-1), new Cell(2),  new Cell(1),  new Cell(0)},
+                {new Cell(1),  new Cell(-1), new Cell(1),  new Cell(1),  new Cell(2),  new Cell(2),  new Cell(0),  new Cell(0)},
+                {new Cell(1),  new Cell(1),  new Cell(1),  new Cell(1),  new Cell(-1), new Cell(1),  new Cell(0),  new Cell(0)},
+                {new Cell(0),  new Cell(0),  new Cell(0),  new Cell(1),  new Cell(1),  new Cell(1),  new Cell(0),  new Cell(0)},
+                {new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(1),  new Cell(2),  new Cell(2)},
+                {new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(1),  new Cell(-1), new Cell(-1)},
+                {new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(0),  new Cell(1),  new Cell(2),  new Cell(2)}
+                };
+                break;
+                
         }
 
             
