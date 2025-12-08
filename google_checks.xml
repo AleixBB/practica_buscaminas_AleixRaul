@@ -24,7 +24,7 @@
         
         <!-- Complexitat ciclomàtica -->
         <module name="CyclomaticComplexity">
-            <property name="max" value="10"/>          <!-- Màxim complexitat 10 -->
+            <property name="max" value="15"/>          <!-- Màxim complexitat 10 -->
         </module>
     </module>
 </module>

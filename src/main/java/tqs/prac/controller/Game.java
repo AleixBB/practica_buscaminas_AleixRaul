@@ -52,7 +52,7 @@ public class Game {
         this.vista = vista;
     }
 
-    public void act(String action, int x, int y)  { // Rep acció del jugador (FLAG O REVEAL) i les coordenades
+    public void act(String action, int x, int y)  { // Rep acció del jugador i coords
         //precondicions
         if (this.getGameOver() == true ||  this.getWin() == true)
         {
