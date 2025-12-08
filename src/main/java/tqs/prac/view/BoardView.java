@@ -1,7 +1,18 @@
 package tqs.prac.view;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 import tqs.prac.controller.Game;

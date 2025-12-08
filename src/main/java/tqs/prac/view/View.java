@@ -1,7 +1,7 @@
 
 package tqs.prac.view;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 import tqs.prac.model.Board;
 import tqs.prac.controller.Game;
 

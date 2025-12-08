@@ -1,9 +1,7 @@
 
 package tqs.prac.controller;
-import tqs.prac.model.Cell;
 import tqs.prac.model.Board;
-import tqs.prac.view.*;
-import tqs.prac.Main;
+import tqs.prac.view.IView;
 
 public class Game {
     protected Boolean gameOver; // Indica si el jugador a perdut (ha clicat en una mina).
