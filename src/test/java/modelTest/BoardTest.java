@@ -100,7 +100,7 @@ public class BoardTest {
         b.putMinesintoBoard(firstX,firstY);
         
         
-        b.firstClick(firstX, firstY);
+        b.clickACell(firstX, firstY);
 
         // Comprobar que la zona del clic no te minas:
         for (int i = firstX - 1; i <= firstX + 1; i++) {
@@ -428,7 +428,7 @@ public class BoardTest {
   
 
     @Test
-    void firstClickTest()
+    void clickACellTest()
     {
         int size = 5;
         int nMines = 4;
@@ -448,7 +448,7 @@ public class BoardTest {
         { false,  false,  false,  false,  false },
          { false,  false, false,  true, false},
         { false,false,  false,  false,  false }};
-        b.firstClick(3, 3);
+        b.clickACell(3, 3);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -461,7 +461,7 @@ public class BoardTest {
     }
 
     @Test
-    void firstClickTest8x8() {
+    void clickACellTest8x8() {
         int size = 8;
         int nMines = 16;
         
@@ -485,7 +485,7 @@ public class BoardTest {
             {false, false, false, false, false, false, false, false}
         };
 
-        b.firstClick(2, 1);
+        b.clickACell(2, 1);
         
         for(int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -495,7 +495,7 @@ public class BoardTest {
     }
      
     @Test
-    void firstClick2ndTest8x8() {
+    void ClickACell2ndTest8x8() {
         int size = 8;
         int nMines = 10;
         
@@ -518,7 +518,7 @@ public class BoardTest {
             {false, false, false, false, false, false, false, false}
         };
 
-        b.firstClick(4, 4);
+        b.clickACell(4, 4);
         
         for(int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -527,7 +527,7 @@ public class BoardTest {
         }
     }
     @Test
-    void firstClick3x3amb1mina()
+    void ClickACell3x3amb1mina()
     {
         int size = 4;
         int nMines = 1;
@@ -541,7 +541,7 @@ public class BoardTest {
         {false,true, true, true},
         {false, true, true, true}};
         
-        b.firstClick(0, 0);
+        b.clickACell(0, 0);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -554,7 +554,7 @@ public class BoardTest {
         }
     }
     @Test
-    void firstClick3x3Clickingotherplace()
+    void clickACell3x3Clickingotherplace()
     {
         int size = 4;
         int nMines = 1;
@@ -567,7 +567,7 @@ public class BoardTest {
         {true,false, false, false},
         {false,false, false, false},
         {false, false, false, false}};
-        b.firstClick(1,0);
+        b.clickACell(1,0);
         for(int i=0; i<size; i++)
         {
             for (int j=0; j<size; j++)
@@ -580,7 +580,7 @@ public class BoardTest {
     
     }
     @Test
-    void testFirstClick_ParticionsEquivalents_clickAMina(){
+    void testClickACell_ParticionsEquivalents_clickAMina(){
         //clic a mina al mig
         int size = 4;
         int nMines =1;
@@ -588,11 +588,11 @@ public class BoardTest {
         Board b = new Board(nMines, size, random);
         b.putMinesintoBoard(3, 3);
         b.insertValueintoCells();
-        boolean resultat = b.firstClick(1, 1);
+        boolean resultat = b.clickACell(1, 1);
         assertFalse(resultat);
     }
     @Test
-    void testFirstClick_particioCero() {
+    void testClickACell_particioCero() {
     //clic a cel.la buida amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
     int size = 4;
     int nMines = 2;
@@ -600,11 +600,11 @@ public class BoardTest {
     Board b = new Board(nMines, size, random);
     b.putMinesintoBoard(0, 3); 
     b.insertValueintoCells();
-    boolean result = b.firstClick(3, 0);
+    boolean result = b.clickACell(3, 0);
     assertTrue( result);
     }
     @Test
-    void testFirstClick_particioValorUn() {
+    void testClickACell_particioValorUn() {
     //clic a cel.la amb valor 1 amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
     int size = 4;
     int nMines = 2;
@@ -612,11 +612,11 @@ public class BoardTest {
     Board b = new Board(nMines, size, random);
     b.putMinesintoBoard(0, 3); 
     b.insertValueintoCells();
-    boolean result = b.firstClick(3, 1);
+    boolean result = b.clickACell(3, 1);
     assertTrue( result);
     }
     @Test
-    void testFirstClick_particioValorDos() {
+    void testclickACell_particioValorDos() {
     //clic a cel.la amb valor 1 amb mina al mig (posem una altra mina per impedir que la primera obertura deixi algun 0)
     int size = 4;
     int nMines = 2;
@@ -624,12 +624,12 @@ public class BoardTest {
     Board b = new Board(nMines, size, random);
     b.putMinesintoBoard(0, 3); 
     b.insertValueintoCells();
-    boolean result = b.firstClick(1, 1);
+    boolean result = b.clickACell(1, 1);
     assertTrue( result);
     assertTrue(b.getCell(1, 1).isRevelaed());
     }
      @Test
-    void testFirstClick_particioFilaiColumnaInvalides() {
+    void testClickACell_particioFilaiColumnaInvalides() {
     int size = 4;
     int nMines = 2;
     MockGenRandom random = new MockGenRandom(1,0,3,2); // mina al centre + mina extrem
@@ -638,44 +638,44 @@ public class BoardTest {
     b.insertValueintoCells();
     //fila es -1 (valor limit) i columna 1(limit)
     try{
-        boolean result = b.firstClick(-1, 1);
+        boolean result = b.clickACell(-1, 1);
         assertTrue(false);
     }catch(Exception e){}
 
     //columna es -1 (valor limit), fila es 0 (valor frontera)
     try{
-        boolean result = b.firstClick(0, -1);
+        boolean result = b.clickACell(0, -1);
         assertTrue(false);
 
     }catch(Exception e){}
 
     //columna es 0 (valor frontera) i fila -1 (valor limit)
      try{
-        boolean result = b.firstClick(-1, 0);
+        boolean result = b.clickACell(-1, 0);
         assertTrue(false);
 
     }catch(Exception e){}
 
     //columna es 2 (valor dins rang) i fila -1 (valor limit)
      try{
-        boolean result = b.firstClick(-1, 2);
+        boolean result = b.clickACell(-1, 2);
         assertTrue(false);
 
     }catch(Exception e){}
 
     //fila es -2 (fora rang) i columna es 4 (valor limit)
     try{
-        boolean result = b.firstClick(-2, 4);
+        boolean result = b.clickACell(-2, 4);
         assertTrue(false);
 
     }catch(Exception e){}
     //fila es 4 (valor limit) i columna es 0 (valor limit)
     try{
-        boolean result = b.firstClick(4, 0);
+        boolean result = b.clickACell(4, 0);
         assertTrue(false);
 
     }catch(Exception e){}
-    boolean result = b.firstClick(3,3); //fila i columna son valors frontera
+    boolean result = b.clickACell(3,3); //fila i columna son valors frontera
     }
 
 
@@ -874,7 +874,7 @@ void testExpandZeros_CeldaAmbMina() {
         b.putMinesintoBoard(7, 7);  
         
         b.insertValueintoCells();
-        b.firstClick(1, 0); 
+        b.clickACell(1, 0); 
         
         Boolean[][] boardResultant = {
             { false, false, false, true, false, true, false, true },
@@ -903,7 +903,7 @@ void testExpandZeros_CeldaAmbMina() {
         Board b = new Board(nMines, size, mockGen);
         b.putMinesintoBoard(3,3);
         b.insertValueintoCells();
-        b.firstClick(2, 0); //click a mina
+        b.clickACell(2, 0); //click a mina
         Boolean[][] boardResultant = {
         { false, false, false, false},
         { false, false, false, false },

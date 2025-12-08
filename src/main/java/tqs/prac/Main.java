@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static void main(String[] args) {
-        Menu menu;
-        int eleccion = menu.menu()
+        Menu menu();
+        int eleccion = menu.menu();
         int size = 8;
         int mines = 10;
         switch (eleccion) {
@@ -40,7 +40,7 @@ public class Main {
         Game game = new Game(); //controlador
         game.setBoard(board); 
 
-        View view = new View(board, game); //vist
+        View view = new View(board, game); //vista
         game.setView(view);
 
     }

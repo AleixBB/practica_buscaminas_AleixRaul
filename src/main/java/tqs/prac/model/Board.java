@@ -1,5 +1,6 @@
 package tqs.prac.model;
 
+
 public class Board {
     protected int nMines;
     protected int size;
@@ -38,7 +39,7 @@ public class Board {
         int tamanyZonaProtegida = zonaProtegidaFiles * zonaProtegidaCols;
         int celdasDisponibles = size * size - tamanyZonaProtegida;
     
-        // Precondició de Caixa Negra
+        // Precondició 
         if (nMines > celdasDisponibles) { // Més mines que espais 
             throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
         }
@@ -91,7 +92,7 @@ public class Board {
         return this.size;
     }
     
-    public Boolean firstClick(int fila, int columna){
+    public Boolean clickACell(int fila, int columna){
         if (fila >= this.size || fila < 0)
         {
             throw new IllegalArgumentException("Fila fora rang");

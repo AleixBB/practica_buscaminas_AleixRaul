@@ -86,7 +86,7 @@ public class Game {
                 if ((tauler.getCell(x, y).isFlagged())) { 
                     throw new IllegalArgumentException();
                 }
-                Boolean hayJuego = tauler.firstClick(x, y); 
+                Boolean hayJuego = tauler.clickACell(x, y); 
                 if (!hayJuego)  { //game over o win???
                     this.gameOver = true;  
                 }
