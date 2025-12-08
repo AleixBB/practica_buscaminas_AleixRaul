@@ -33,7 +33,7 @@ public class Main {
 
             case 1:
                 size = 10;
-                mines = 30;
+                mines = 22;
                 break;
 
             case 2:
@@ -49,7 +49,7 @@ public class Main {
         Game game = new Game(); //controlador
         game.setBoard(board); 
 
-        View view = new View(board, game); //vista
+        View view = new View(board, game); //vist
         game.setView(view);
 
     }

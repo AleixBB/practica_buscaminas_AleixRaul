@@ -102,7 +102,7 @@ public class Game {
         int x = vista.getClickedX();
         int y = vista.getClickedY();
       
-        if (firstClick == true)  { // Colocar mines i valos de les cel·les
+        if (firstClick == true && accio.equals("REVEAL"))  { // Colocar mines i valos de les cel·les
             tauler.putMinesintoBoard(x, y);
             tauler.insertValueintoCells();
             firstClick = false;

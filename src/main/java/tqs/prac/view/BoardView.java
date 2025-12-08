@@ -93,55 +93,59 @@ public class BoardView extends JPanel {
     }
 
     public void refresh() {
-        for (int i = 0; i < board.getSize(); i++) {
-            for (int j = 0; j < board.getSize(); j++) {
+    for (int i = 0; i < board.getSize(); i++) {
+        for (int j = 0; j < board.getSize(); j++) {
 
-                Cell c = board.getCell(i, j);
-                JButton btn = buttons[i][j];
+            Cell c = board.getCell(i, j);
+            JButton btn = buttons[i][j];
 
-                // Limpiar completamente el botón primero
-                btn.setText("");
-                btn.setForeground(Color.BLACK);
-                btn.setBackground(Color.LIGHT_GRAY);
-                btn.setEnabled(true);
+            // Limpiar completamente el botón primero
+            btn.setText("");
+            btn.setForeground(Color.BLACK);
+            btn.setBackground(Color.LIGHT_GRAY);
+            btn.setEnabled(true);  // Siempre habilitado inicialmente
 
-                if (c.isFlagged()) {
-                    btn.setText("🚩");
-                    btn.setForeground(Color.RED);
-                    btn.setBackground(new Color(220, 220, 220));
-                    continue;
-                }
-
-                if (!c.isRevelaed()) {
-                    btn.setBackground(new Color(200, 200, 255)); // Azul muy clarito
-                    continue;
-                }
-
-                btn.setEnabled(false);
-
-                if (c.getValue() == -1) {
-                    btn.setText("💣");
-                    btn.setForeground(Color.BLACK);
-                    btn.setBackground(Color.RED);
-                    continue;
-                }
-
-                if (c.getValue() == 0) {
-                    btn.setBackground(Color.WHITE);
-                    continue;
-                }
-
-                int value = c.getValue();
-                btn.setText(String.valueOf(value));
-                btn.setForeground(getColorForNumber(value));
-                btn.setBackground(Color.WHITE);
+            if (c.isFlagged()) {
+                btn.setText("🚩");
+                btn.setForeground(Color.RED);
+                btn.setBackground(new Color(220, 220, 220));
+                continue;
             }
+
+            if (!c.isRevelaed()) {
+                btn.setBackground(new Color(200, 200, 255)); // Azul muy clarito
+                continue;
+            }
+
+            // Celdas reveladas - NO deshabilitar para que mantengan los colores
+
+            if (c.getValue() == -1) {
+                btn.setText("💣");
+                btn.setForeground(Color.BLACK);
+                btn.setBackground(Color.RED);
+                btn.setEnabled(false);  // Solo deshabilitar para bombas
+                continue;
+            }
+
+            if (c.getValue() == 0) {
+                btn.setBackground(Color.WHITE);
+                continue;
+            }
+
+            int value = c.getValue();
+            btn.setText(String.valueOf(value));
+            btn.setForeground(getColorForNumber(value));
+            btn.setBackground(Color.WHITE);
+            // btn.setEnabled(true);  // Asegurar que esté habilitado para números
         }
-        
-        // Forzar repintado
-        revalidate();
-        repaint();
     }
+    
+    // Forzar repintado
+    revalidate();
+    repaint();
+    }
+
+
 
     private Color getColorForNumber(int n) {
         // Colores MUY FUERTES y saturados
