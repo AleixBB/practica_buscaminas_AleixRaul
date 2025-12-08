@@ -6,6 +6,10 @@ import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 
 public class BoardDecisionCoveragePutMinesTest {
+    /*TESTOS DE CAIXA BLANCA
+    DECISION COVERAGE
+    
+    */
     @Test
     void testPutMines_Decision1_DemasiadasMinas() {
         MockGenRandom random = new MockGenRandom();

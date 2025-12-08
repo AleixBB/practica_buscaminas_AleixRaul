@@ -6,11 +6,12 @@ import tqs.prac.model.Cell;
 import tqs.prac.model.GenRandom;
 
 public class BoardLoopTestingTests {
-    //TESTOS DE CAIXA BLANCA
-//LOOP TESTING
-
-
-//clickAMina
+/*TESTOS DE CAIXA BLANCA
+LOOP TESTING
+amb els següents testos comprovarem el comportament
+intern de la funció clickAMina de forma que executarem
+el bucle unes determinades iteracions en cada test
+*/
 
 @Test
 void testClickAMina_0iteracions(){ //0 iteracions
@@ -77,7 +78,7 @@ void testClickAMina_MLessThanN() {
 void testClickAMina_NMinusOne() { //n-1 iteracions
     
     int size = 5;
-    int zonaProtegida = 9; // 3x3 alrededor de (2,2)
+    int zonaProtegida = 9;
     int celdasDisponibles = size * size - zonaProtegida; // 25 - 9 = 16
     int nMines = celdasDisponibles - 1; // n-1 = 15
     

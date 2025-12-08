@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 
 public class BoardTest {
+
+    //TESTOS DE CAIXA NEGRA
     //test que comprova el constructor per defecte per la matrix
     @Test
     void testInitpt1()
@@ -56,6 +58,11 @@ public class BoardTest {
         assertNotNull(tauler);
         
     }
+    /*TESTOS METODE PUTMINESINTOBOARD
+    mitjançant el mock de generador random, comprovarem
+    com s'inicialitzen les mines al tauler tenint en compte el primer
+    click i les particions equivalents que en deriven.
+    */
 
     //test que comprova que el nombre de mines que s'ha introduit al tauler de forma random es correcte
     @Test
@@ -102,7 +109,7 @@ public class BoardTest {
         
         b.clickACell(firstX, firstY);
 
-        // Comprobar que la zona del clic no te minas:
+        // Comprobar que la zona del clic no te mines:
         for (int i = firstX - 1; i <= firstX + 1; i++) {
             for (int j = firstY - 1; j <= firstY + 1; j++) {
                 if (i >= 0 && i < 5 && j >= 0 && j < 5) {
@@ -179,7 +186,6 @@ public class BoardTest {
    @Test 
     void testPutMinesParticionsEquivalentsCantonada() {
         
-
     // 1. 5 mines en tauler 5x5, fila i columna son cantonada (valor dins rang)
         int size = 5;
         int nMines = 5;
@@ -307,6 +313,11 @@ public class BoardTest {
         }
         assertEquals(contador, nMines);
     }
+    /*TESTOS METODE INSERTVALUEINTOCELLS
+    aquests testos comproven si els valors que prenen 
+    les diferents cel.les en relacio a les mines es correcta
+    en diferents casos i particions. 
+    */
     
 
     @Test
@@ -425,6 +436,11 @@ public class BoardTest {
     assertEquals(b.getCell(2, 0).getValue(), 2);
     }
 
+    /*TESTOS METODE clickACell
+    testos de caixa negra que comproven el que passa
+    si realitzem click a una cel.la que pot estar en diferents
+    estats (revelada, flaguejada) i situacions
+    */
   
 
     @Test
@@ -678,7 +694,11 @@ public class BoardTest {
     boolean result = b.clickACell(3,3); //fila i columna son valors frontera
     }
 
-
+    /*TESTOS METODE EXPAND ZEROS
+    comprovarem si es fa bé l'expansio tenint en compte
+    els valors frontera i limit (coordenades) i si els taulers
+    resultants del metode son els esperats en cada cas
+    */
 
     @Test
     void testExpandZeros()
@@ -857,6 +877,10 @@ void testExpandZeros_CeldaAmbMina() {
     
 
 }
+    /*TESTOS METODE CLICKAMINA
+    senzillament comproven que totes les mines es mostren tal
+    i com ha de ser
+    */
     
    
     @Test
@@ -982,7 +1006,13 @@ void testExpandZeros_CeldaAmbMina() {
             }
         }
     }
-} 
+    } 
+    /*TESTOS METODE ISWIN
+    aquests testos de caixa negra testejen diferents 
+    situacions on es mitjançant una simulacio del tauler
+    s'arriba a la conclusio de si s'ha de donar la partida
+    com a guanyada o no.
+    */
      
     @Test
     void testIsWin()

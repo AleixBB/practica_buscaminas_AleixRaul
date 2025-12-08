@@ -6,6 +6,11 @@ import tqs.prac.model.Board;
 import tqs.prac.model.Cell;
 
 public class BoardPathCoverageExpandZerosTest {
+    /*TESTOS DE CAIXA BLANCA
+    PATH COVERAGE
+    amb els seguents testos analitzarem TOTS els camins 
+    viables i possibles que pot prendre el metode expandZeros
+    */
     @Test
     public void testExpandZeros_Path1_CoordenadasFueraLimites() {
         MockGenRandom random = new MockGenRandom(0,0,1,0);

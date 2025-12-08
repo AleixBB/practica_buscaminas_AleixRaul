@@ -14,6 +14,11 @@ import viewTest.viewTest;
 import org.junit.jupiter.api.Test;
 
 public class GameTest {
+
+
+    //TESTOS DE CAIXA NEGRA
+
+    //test que comprova el constructor per defecte
     @Test
     void testConstructor(){
         Game game = new Game();
@@ -48,7 +53,13 @@ public class GameTest {
 
 
     }
-    /*TESTOS METODE ACT */
+    /*TESTOS METODE ACT
+    aquests testos testejen el comportament 
+    del metode act en les diferents particions equivalents
+    i valors frontera i limit (coordenades i string de accio)
+    que es passen com a parametres
+    */
+    
 
     //test1: flagejar una cel.la no win
     @Test
@@ -345,6 +356,12 @@ public class GameTest {
         }catch(Exception e){}
 
     }
+    /*TESTOS METODE STARTEDGAME
+    aquests testos testejen el comportament 
+    del metode startedgame en les diferents situacions.
+    Metode que gestiona si es el primer click o no
+    i s'encarrega de controlar les accions
+    */
 
 
 

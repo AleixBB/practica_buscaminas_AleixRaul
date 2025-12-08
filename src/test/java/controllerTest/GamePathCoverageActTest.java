@@ -9,6 +9,12 @@ import modelTest.MockBoard;
 import modelTest.MockGenRandom;
 
 public class GamePathCoverageActTest {
+    /*TESTOS DE CAIXA BLANCA
+    PATH COVERAGE
+    amb els seguents testos analitzarem TOTS els camins 
+    viables i possibles que pot prendre el metode act
+    */
+
     @Test
     public void testAct_Path1_FLAG_CeldaNoRevelada() {
         Game game = new Game();
