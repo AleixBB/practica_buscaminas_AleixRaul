@@ -1,11 +1,17 @@
 package tqs.prac.model;
 
-
 public class Board {
     protected int nMines;
     protected int size;
     protected Cell[][] matrix;
     private GenRandom random;
+    /*
+    Representa el tauler de joc del Buscamines (Minesweeper).
+    S'encarrega de gestionar la disposició de les mines, 
+    els valors de les cel·les (nombre de mines adjacents), 
+    i la lògica principal de les interaccions del jugador 
+    (clics, revelació i expansió de zeros).
+    */
 
     public Board(int nMines, int size, GenRandom rand)  {
         //precondicions
@@ -32,15 +38,19 @@ public class Board {
         return matrix[fila][col];
     }
 
-    public void putMinesintoBoard(int fila, int columna)  { // Colocar les mines de manera aleatoria
-        // Calculem la zona protegida 3x3
+    /*
+    Col·loca les mines aleatòriament al tauler garantint que la zona 3x3 centrada a fila,columna
+    quedi lliure de mines, respectant el primer moviment del jugador.
+    */
+    public void putMinesintoBoard(int fila, int columna)  { 
+        // Calculem la zona protegida (depen de on tinguem la mina)
         int zonaProtegidaFiles = (Math.min(fila + 1, size-1) - Math.max(fila - 1, 0)) + 1;
         int zonaProtegidaCols = Math.min(columna + 1, size - 1) - Math.max(columna - 1, 0) + 1;
         int tamanyZonaProtegida = zonaProtegidaFiles * zonaProtegidaCols;
         int celdasDisponibles = size * size - tamanyZonaProtegida;
     
         // Precondició 
-        if (nMines > celdasDisponibles) { // Més mines que espais 
+        if (nMines > celdasDisponibles) { // Més mines que espais disponibles 
             throw new IllegalArgumentException("El nombre de mines excedeix la mida del tauler");
         }
 
@@ -59,8 +69,11 @@ public class Board {
             }
         }  
     }  
-
-    public void insertValueintoCells() {  // Assignar el valor referent a les mines adjacents.
+    /*
+    Assigna a cada cel·la sense mina el valor que indica el nombre de mines 
+    adjacents a la seva àrea veïna (8 direccions).
+    */
+    public void insertValueintoCells() {  
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (matrix[i][j].getValue() == -1) { // si es mina
@@ -91,7 +104,11 @@ public class Board {
     public int getSize() {
         return this.size;
     }
-    
+
+    /*
+    Gestiona l'acció de fer clic en una cel·la del tauler, aplicant la lògica 
+    de joc: mina (fi), zero (expansió) o número (revelació).
+    */
     public Boolean clickACell(int fila, int columna){
         if (fila >= this.size || fila < 0)
         {
@@ -116,7 +133,11 @@ public class Board {
         }  
         return true;      
     }
-
+    /*
+     Implementa l'expansió recursiva. Revela la cel·la actual i les seves veïnes
+     si tenen valor 0, aturant-se quan arriba a una cel·la numerada, una mina,
+     o el límit del tauler.
+    */
     public void expandZeros(int fila, int columna) {
         // Fora del tauler
         if (fila < 0||fila > (size-1) || columna < 0 ||columna > (size-1))  {
@@ -146,7 +167,11 @@ public class Board {
         }
     }
 
-    public void clickAMina() { // Recorrem tot el tauler
+    /*
+    Recorrem tot el tauler i a on el valor és -1 (hi ha mina)
+    la revelem
+     */
+    public void clickAMina() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (matrix[i][j].getValue() == -1) {
@@ -155,6 +180,10 @@ public class Board {
             }
         }
     }
+    /*
+    Verifica la condició de victòria: s'ha guanyat si totes les cel·les 
+    que no són mines han estat revelades.
+    */
 
     public Boolean isWin() {
         for (int i = 0; i < size; i++) {
