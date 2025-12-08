@@ -67,7 +67,7 @@ public class Game {
         {
             throw new IllegalArgumentException("Columna fora de rang");
         }
-        if (action != "FLAG" && action != "REVEAL")
+        if (!(action.equals("FLAG")) && !(action.equals( "REVEAL")))
         {
             throw new IllegalArgumentException("Accio Invalida");
         }

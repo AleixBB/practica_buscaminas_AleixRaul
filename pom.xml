@@ -31,11 +31,17 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- 🔥 AFEGEIX AQUESTA LÍNIA 🔥 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-
             <!-- JUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -89,7 +95,6 @@
                     <consoleOutput>true</consoleOutput>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -113,5 +118,4 @@
             </plugin>
         </plugins>
     </reporting>
-
 </project>
